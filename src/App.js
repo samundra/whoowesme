@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <div style={{ height: '100%', background: '#ccc' }}>
+      <div style={{ height: '100%', background: '#cccccc' }}>
         <Button type="primary">Button</Button>
       </div>
     </div>
