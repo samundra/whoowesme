@@ -1,10 +1,14 @@
 const ulStyle = {
+  margin: 0,
+  padding: '20px',
   display: 'flex',
   alignItems: 'center',
   listStyle: 'none',
   height: '110px',
   color: '#444',
   background: '#eee',
+  justifyContent: 'center',
+  width: '100%',
 };
 
 const liStyle = {

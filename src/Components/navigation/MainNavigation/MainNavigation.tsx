@@ -1,11 +1,11 @@
 import React from 'react';
 import style from './style';
 
-type Props = {};
+type Props = { style: any };
 
 const MainNavigation: React.FunctionComponent<Props> = props => {
   return (
-    <nav style={{ width: '100%', textAlign: 'center' }}>
+    <nav style={props.style}>
       <ul style={style.ulStyle}>
         <li style={style.liStyle}>
           <a href="/" style={style.activeLink}>

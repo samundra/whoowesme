@@ -10,10 +10,11 @@ const App = () => {
         style={{
           textAlign: 'center',
           display: 'block',
-          width: '100%',
         }}
       >
-        <MainNavigation />
+        <MainNavigation
+          style={{ minWidth: '768px', width: '768px', margin: '0 auto' }}
+        />
       </div>
       <div style={{ height: '100%' }}>
         <Button type="primary">Button</Button>
