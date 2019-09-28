@@ -5,7 +5,7 @@ const ulStyle = {
   height: '110px',
   color: '#444',
   background: '#eee',
-} ;
+};
 
 const liStyle = {
   marginRight: '10px',
@@ -43,4 +43,4 @@ export default {
   defaultLink,
   metroUILink,
   activeLink,
-}
+};
