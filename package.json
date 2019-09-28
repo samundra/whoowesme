@@ -1,7 +1,6 @@
 {
   "name": "inventory",
   "version": "0.1.0",
-  "license": "MIT",
   "private": true,
   "dependencies": {
     "antd": "^3.23.4",
@@ -13,9 +12,14 @@
     "react-scripts": "3.1.2"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.8",
+    "@types/react": "^16.9.3",
+    "@types/react-dom": "^16.9.1",
     "husky": "^3.0.7",
     "lint-staged": "^9.4.0",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "typescript": "^3.6.3"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -44,7 +48,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,md,css,html}": [
+    "*.{ts,tsx,js,md,css,html}": [
       "prettier --trailing-comma es5 --single-quote --write",
       "git add"
     ],

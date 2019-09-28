@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from 'antd';
 import './App.css';
-import { MainNavigation } from '../src/Components/navigation/MainNavigation';
+import { MainNavigation } from './Components/navigation/MainNavigation';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <div
