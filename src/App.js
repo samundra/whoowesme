@@ -5,7 +5,9 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Button type="primary">Button</Button>
+      <div style={{ height: '100%' }}>
+        <Button type="primary">Button</Button>
+      </div>
     </div>
   );
 }
