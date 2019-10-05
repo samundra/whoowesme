@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from 'antd';
 import './App.css';
-import { MainNavigation } from './Components/navigation/MainNavigation';
+import MainNavigation from './Components/navigation/MainNavigation';
+import SidebarNavigation from './Components/navigation/SidebarNavigation';
 
 const App = () => {
   return (
@@ -15,9 +15,22 @@ const App = () => {
         <MainNavigation
           style={{ minWidth: '768px', width: '768px', margin: '0 auto' }}
         />
-      </div>
-      <div style={{ height: '100%' }}>
-        <Button type="primary">Button</Button>
+        <div
+          style={{
+            width: '768px',
+            margin: '0 auto',
+          }}
+        >
+          <SidebarNavigation
+            style={{
+              listStyle: 'none',
+              textAlign: 'left',
+              padding: '0',
+              float: 'left',
+            }}
+          />
+          Main Content will be here.
+        </div>
       </div>
     </div>
   );

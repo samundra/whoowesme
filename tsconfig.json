@@ -21,6 +21,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "rootDir": "src",
     "noImplicitAny": true,
     "noImplicitReturns": true,
