@@ -10,10 +10,13 @@ const SidebarNavigation: React.FunctionComponent<SidebarNavigationProps> = ({
   return (
     <ul style={style}>
       <li>
-        <a href="/add-friend">Add Friend</a>
+        <a href="/add">Add</a>
       </li>
       <li>
-        <a href="/show-debts">Show Debts</a>
+        <a href="/send-invitations">Send invitations</a>
+      </li>
+      <li>
+        <a href="/show-transactions">Show Transactions</a>
       </li>
       <li>
         <a href="/show-graph">Show Graph</a>

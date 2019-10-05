@@ -29,7 +29,7 @@ const App = () => {
               float: 'left',
             }}
           />
-          Main Content will be here.
+          <div>Content Area</div>
         </div>
       </div>
     </div>

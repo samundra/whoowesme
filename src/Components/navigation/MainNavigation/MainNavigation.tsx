@@ -8,17 +8,17 @@ const MainNavigation: React.FunctionComponent<Props> = props => {
     <nav style={props.style}>
       <ul style={style.ulStyle}>
         <li style={style.liStyle}>
-          <a href="/" style={style.activeLink}>
+          <a href="/dashboard" style={style.activeLink}>
             Home
           </a>
         </li>
         <li style={{ marginRight: '10px', textAlign: 'center' }}>
-          <a href="/add-friend" style={style.defaultLink}>
-            Add Friend
+          <a href="/send-invitations" style={style.defaultLink}>
+            Send Invitations
           </a>
         </li>
         <li style={{ marginRight: '0', textAlign: 'center' }}>
-          <a href="/add-friend" style={style.metroUILink}>
+          <a href="/logout" style={style.metroUILink}>
             Logout
           </a>
         </li>
