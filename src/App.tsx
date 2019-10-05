@@ -20,7 +20,19 @@ const App = () => {
           }}
         >
           <SidebarNavigation />
-          <div>Content Area</div>
+          <div
+            style={{
+              paddingLeft: '10px',
+              textAlign: 'left',
+              borderLeft: '2px solid #bbb',
+              overflow: 'auto',
+              height: 'auto',
+              background: '#ccc',
+              minHeight: '400px',
+            }}
+          >
+            Content Area
+          </div>
         </div>
       </div>
     </div>

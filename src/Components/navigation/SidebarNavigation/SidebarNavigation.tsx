@@ -1,9 +1,15 @@
 import React from 'react';
-import style from './style';
+
+const sideNavigation = {
+  listStyle: 'none',
+  textAlign: 'left',
+  padding: '5px',
+  float: 'left',
+} as React.CSSProperties;
 
 const SidebarNavigation: React.FunctionComponent = () => {
   return (
-    <ul style={style.sideNavigation}>
+    <ul style={sideNavigation}>
       <li>
         <a href="/manage-friends">Friends</a>
       </li>
