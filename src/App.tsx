@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import MainNavigation from './Components/navigation/MainNavigation';
 import SidebarNavigation from './Components/navigation/SidebarNavigation';
+import { Row, Col } from 'antd';
 
 const contentStyle = {
   paddingLeft: '10px',
@@ -15,25 +16,25 @@ const contentStyle = {
 
 const App = () => {
   return (
-    <div className="App">
-      <div
+    <Row className="App">
+      <Row
         style={{
           textAlign: 'center',
           display: 'block',
         }}
       >
         <MainNavigation />
-        <div
+        <Row
           style={{
             width: '768px',
             margin: '0 auto',
           }}
         >
           <SidebarNavigation />
-          <div style={contentStyle}>Content Area</div>
-        </div>
-      </div>
-    </div>
+          <Col style={contentStyle}>Content Area</Col>
+        </Row>
+      </Row>
+    </Row>
   );
 };
 
