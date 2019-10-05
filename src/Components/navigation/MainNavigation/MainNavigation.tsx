@@ -1,11 +1,15 @@
 import React from 'react';
 import style from './style';
 
-type Props = { style: any };
+const mainNavigationStyle = {
+  minWidth: '768px',
+  width: '768px',
+  margin: '0 auto',
+} as React.CSSProperties;
 
-const MainNavigation: React.FunctionComponent<Props> = props => {
+const MainNavigation: React.FunctionComponent = () => {
   return (
-    <nav style={props.style}>
+    <nav style={mainNavigationStyle}>
       <ul style={style.ulStyle}>
         <li style={style.liStyle}>
           <a href="/dashboard" style={style.activeLink}>

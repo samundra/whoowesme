@@ -1,14 +1,9 @@
 import React from 'react';
+import style from './style';
 
-type SidebarNavigationProps = {
-  style: any;
-};
-
-const SidebarNavigation: React.FunctionComponent<SidebarNavigationProps> = ({
-  style,
-}) => {
+const SidebarNavigation: React.FunctionComponent = () => {
   return (
-    <ul style={style}>
+    <ul style={style.sideNavigation}>
       <li>
         <a href="/manage-friends">Friends</a>
       </li>

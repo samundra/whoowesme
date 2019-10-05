@@ -12,23 +12,14 @@ const App = () => {
           display: 'block',
         }}
       >
-        <MainNavigation
-          style={{ minWidth: '768px', width: '768px', margin: '0 auto' }}
-        />
+        <MainNavigation />
         <div
           style={{
             width: '768px',
             margin: '0 auto',
           }}
         >
-          <SidebarNavigation
-            style={{
-              listStyle: 'none',
-              textAlign: 'left',
-              padding: '0',
-              float: 'left',
-            }}
-          />
+          <SidebarNavigation />
           <div>Content Area</div>
         </div>
       </div>
