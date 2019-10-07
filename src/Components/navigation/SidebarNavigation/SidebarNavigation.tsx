@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const sideNavigation = {
   listStyle: 'none',
@@ -11,16 +12,16 @@ const SidebarNavigation: React.FunctionComponent = () => {
   return (
     <ul style={sideNavigation}>
       <li>
-        <a href="/manage-friends">Manage Friends List</a>
+        <Link to="/manage-friends">Manage Friends List</Link>
       </li>
       <li>
-        <a href="/send-invitations">Send invitations</a>
+        <Link to="/send-invitations">Send invitations</Link>
       </li>
       <li>
-        <a href="/show-transactions">Show Transactions</a>
+        <Link to="/show-transactions">Show Transactions</Link>
       </li>
       <li>
-        <a href="/show-graph">Show Graph</a>
+        <Link to="/show-graph">Show Graph</Link>
       </li>
     </ul>
   );

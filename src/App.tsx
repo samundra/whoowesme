@@ -4,6 +4,7 @@ import MainNavigation from './Components/navigation/MainNavigation';
 import SidebarNavigation from './Components/navigation/SidebarNavigation';
 import { Row, Col } from 'antd';
 import AddFriendForm from 'Components/form/AddFriendForm';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 
 const contentStyle = {
   paddingLeft: '10px',
@@ -20,27 +21,31 @@ type AppProps = {
 const App: React.FunctionComponent<AppProps> = () => {
   return (
     <Row className="App">
-      <Row
-        style={{
-          textAlign: 'center',
-          display: 'block',
-        }}
-      >
-        <MainNavigation />
+      <Router>
         <Row
           style={{
-            width: '768px',
-            margin: '0 auto',
+            textAlign: 'center',
+            display: 'block',
           }}
         >
-          <SidebarNavigation />
-          <Col style={contentStyle}>
-            <Row>
-              <AddFriendForm />
-            </Row>
-          </Col>
+          <MainNavigation />
+          <Row
+            style={{
+              width: '768px',
+              margin: '0 auto',
+            }}
+          >
+            <SidebarNavigation />
+            <Col style={contentStyle}>
+              <Row>
+                <Switch>
+                  <Route path="/manage-friends" component={AddFriendForm} />
+                </Switch>
+              </Row>
+            </Col>
+          </Row>
         </Row>
-      </Row>
+      </Router>
     </Row>
   );
 };
