@@ -1,4 +1,5 @@
 import React from 'react';
+import { SendInvitationForm } from 'Components/form';
 
 export const meta = {
   to: '/send-invitation',
@@ -8,7 +9,7 @@ export const meta = {
 type Props = {};
 
 const SendInvitation: React.FunctionComponent<Props> = () => {
-  return <h1>Send Invitations</h1>;
+  return <SendInvitationForm />;
 };
 
 export default SendInvitation;

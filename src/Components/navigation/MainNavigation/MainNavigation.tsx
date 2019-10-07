@@ -17,11 +17,6 @@ const MainNavigation: React.FunctionComponent = () => {
             Home
           </Link>
         </li>
-        <li style={{ marginRight: '10px', textAlign: 'center' }}>
-          <Link to="/send-invitation" style={style.defaultLink}>
-            Send Invitations
-          </Link>
-        </li>
         <li style={{ marginRight: '0', textAlign: 'center' }}>
           <Link to="/logout" style={style.metroUILink}>
             Logout

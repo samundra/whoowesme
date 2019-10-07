@@ -1,9 +1,9 @@
 import React from 'react';
-import AddFriendForm from 'Components/form/AddFriendForm';
+import { AddFriendForm } from 'Components/form';
 
 export const meta = {
-  to: '/manage-friend',
-  label: 'Manage Friend',
+  to: '/add-friend',
+  label: 'Add friend',
 };
 
 type Props = {};
