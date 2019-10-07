@@ -1,26 +1,31 @@
 import React from 'react';
 import style from './style';
+import { Link } from 'react-router-dom';
 
-type Props = { style: any };
+const mainNavigationStyle = {
+  minWidth: '768px',
+  width: '768px',
+  margin: '0 auto',
+} as React.CSSProperties;
 
-const MainNavigation: React.FunctionComponent<Props> = props => {
+const MainNavigation: React.FunctionComponent = () => {
   return (
-    <nav style={props.style}>
+    <nav style={mainNavigationStyle}>
       <ul style={style.ulStyle}>
         <li style={style.liStyle}>
-          <a href="/" style={style.activeLink}>
+          <Link to="/dashboard" style={style.activeLink}>
             Home
-          </a>
+          </Link>
         </li>
         <li style={{ marginRight: '10px', textAlign: 'center' }}>
-          <a href="/add-friend" style={style.defaultLink}>
-            Add Friend
-          </a>
+          <Link to="/send-invitations" style={style.defaultLink}>
+            Send Invitations
+          </Link>
         </li>
         <li style={{ marginRight: '0', textAlign: 'center' }}>
-          <a href="/add-friend" style={style.metroUILink}>
+          <Link to="/logout" style={style.metroUILink}>
             Logout
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
