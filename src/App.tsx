@@ -3,18 +3,23 @@ import './App.css';
 import MainNavigation from './Components/navigation/MainNavigation';
 import SidebarNavigation from './Components/navigation/SidebarNavigation';
 import { Row, Col } from 'antd';
+import AddFriendForm from 'Components/form/AddFriendForm';
 
 const contentStyle = {
   paddingLeft: '10px',
   textAlign: 'left',
-  borderLeft: '2px solid #bbb',
+  // borderLeft: '2px solid #bbb',
   overflow: 'auto',
   height: 'auto',
-  background: '#ccc',
+  // background: '#ccc',
   minHeight: '400px',
 } as React.CSSProperties;
 
-const App = () => {
+type AppProps = {
+  getFieldDecorator?: any;
+};
+
+const App: React.FunctionComponent<AppProps> = () => {
   return (
     <Row className="App">
       <Row
@@ -31,7 +36,11 @@ const App = () => {
           }}
         >
           <SidebarNavigation />
-          <Col style={contentStyle}>Content Area</Col>
+          <Col style={contentStyle}>
+            <Row>
+              <AddFriendForm />
+            </Row>
+          </Col>
         </Row>
       </Row>
     </Row>
