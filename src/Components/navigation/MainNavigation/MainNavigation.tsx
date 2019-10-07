@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './style';
+import { Link } from 'react-router-dom';
 
 const mainNavigationStyle = {
   minWidth: '768px',
@@ -12,19 +13,19 @@ const MainNavigation: React.FunctionComponent = () => {
     <nav style={mainNavigationStyle}>
       <ul style={style.ulStyle}>
         <li style={style.liStyle}>
-          <a href="/dashboard" style={style.activeLink}>
+          <Link to="/dashboard" style={style.activeLink}>
             Home
-          </a>
+          </Link>
         </li>
         <li style={{ marginRight: '10px', textAlign: 'center' }}>
-          <a href="/send-invitations" style={style.defaultLink}>
+          <Link to="/send-invitations" style={style.defaultLink}>
             Send Invitations
-          </a>
+          </Link>
         </li>
         <li style={{ marginRight: '0', textAlign: 'center' }}>
-          <a href="/logout" style={style.metroUILink}>
+          <Link to="/logout" style={style.metroUILink}>
             Logout
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
