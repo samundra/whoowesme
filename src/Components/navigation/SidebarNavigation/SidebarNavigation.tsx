@@ -11,7 +11,7 @@ const SidebarNavigation: React.FunctionComponent = () => {
   return (
     <ul style={sideNavigation}>
       <li>
-        <a href="/manage-friends">Friends</a>
+        <a href="/manage-friends">Manage Friends List</a>
       </li>
       <li>
         <a href="/send-invitations">Send invitations</a>

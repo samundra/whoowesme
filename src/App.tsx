@@ -8,10 +8,8 @@ import AddFriendForm from 'Components/form/AddFriendForm';
 const contentStyle = {
   paddingLeft: '10px',
   textAlign: 'left',
-  // borderLeft: '2px solid #bbb',
   overflow: 'auto',
   height: 'auto',
-  // background: '#ccc',
   minHeight: '400px',
 } as React.CSSProperties;
 
