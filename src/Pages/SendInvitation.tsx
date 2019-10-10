@@ -1,7 +1,7 @@
 import React from 'react';
 import { SendInvitationForm } from 'Components/form';
 
-export const meta = {
+export const menu = {
   to: '/send-invitation',
   label: 'Send Invitation',
 };

@@ -5,9 +5,9 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import MainNavigation from './Components/navigation/MainNavigation';
 import SidebarNavigation from './Components/navigation/SidebarNavigation';
 import SendInvitation, {
-  meta as sendInvitationMeta,
+  menu as sendInvitationMenu,
 } from 'Pages/SendInvitation';
-import ManageFriend, { meta as manageFriendMeta } from 'Pages/ManageFriend';
+import ManageFriend, { menu as manageFriendMenu } from 'Pages/ManageFriend';
 
 const contentStyle = {
   paddingLeft: '10px',
@@ -42,9 +42,9 @@ const App: React.FunctionComponent<AppProps> = () => {
             <Col style={contentStyle}>
               <Row>
                 <Switch>
-                  <Route path={manageFriendMeta.to} component={ManageFriend} />
+                  <Route path={manageFriendMenu.to} component={ManageFriend} />
                   <Route
-                    path={sendInvitationMeta.to}
+                    path={sendInvitationMenu.to}
                     component={SendInvitation}
                   />
                 </Switch>

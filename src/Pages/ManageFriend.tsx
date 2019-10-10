@@ -1,7 +1,7 @@
 import React from 'react';
 import { AddFriendForm } from 'Components/form';
 
-export const meta = {
+export const menu = {
   to: '/add-friend',
   label: 'Add friend',
 };
