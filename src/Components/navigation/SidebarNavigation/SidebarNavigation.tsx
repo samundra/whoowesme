@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { menu as sendInvitationMenu } from 'Pages/SendInvitation';
+import { menu as manageFriendMenu } from 'Pages/ManageFriend';
 
 const sideNavigation = {
   listStyle: 'none',
@@ -12,17 +14,17 @@ const SidebarNavigation: React.FunctionComponent = () => {
   return (
     <ul style={sideNavigation}>
       <li>
-        <Link to="/manage-friends">Manage Friends List</Link>
+        <Link to={manageFriendMenu.to}>{manageFriendMenu.label}</Link>
       </li>
       <li>
-        <Link to="/send-invitations">Send invitations</Link>
+        <Link to={sendInvitationMenu.to}>{sendInvitationMenu.label}</Link>
       </li>
-      <li>
+      {/*<li>
         <Link to="/show-transactions">Show Transactions</Link>
       </li>
       <li>
         <Link to="/show-graph">Show Graph</Link>
-      </li>
+      </li>*/}
     </ul>
   );
 };
