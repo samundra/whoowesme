@@ -5,9 +5,10 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import MainNavigation from './Components/navigation/MainNavigation';
 import SidebarNavigation from './Components/navigation/SidebarNavigation';
 import SendInvitation, {
-  menu as sendInvitationMenu
+  menu as sendInvitationMenu,
 } from 'Pages/SendInvitation';
 import ManageFriend, { menu as manageFriendMenu } from 'Pages/ManageFriend';
+import Login, { menu as loginMenu } from 'Pages/Login';
 import { Provider } from 'react-redux';
 import store from './Store/Store';
 const contentStyle = {
@@ -15,12 +16,15 @@ const contentStyle = {
   textAlign: 'left',
   overflow: 'auto',
   height: 'auto',
-  minHeight: '400px'
+  minHeight: '400px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 } as React.CSSProperties;
 
 const navigationStyle = {
   width: '1024px',
-  margin: '0 auto'
+  margin: '0 auto',
 } as React.CSSProperties;
 
 type AppProps = {
@@ -30,12 +34,12 @@ type AppProps = {
 const App: React.FunctionComponent<AppProps> = () => {
   return (
     <Provider store={store}>
-      <Row className='App'>
+      <Row className="App">
         <Router>
           <Row
             style={{
               textAlign: 'center',
-              display: 'block'
+              display: 'block',
             }}
           >
             <MainNavigation />
@@ -44,6 +48,7 @@ const App: React.FunctionComponent<AppProps> = () => {
               <Col style={contentStyle}>
                 <Row>
                   <Switch>
+                    <Route path={loginMenu.to} component={Login} />
                     <Route
                       path={manageFriendMenu.to}
                       component={ManageFriend}

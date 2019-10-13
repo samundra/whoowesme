@@ -1,24 +1,20 @@
 const ulStyle = {
   margin: 0,
-  padding: '20px',
   display: 'flex',
   alignItems: 'center',
   listStyle: 'none',
-  height: '110px',
+  height: '80px',
   color: '#444',
   background: '#eee',
   justifyContent: 'center',
-  width: '100%',
 };
 
 const liStyle = {
   marginRight: '10px',
-  height: '80px',
 };
 
 const activeLink = {
   background: '#444',
-  height: '80px',
   lineHeight: '80px',
   padding: '20px',
   color: '#fff',
@@ -26,17 +22,12 @@ const activeLink = {
 
 const defaultLink = {
   background: '#ccc',
-  height: '80px',
-  lineHeight: '80px',
   padding: '20px',
   color: '#444',
 };
 
 const metroUILink = {
-  // background: '#ccc',
   border: '1px solid #444',
-  height: '80px',
-  lineHeight: '80px',
   padding: '20px',
   color: '#444',
 };
