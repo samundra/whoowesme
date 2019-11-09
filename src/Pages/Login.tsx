@@ -1,5 +1,6 @@
 import React from 'react';
 import { LoginForm } from 'Components/form';
+import LoginPageLayout from 'Layout/LoginPageLayout';
 
 export const menu = {
   to: '/login',
@@ -7,7 +8,11 @@ export const menu = {
 };
 
 const Login: React.FunctionComponent = () => {
-  return <LoginForm />;
+  return (
+    <LoginPageLayout>
+      <LoginForm />
+    </LoginPageLayout>
+  );
 };
 
 export default Login;
