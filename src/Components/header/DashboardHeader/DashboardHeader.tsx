@@ -13,6 +13,7 @@ import {
 } from 'antd';
 import styled from 'styled-components';
 import { profileMenu } from 'Components/menu/ProfileMenu';
+import HamburgerMenu from 'Components/menu/HamburgerMenu/HamburgerMenu';
 
 const { Header } = Layout;
 const { Search } = Input;
@@ -34,17 +35,11 @@ const StyledProfileMenu = styled(StyledMenu)`
 type Props = {};
 
 const DashboardHeader: React.FunctionComponent<Props> = () => {
-  const [collapse, setCollapse] = useState(false);
-
-  const toggleSidebar = () => {
-    setCollapse(!collapse);
-  };
-
   return (
     <Header style={{ background: '#fff', padding: 0, paddingLeft: '10px' }}>
       <Row type="flex" justify="space-between" align="middle" gutter={16}>
         <Col span={5}>
-          <Button type="link" icon="bars" onClick={toggleSidebar} />
+          <HamburgerMenu />
           <Button type="link" icon="plus">
             Add new Item
           </Button>
