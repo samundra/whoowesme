@@ -1,48 +1,45 @@
-import React from 'react';
-import { Row, Col } from 'antd';
-import MainNavigation from '../Components/navigation/MainNavigation';
-import SidebarNavigation from '../Components/navigation/SidebarNavigation';
+import React, { useState, useEffect } from 'react';
+import { Layout } from 'antd';
+import SidebarMenuLogo from 'Components/logo/SidebarMenuLogo';
+import { AppFooter } from 'Components/section';
+import AppMenu from 'Components/menu/AppMenu/AppMenu';
 
-const contentStyle = {
-  paddingLeft: '10px',
-  textAlign: 'left',
-  overflow: 'auto',
-  height: 'auto',
-  minHeight: '400px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-} as React.CSSProperties;
-
-const navigationStyle = {
-  width: '1024px',
-  margin: '0 auto',
-} as React.CSSProperties;
+const { Header, Sider } = Layout;
 
 type CommonLayoutProps = {
-  children: any;
+  children: React.ReactNode;
 };
 
 const DashboardPageLayout: React.FunctionComponent<CommonLayoutProps> = ({
   children,
 }) => {
+  const [collapsed, setCollapsed] = useState(false);
+
+  const onCollapse = (isCollapsed: boolean) => {
+    localStorage.setItem('menu.is_collapsed', isCollapsed ? 'yes' : 'no');
+
+    setCollapsed(isCollapsed);
+  };
+
+  useEffect(() => {
+    const isCollapsed = localStorage.getItem('menu.is_collapsed') === 'yes';
+
+    setCollapsed(isCollapsed);
+  }, []);
+
   return (
-    <Row className="App">
-      <Row
-        style={{
-          textAlign: 'center',
-          display: 'block',
-        }}
-      >
-        <MainNavigation />
-        <Row style={navigationStyle}>
-          <SidebarNavigation />
-          <Col style={contentStyle}>
-            <Row>{children}</Row>
-          </Col>
-        </Row>
-      </Row>
-    </Row>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+        {!collapsed && <SidebarMenuLogo />}
+        {collapsed && <SidebarMenuLogo type="small" />}
+        <AppMenu />
+      </Sider>
+      <Layout>
+        <Header style={{ background: '#fff', padding: 0 }} />
+        {children}
+        <AppFooter />
+      </Layout>
+    </Layout>
   );
 };
 

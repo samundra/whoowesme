@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './style';
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
-import ApplicationLogo from '../../logo/ApplicationLogo';
+import ApplicationLogo from '../../logo/SidebarMenuLogo';
 
 const mainNavigationStyle = {
   minWidth: '1024px',
