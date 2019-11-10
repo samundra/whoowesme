@@ -102,6 +102,7 @@ const menu = (
           <span style={{ marginLeft: 10 }}>Profile</span>
         </MenuLabel>
       </Menu.Item>
+      <Menu.Divider />
       <Menu.Item
         key="menu.profile.message"
         onClick={() => onMenuItemClick('menu.profile.message')}
@@ -111,7 +112,6 @@ const menu = (
           <span style={{ marginLeft: 10 }}>Message</span>
         </MenuLabel>
       </Menu.Item>
-      <Divider type="horizontal" style={{ padding: 0, margin: 0 }} />
       <Menu.Item
         key="menu.profile.logout"
         onClick={() => onMenuItemClick('menu.profile.logout')}
