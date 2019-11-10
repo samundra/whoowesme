@@ -14,6 +14,8 @@ type AppProps = {
   getFieldDecorator?: any;
 };
 
+// TODO: add context to toggle sidebar
+
 const App: React.FunctionComponent<AppProps> = () => {
   return (
     <Provider store={store}>
