@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Layout } from 'antd';
 import SidebarMenuLogo from 'Components/logo/SidebarMenuLogo';
 import { AppFooter } from 'Components/section';
 import AppMenu from 'Components/menu/AppMenu/AppMenu';
 import { DashboardHeader } from 'Components';
+import { SiderContext } from 'Components/context/SiderContext';
 
 const { Sider } = Layout;
 
@@ -14,7 +15,8 @@ type CommonLayoutProps = {
 const DashboardPageLayout: React.FunctionComponent<CommonLayoutProps> = ({
   children,
 }) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const siderOpenContext = useContext(SiderContext);
+  const [collapsed, setCollapsed] = useState(siderOpenContext.collapsed);
 
   const onCollapse = (isCollapsed: boolean) => {
     localStorage.setItem('menu.is_collapsed', isCollapsed ? 'yes' : 'no');
@@ -28,15 +30,31 @@ const DashboardPageLayout: React.FunctionComponent<CommonLayoutProps> = ({
     setCollapsed(isCollapsed);
   }, []);
 
+  const initialState = {
+    collapsed: collapsed,
+    toggleSider: () => {
+      const toggled = !collapsed;
+      setCollapsed(toggled);
+      localStorage.setItem(
+        'menu.is_collapsed',
+        toggled === true ? 'yes' : 'no'
+      );
+    },
+  };
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
-        {!collapsed && <SidebarMenuLogo />}
-        {collapsed && <SidebarMenuLogo type="small" />}
-        <AppMenu />
-      </Sider>
+      <SiderContext.Provider value={initialState}>
+        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+          {!collapsed && <SidebarMenuLogo />}
+          {collapsed && <SidebarMenuLogo type="small" />}
+          <AppMenu />
+        </Sider>
+      </SiderContext.Provider>
       <Layout>
-        <DashboardHeader />
+        <SiderContext.Provider value={initialState}>
+          <DashboardHeader />
+        </SiderContext.Provider>
         {children}
         <AppFooter />
       </Layout>
