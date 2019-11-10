@@ -3,8 +3,9 @@ I will keep on adding new features when I have time.
 
 ### Project Introduction
 
-Title: Who Owes Me
-About: A project to keep track of money. We share money with friends and often
+**Title:** Who Owes Me
+
+**About:** A project to keep track of money. We share money with friends and often
 forget to keep track. This project will be home for those money.
 
 ### Why this project
