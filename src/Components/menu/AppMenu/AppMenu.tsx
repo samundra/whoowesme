@@ -7,14 +7,23 @@ type Props = {};
 
 const { SubMenu } = Menu;
 
+type LocationState = {
+  menuKey: string[];
+  parentMenuKey: string[];
+};
+
 const AppMenu: React.FunctionComponent<Props> = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const locationState = location.state as {
-    menuKey: string[];
-    parentMenuKey: string[];
+  const initialMenuState = {
+    menuKey: ['send_invitation'],
+    parentMenuKey: [''],
   };
+
+  const locationState: LocationState =
+    (location && (location.state as LocationState)) || initialMenuState;
+
   const [currentMenuKey, setCurrentMenuKey] = useState(locationState.menuKey);
   const [parentMenuKey, setParentMenuKey] = useState(
     locationState.parentMenuKey
