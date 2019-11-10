@@ -27,6 +27,7 @@ const ProfileMenu = styled('span')`
   display: inline-block;
   padding: 0 5px;
   user-select: none;
+  cursor: pointer;
 `;
 
 const MenuLabel = styled('span')`
@@ -35,40 +36,95 @@ const MenuLabel = styled('span')`
 
 type Props = {};
 
+const ArrowTop = styled('span')`
+  content: '.';
+  width: 10px;
+  height: 10px;
+  display: block;
+  background: #fff;
+  position: relative;
+  top: 0;
+  left: 0;
+  margin-left: 70%;
+  border: 1px solid #eee;
+  border-bottom-width: 0;
+  border-right-width: 0;
+  transform: rotate(45deg);
+  margin-bottom: -4px;
+`;
+
+const logoutMenuStyle: React.CSSProperties = {
+  background: '#7a8994',
+  color: '#fff',
+  margin: 0,
+  padding: 0,
+};
+
+const menuContainerStyle = {
+  position: 'relative',
+  display: 'block',
+  height: '100%',
+  boxShadow: '1px 6px 5px #ccc',
+  color: '#7a8994',
+} as React.CSSProperties;
+
+const menuFirstItemStyle: React.CSSProperties = {
+  marginTop: '0',
+  borderTopRightRadius: '5px',
+  borderTopLeftRadius: '5px',
+};
+
+const LogoutButton = styled(MenuLabel)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ccc;
+  &:hover {
+    color: #fff;
+  }
+`;
+
 const onMenuItemClick = (key: string) => {
   console.log({ key });
 };
 
 const menu = (
-  <Menu>
-    <Menu.Item
-      key="menu.profile.about"
-      onClick={() => onMenuItemClick('menu.profile.about')}
-    >
-      <MenuLabel>
-        <Icon type="user" />
-        <span style={{ marginLeft: 10 }}>Profile</span>
-      </MenuLabel>
-    </Menu.Item>
-    <Menu.Item
-      key="menu.profile.message"
-      onClick={() => onMenuItemClick('menu.profile.message')}
-    >
-      <MenuLabel>
-        <Icon type="message" />
-        <span style={{ marginLeft: 10 }}>Message</span>
-      </MenuLabel>
-    </Menu.Item>
-    <Menu.Item
-      key="menu.profile.exit"
-      onClick={() => onMenuItemClick('menu.profile.logout')}
-    >
-      <MenuLabel>
-        <Icon type="logout" />
-        <span style={{ marginLeft: 10 }}>Logout</span>
-      </MenuLabel>
-    </Menu.Item>
-  </Menu>
+  <div style={menuContainerStyle}>
+    <ArrowTop />
+    <Menu style={{ paddingBottom: 0, marginBottom: 0, position: 'relative' }}>
+      <Menu.Item
+        key="menu.profile.about"
+        onClick={() => onMenuItemClick('menu.profile.about')}
+        style={menuFirstItemStyle}
+      >
+        <MenuLabel>
+          <Icon type="user" />
+          <span style={{ marginLeft: 10 }}>Profile</span>
+        </MenuLabel>
+      </Menu.Item>
+      <Menu.Item
+        key="menu.profile.message"
+        onClick={() => onMenuItemClick('menu.profile.message')}
+      >
+        <MenuLabel>
+          <Icon type="message" />
+          <span style={{ marginLeft: 10 }}>Message</span>
+        </MenuLabel>
+      </Menu.Item>
+      <Divider type="horizontal" style={{ padding: 0, margin: 0 }} />
+      <Menu.Item
+        key="menu.profile.logout"
+        onClick={() => onMenuItemClick('menu.profile.logout')}
+        style={logoutMenuStyle}
+      >
+        <LogoutButton>
+          Logout
+          {'  '}
+          <Icon type="poweroff" style={{ marginLeft: 10 }} />
+        </LogoutButton>
+      </Menu.Item>
+    </Menu>
+  </div>
 );
 
 const DashboardHeader: React.FunctionComponent<Props> = () => {
@@ -98,7 +154,7 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
             </Button>
           </SettingsMenu>
           <Divider type="vertical" />
-          <Dropdown overlay={menu}>
+          <Dropdown overlay={menu} trigger={['click']}>
             <ProfileMenu>
               <Badge count={1}>
                 <span style={{ marginRight: 10 }}>Sam Shrestha</span>
