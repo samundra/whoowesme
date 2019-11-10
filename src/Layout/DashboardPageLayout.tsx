@@ -3,8 +3,9 @@ import { Layout } from 'antd';
 import SidebarMenuLogo from 'Components/logo/SidebarMenuLogo';
 import { AppFooter } from 'Components/section';
 import AppMenu from 'Components/menu/AppMenu/AppMenu';
+import { DashboardHeader } from 'Components';
 
-const { Header, Sider } = Layout;
+const { Sider } = Layout;
 
 type CommonLayoutProps = {
   children: React.ReactNode;
@@ -35,7 +36,7 @@ const DashboardPageLayout: React.FunctionComponent<CommonLayoutProps> = ({
         <AppMenu />
       </Sider>
       <Layout>
-        <Header style={{ background: '#fff', padding: 0 }} />
+        <DashboardHeader />
         {children}
         <AppFooter />
       </Layout>
