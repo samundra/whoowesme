@@ -14,17 +14,20 @@
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
-    "redux": "^4.0.4"
+    "redux": "^4.0.4",
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.8",
     "@types/react": "^16.9.3",
     "@types/react-dom": "^16.9.1",
+    "@types/styled-components": "^4.4.0",
     "husky": "^3.0.7",
     "lint-staged": "^9.4.0",
     "prettier": "^1.18.2",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "typescript-plugin-styled-components": "^1.4.3"
   },
   "scripts": {
     "start": "react-app-rewired start",

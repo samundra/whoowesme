@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import { menu as sendInvitationMenu } from 'Pages/SendInvitation';
-import { menu as manageFriendMenu } from 'Pages/ManageFriend';
+import { menu as addFriendMenu } from 'Pages/AddFriend';
 import { menu as loginMenu } from 'Pages/Login';
 
 const sideNavigation = {
@@ -26,7 +26,7 @@ const SidebarNavigation: React.FunctionComponent<Props> = props => {
         <Link to={loginMenu.to}>{loginMenu.label}</Link>
       </li>
       <li>
-        <Link to={manageFriendMenu.to}>{manageFriendMenu.label}</Link>
+        <Link to={addFriendMenu.to}>{addFriendMenu.label}</Link>
       </li>
       <li>
         <Link to={sendInvitationMenu.to}>{sendInvitationMenu.label}</Link>
