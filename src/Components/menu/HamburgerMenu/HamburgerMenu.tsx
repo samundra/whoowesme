@@ -11,7 +11,7 @@ const HamburgerMenu: React.FunctionComponent<Props> = () => {
         <span>
           <Button
             type="link"
-            icon={collapsed ? 'bars' : 'bars'}
+            icon={collapsed ? 'menu' : 'menu'}
             onClick={toggleSider}
           />
         </span>
