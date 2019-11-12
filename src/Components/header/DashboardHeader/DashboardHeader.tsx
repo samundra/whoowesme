@@ -32,6 +32,10 @@ const StyledProfileMenu = styled(StyledMenu)`
   padding: 0 5px;
 `;
 
+const StyledUserFullname = styled('span')`
+  margin-right: 5px;
+`;
+
 type Props = {};
 
 const DashboardHeader: React.FunctionComponent<Props> = () => {
@@ -40,31 +44,40 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
       <Row type="flex" justify="space-between" align="middle" gutter={16}>
         <Col span={5}>
           <HamburgerMenu />
-          <Button type="link" icon="plus">
+          <Button type="ghost" icon="plus">
             Add new Item
           </Button>
         </Col>
         <Col span={11}>
-          <Search placeholder="Search" onSearch={value => console.log(value)} />
+          <Search
+            placeholder="Search"
+            onSearch={value => console.log(value)}
+            prefix={<Icon type="right" />}
+          />
         </Col>
         <Col span={8}>
-          <Divider type="vertical" />
-          <StyledSettingsMenu>
-            <Button type="link" href="/settings" icon="setting">
-              Settings
-            </Button>
-          </StyledSettingsMenu>
-          <Divider type="vertical" />
-          <Dropdown overlay={profileMenu} trigger={['click', 'hover']}>
-            <StyledProfileMenu>
-              <Badge count={1}>
-                <span style={{ marginRight: 10 }}>Sam Shrestha</span>
-                <Avatar shape="circle" icon="user" />
+          <Row type="flex" justify="center" align="middle" gutter={16}>
+            <StyledSettingsMenu>
+              <Badge count={10} dot={true}>
+                <Icon type="notification" style={{ fontSize: 18 }} />
               </Badge>
-              {'  '}
-              <Icon type="down" style={{ marginLeft: 15 }} />
-            </StyledProfileMenu>
-          </Dropdown>
+            </StyledSettingsMenu>
+            <Divider type="vertical" />
+            <StyledSettingsMenu>
+              <Button type="link" href="/settings" icon="setting">
+                Settings
+              </Button>
+            </StyledSettingsMenu>
+            <Divider type="vertical" />
+            <Dropdown overlay={profileMenu} trigger={['click', 'hover']}>
+              <StyledProfileMenu>
+                <Avatar shape="circle" icon="user" style={{ marginRight: 5 }} />
+                {'   '}
+                <StyledUserFullname>Sam Shrestha</StyledUserFullname>
+                <Icon type="down" style={{ marginLeft: 15 }} />
+              </StyledProfileMenu>
+            </Dropdown>
+          </Row>
         </Col>
       </Row>
     </Header>
