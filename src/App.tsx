@@ -9,6 +9,7 @@ import Login, { menu as loginMenu } from 'Pages/Login';
 import { Provider } from 'react-redux';
 import store from './Store/Store';
 import { PageNotFound, ComingSoon } from 'Pages';
+import AddNewItem, { menu as addNewItemMenu } from 'Pages/AddNewItem';
 
 type AppProps = {
   getFieldDecorator?: any;
@@ -23,6 +24,7 @@ const App: React.FunctionComponent<AppProps> = () => {
         <Switch>
           <Route path={loginMenu.to} component={Login} />
           <Route path={addFriendMenu.to} component={AddFriend} />
+          <Route path={addNewItemMenu.to} component={AddNewItem} />
           <Route path={sendInvitationMenu.to} component={SendInvitation} />
           <Route path="/overview">
             <ComingSoon title="Overview" />

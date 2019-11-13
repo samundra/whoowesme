@@ -1,7 +1,10 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+
+const rootReducer = combineReducers({});
 
 export default createStore(
   // your reducer
   //@ts-ignore
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  rootReducer
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

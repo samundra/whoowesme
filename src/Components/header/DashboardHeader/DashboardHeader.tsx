@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Layout,
   Button,
@@ -14,6 +14,7 @@ import {
 import styled from 'styled-components';
 import { profileMenu } from 'Components/menu/ProfileMenu';
 import HamburgerMenu from 'Components/menu/HamburgerMenu/HamburgerMenu';
+import { Link } from 'react-router-dom';
 
 const { Header } = Layout;
 const { Search } = Input;
@@ -44,9 +45,7 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
       <Row type="flex" justify="space-between" align="middle" gutter={16}>
         <Col span={5}>
           <HamburgerMenu />
-          <Button type="ghost" icon="plus">
-            Add new Item
-          </Button>
+          <Link to="/add-new-item">Add new Item</Link>
         </Col>
         <Col span={11}>
           <Search
