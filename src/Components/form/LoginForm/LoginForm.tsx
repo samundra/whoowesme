@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from 'react';
-import { Icon, Spin, Form, Input, Button } from 'antd';
+import { Icon, Spin, Form, Input, Button, Alert } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 
 type Props = FormComponentProps;
@@ -35,6 +35,9 @@ const Login: React.FunctionComponent<Props> = props => {
     >
       <Form.Item style={{ textAlign: 'center' }}>
         <img src="/img/logo.png" alt="Who owes me" />
+      </Form.Item>
+      <Form.Item>
+        <Alert type="error" message="Invalid username or password" />
       </Form.Item>
       <Form.Item>
         {form.getFieldDecorator('username', {
