@@ -14,7 +14,7 @@ import {
 import styled from 'styled-components';
 import { profileMenu } from 'Components/menu/ProfileMenu';
 import HamburgerMenu from 'Components/menu/HamburgerMenu/HamburgerMenu';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const { Header } = Layout;
 const { Search } = Input;
@@ -40,12 +40,16 @@ const StyledUserFullname = styled('span')`
 type Props = {};
 
 const DashboardHeader: React.FunctionComponent<Props> = () => {
+  const history = useHistory();
+
   return (
     <Header style={{ background: '#fff', padding: 0, paddingLeft: '10px' }}>
       <Row type="flex" justify="space-between" align="middle" gutter={16}>
         <Col span={5}>
           <HamburgerMenu />
-          <Link to="/add-new-item">Add new Item</Link>
+          <Button onClick={() => history.push('/add-new-item')}>
+            <Icon type="plus" /> Add new Item
+          </Button>
         </Col>
         <Col span={11}>
           <Search
