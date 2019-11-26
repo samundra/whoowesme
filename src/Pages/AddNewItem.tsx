@@ -1,6 +1,7 @@
 import React from 'react';
 import DashboardPageLayout from 'Layout/DashboardPageLayout';
 import { Breadcrumb, Layout } from 'antd';
+import { AddNewEntryForm } from 'Components/form';
 
 const { Content } = Layout;
 
@@ -21,6 +22,7 @@ const AddNewItem: React.FunctionComponent<Props> = () => {
         </Breadcrumb>
         <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
           <h2>Add New Item</h2>
+          <AddNewEntryForm />
         </div>
       </Content>
     </DashboardPageLayout>
