@@ -26,7 +26,10 @@ const TransactionList: React.FunctionComponent<Props> = props => {
   // API Call to edit
   const onEdit = (id: number) => {
     console.log('Edit record number', id);
-    history.push('/transaction/1/edit');
+    history.push('/transaction/1/edit', {
+      menuKey: 'edit_transaction',
+      parentMenuKey: 'manage_transaction',
+    });
   };
 
   // API call to delete

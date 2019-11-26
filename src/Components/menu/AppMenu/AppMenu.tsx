@@ -17,7 +17,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
   const location = useLocation();
 
   const initialMenuState = {
-    menuKey: ['send_invitation'],
+    menuKey: [''],
     parentMenuKey: [''],
   };
 
