@@ -17,7 +17,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
   const location = useLocation();
 
   const initialMenuState = {
-    menuKey: ['send_invitation'],
+    menuKey: [''],
     parentMenuKey: [''],
   };
 
@@ -70,6 +70,40 @@ const AppMenu: React.FunctionComponent<Props> = () => {
         <Icon type="mail" />
         <span>Send Invitation</span>
       </Menu.Item>
+      <SubMenu
+        key="manage_transaction"
+        title={
+          <span>
+            <Icon type="money-collect" />
+            <span>Manage Transaction</span>
+          </span>
+        }
+      >
+        <Menu.Item
+          key="list_transaction"
+          onClick={() =>
+            navigatePage(
+              ['list_transaction'],
+              ['manage_transaction'],
+              '/transaction/list'
+            )
+          }
+        >
+          <span>List Transaction</span>
+        </Menu.Item>
+        <Menu.Item
+          key="add_transaction"
+          onClick={() =>
+            navigatePage(
+              ['add_transaction'],
+              ['manage_transaction'],
+              '/add-new-item'
+            )
+          }
+        >
+          <span>Add transaction</span>
+        </Menu.Item>
+      </SubMenu>
       <SubMenu
         key="manage_friends"
         title={

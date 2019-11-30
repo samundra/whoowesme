@@ -28,7 +28,7 @@
     "noImplicitThis": true,
     "suppressImplicitAnyIndexErrors": true,
     "strictNullChecks": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src"
