@@ -108,11 +108,7 @@ const TransactionList: React.FunctionComponent<Props> = props => {
             >
               Edit
             </Button>{' '}
-            <Button
-              type="ghost"
-              icon="delete"
-              onClick={() => onDelete(record.id)}
-            >
+            <Button type="link" onClick={() => onDelete(record.id)}>
               Delete
             </Button>
           </>
