@@ -1,0 +1,25 @@
+[build]
+  base = ''
+  publish = 'build'
+  command = 'npm run build'
+
+[context.production]
+  publish = 'build'
+  command = 'npm run build'
+  environment = { NODE_VERSION = 'v10.15.0' }
+
+[context.develop]
+  publish = 'build'
+  command = 'npm run build'
+  environment = { NODE_VERSION = 'v10.15.0' }
+
+[context.netlify-deploy]
+  publish = 'build'
+  command = 'npm run build'
+  environment = { NODE_VERSION = 'v10.15.0' }
+
+[[redirects]]
+  from = '/*'
+  to = "/index.html"
+  status = 200
+  headers = { X-From = "Netlify" }
