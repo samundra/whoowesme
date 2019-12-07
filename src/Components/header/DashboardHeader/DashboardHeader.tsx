@@ -14,7 +14,7 @@ import {
 import styled from 'styled-components';
 import { profileMenu } from 'Components/menu/ProfileMenu';
 import HamburgerMenu from 'Components/menu/HamburgerMenu/HamburgerMenu';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const { Header } = Layout;
 const { Search } = Input;
@@ -67,9 +67,9 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
             </StyledSettingsMenu>
             <Divider type="vertical" />
             <StyledSettingsMenu>
-              <Button type="link" href="/settings" icon="setting">
-                Settings
-              </Button>
+              <Link to="/settings">
+                <Icon type="setting" /> Settings
+              </Link>
             </StyledSettingsMenu>
             <Divider type="vertical" />
             <Dropdown overlay={profileMenu} trigger={['click', 'hover']}>

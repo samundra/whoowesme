@@ -11,7 +11,7 @@ import AddFriend, { menu as addFriendMenu } from 'Pages/AddFriend';
 import Login, { menu as loginMenu } from 'Pages/Login';
 import { Provider } from 'react-redux';
 import store from './Store/Store';
-import { PageNotFound, TransactionEdit, ComingSoon } from 'Pages';
+import { PageNotFound, TransactionEdit, ComingSoon, Settings } from 'Pages';
 import AddNewItem, { menu as addNewItemMenu } from 'Pages/AddNewItem';
 import { hot } from 'react-hot-loader/root';
 
@@ -32,6 +32,7 @@ const App: React.FunctionComponent<AppProps> = () => {
           <Route path={sendInvitationMenu.to} component={SendInvitation} />
           <Route path={transactionMenu.to} component={TransactionList} />
           <Route path="/transaction/:id/edit" component={TransactionEdit} />
+          <Route path="/settings" component={Settings} />
           <Route path="/overview">
             <ComingSoon title="Overview" />
           </Route>
