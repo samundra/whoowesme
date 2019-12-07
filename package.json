@@ -1,6 +1,6 @@
 {
-  "name": "tailorapp",
-  "version": "0.1.0",
+  "name": "whooweme",
+  "version": "0.3.0",
   "private": true,
   "dependencies": {
     "@hot-loader/react-dom": "^16.11.0",
