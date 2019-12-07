@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 import store from './Store/Store';
 import { PageNotFound, TransactionEdit, ComingSoon } from 'Pages';
 import AddNewItem, { menu as addNewItemMenu } from 'Pages/AddNewItem';
+import { hot } from 'react-hot-loader/root';
 
 type AppProps = {
   getFieldDecorator?: any;
@@ -44,4 +45,4 @@ const App: React.FunctionComponent<AppProps> = () => {
   );
 };
 
-export default App;
+export default process.env.NODE_ENV === 'development' ? hot(App) : App;
