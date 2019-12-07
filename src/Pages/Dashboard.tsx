@@ -1,30 +1,29 @@
 import React from 'react';
-import { AddFriendForm } from 'Components/form';
 import DashboardPageLayout from 'Layout/DashboardPageLayout';
 import { Breadcrumb } from 'antd';
 import { PageContent, Content } from 'Components/common';
 
 export const menu: MenuLink = {
-  to: '/add-friend',
-  label: 'Add friend',
+  to: '/dashboard',
+  label: 'Dashboard',
 };
 
 type Props = {};
 
-const AddFriend: React.FunctionComponent<Props> = () => {
+const Dashboard: React.FunctionComponent<Props> = () => {
   return (
     <DashboardPageLayout>
       <Content>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
-          <Breadcrumb.Item>Add Friend</Breadcrumb.Item>
         </Breadcrumb>
-        <PageContent title="Add friend">
-          <AddFriendForm />
+        <PageContent>
+          <p>Transaction Summary</p>
+          <p>Dashboard overview</p>
         </PageContent>
       </Content>
     </DashboardPageLayout>
   );
 };
 
-export default AddFriend;
+export default Dashboard;

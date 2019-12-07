@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import DashboardPageLayout from 'Layout/DashboardPageLayout';
-import { Breadcrumb, Layout } from 'antd';
+import { Breadcrumb } from 'antd';
 import TransactionForm from 'Components/form/TransactionForm';
 import { RouteComponentProps, useParams } from 'react-router';
-
-const { Content } = Layout;
+import { PageContent, Content } from 'Components/common';
 
 type Props = RouteComponentProps;
 
 const TransactionEdit: React.FunctionComponent<Props> = () => {
-  // console.log({ props });
   const params = useParams<{ id: string | undefined }>();
   useEffect(() => {
     const { id } = params;
@@ -20,12 +18,12 @@ const TransactionEdit: React.FunctionComponent<Props> = () => {
   }, [params]);
   return (
     <DashboardPageLayout>
-      <Content style={{ margin: '0 16px' }}>
+      <Content>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
           <Breadcrumb.Item>Edit Transaction</Breadcrumb.Item>
         </Breadcrumb>
-        <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+        <PageContent title="Transaction details">
           <TransactionForm
             record={{
               id: 1,
@@ -35,7 +33,7 @@ const TransactionEdit: React.FunctionComponent<Props> = () => {
               description: 'This is full description',
             }}
           />
-        </div>
+        </PageContent>
       </Content>
     </DashboardPageLayout>
   );

@@ -48,17 +48,17 @@ const AppMenu: React.FunctionComponent<Props> = () => {
       defaultOpenKeys={parentMenuKey}
     >
       <Menu.Item
-        key="overview"
-        onClick={() => navigatePage(['overview'], [], '/overview')}
+        key="dashboard"
+        onClick={() => navigatePage(['dashboard'], [], '/dashboard')}
       >
-        <Icon type="snippets" />
-        <span>Overview</span>
+        <Icon type="dashboard" />
+        <span>Dashboard</span>
       </Menu.Item>
       <Menu.Item
         key="summary"
         onClick={() => navigatePage(['summary'], [], '/summary')}
       >
-        <Icon type="paper-clip" />
+        <Icon type="snippets" />
         <span>Summary</span>
       </Menu.Item>
       <Menu.Item
