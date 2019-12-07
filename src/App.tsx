@@ -8,7 +8,6 @@ import TransactionList, {
   menu as transactionMenu,
 } from 'Pages/TransactionList';
 import AddFriend, { menu as addFriendMenu } from 'Pages/AddFriend';
-import Login, { menu as loginMenu } from 'Pages/Login';
 import { Provider } from 'react-redux';
 import store from './Store/Store';
 import { PageNotFound, TransactionEdit, ComingSoon, Settings } from 'Pages';
@@ -23,6 +22,7 @@ type Props = {
 // TODO: add context to toggle sidebar
 
 const App: React.FunctionComponent<Props> = () => {
+  /** Below comment has to be uncommented when login in complete */
   // const { loggedIn = false } = props;
 
   // if (!loggedIn) {
