@@ -43,9 +43,14 @@ const DashboardPageLayout: React.FunctionComponent<CommonLayoutProps> = ({
   };
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout>
       <SiderContext.Provider value={initialState}>
-        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+        <Sider
+          collapsible
+          collapsed={collapsed}
+          onCollapse={onCollapse}
+          width={220}
+        >
           {!collapsed && <SidebarMenuLogo />}
           {collapsed && <SidebarMenuLogo type="small" />}
           <AppMenu />
