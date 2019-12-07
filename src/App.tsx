@@ -32,13 +32,13 @@ const App: React.FunctionComponent<AppProps> = () => {
           <Route path={sendInvitationMenu.to} component={SendInvitation} />
           <Route path={transactionMenu.to} component={TransactionList} />
           <Route path="/transaction/:id/edit" component={TransactionEdit} />
+          <Route path="/settings" component={Settings} />
           <Route path="/overview">
             <ComingSoon title="Overview" />
           </Route>
           <Route path="/summary">
             <ComingSoon title="Summary" />
           </Route>
-          <Route path="/settings" component={Settings} />
           <Route component={PageNotFound} />
         </Switch>
       </Router>
