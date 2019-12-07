@@ -25,6 +25,11 @@ forget to keep track. This project will be home for those money.
 
 Then browse to `http:/localhost:3000`
 
+### Storybooks
+
+Run storybook with `yarn run storybook` and then follow on-screen guide
+to open storybook page
+
 ### TODO
 
 #### Backend (API)

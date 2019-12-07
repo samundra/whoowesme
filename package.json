@@ -20,11 +20,14 @@
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@storybook/react": "^5.2.8",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.8",
     "@types/react": "^16.9.3",
     "@types/react-dom": "^16.9.1",
     "@types/styled-components": "^4.4.0",
+    "babel-loader": "^8.0.6",
     "husky": "^3.0.7",
     "lint-staged": "^9.4.0",
     "prettier": "^1.18.2",
@@ -41,7 +44,8 @@
     "build": "react-app-rewired build",
     "lint:css": "stylelint './src/**/*.tsx'",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook"
   },
   "eslintConfig": {
     "extends": "react-app"
