@@ -1,11 +1,10 @@
 import React from 'react';
 import DashboardPageLayout from 'Layout/DashboardPageLayout';
-import { Breadcrumb, Layout, Table, Tag, Button } from 'antd';
+import { Breadcrumb, Table, Tag, Button } from 'antd';
 import { RouteComponentProps } from 'react-router';
+import { PageContent, Content } from 'Components/common';
 
-const { Content } = Layout;
-
-export const menu = {
+export const menu: MenuLink = {
   to: '/transaction/list',
   label: 'Transaction List',
 };
@@ -119,16 +118,16 @@ const TransactionList: React.FunctionComponent<Props> = props => {
 
   return (
     <DashboardPageLayout>
-      <Content style={{ margin: '0 16px' }}>
+      <Content>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
           <Breadcrumb.Item>List Transaction</Breadcrumb.Item>
         </Breadcrumb>
-        <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+        <PageContent title="Transactoin List" titleDivider>
           <span>
             <Table dataSource={dataSource} columns={columns} />
           </span>
-        </div>
+        </PageContent>
       </Content>
     </DashboardPageLayout>
   );

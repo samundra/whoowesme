@@ -1,13 +1,7 @@
 import React from 'react';
 import DashboardPageLayout from 'Layout/DashboardPageLayout';
 import { Breadcrumb } from 'antd';
-import Content from 'Components/common/Content';
-import { PageContent } from 'Components/common';
-
-export type MenuLink = {
-  to: string;
-  label: string;
-};
+import { PageContent, Content } from 'Components/common';
 
 export const menu: MenuLink = {
   to: '/dashboard',

@@ -1,10 +1,10 @@
 import React from 'react';
 import { AddFriendForm } from 'Components/form';
 import DashboardPageLayout from 'Layout/DashboardPageLayout';
-import { Breadcrumb, Layout } from 'antd';
+import { Breadcrumb } from 'antd';
 import { PageContent, Content } from 'Components/common';
 
-export const menu = {
+export const menu: MenuLink = {
   to: '/add-friend',
   label: 'Add friend',
 };

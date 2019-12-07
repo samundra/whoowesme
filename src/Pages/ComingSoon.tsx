@@ -1,8 +1,7 @@
 import React from 'react';
 import DashboardPageLayout from 'Layout/DashboardPageLayout';
-import { Breadcrumb, Layout } from 'antd';
-
-const { Content } = Layout;
+import { Breadcrumb } from 'antd';
+import { PageContent, Content } from 'Components/common';
 
 type Props = {
   title?: string;
@@ -11,14 +10,12 @@ type Props = {
 const ComingSoon: React.FunctionComponent<Props> = ({ title }) => {
   return (
     <DashboardPageLayout>
-      <Content style={{ margin: '0 16px' }}>
+      <Content>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
           {title && <Breadcrumb.Item>{title}</Breadcrumb.Item>}
         </Breadcrumb>
-        <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-          <h2>Coming Soon - {title}</h2>
-        </div>
+        <PageContent>Coming soon - {title}</PageContent>
       </Content>
     </DashboardPageLayout>
   );
