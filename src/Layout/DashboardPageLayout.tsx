@@ -43,7 +43,7 @@ const DashboardPageLayout: React.FunctionComponent<CommonLayoutProps> = ({
   };
 
   return (
-    <Layout>
+    <Layout style={{ minHeight: '100vh' }}>
       <SiderContext.Provider value={initialState}>
         <Sider
           collapsible
