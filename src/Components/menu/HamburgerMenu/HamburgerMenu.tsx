@@ -8,13 +8,11 @@ const HamburgerMenu: React.FunctionComponent<Props> = () => {
   return (
     <SiderContext.Consumer>
       {({ collapsed, toggleSider }) => (
-        <span>
-          <Button
-            type="link"
-            icon={collapsed ? 'menu' : 'menu'}
-            onClick={toggleSider}
-          />
-        </span>
+        <Button
+          type="link"
+          icon={collapsed ? 'menu' : 'menu'}
+          onClick={toggleSider}
+        />
       )}
     </SiderContext.Consumer>
   );

@@ -34,22 +34,4 @@ to open storybook page
 
 #### Backend (API)
 
-- To be done
-
 #### Frontend (UI)
-
-- [x] Setup project
-  - [x] Setup React
-  - [x] Typescript with prettier configuration
-  - [x] UI Framework (ant.design)
-  - [x] Styled Components
-- [ ] Menus
-  - [x] Sidebar Menu
-  - [ ] Top Header Menu
-- [x] Breadcrumb
-- [x] Pages
-  - [x] Login
-  - [x] Dashboard
-  - [x] Coming Soon
-- [ ] Forms
-  - [ ] Add New Record Form
