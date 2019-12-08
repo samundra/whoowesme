@@ -72,7 +72,7 @@ const StyledHeader = styled(Header)`
   padding: 0;
   paddingleft: 10px;
   min-width: 470px;
-  max-width: 1024px;
+  max-width: 100%;
 
   @media only screen and (max-width: 470px) {
     display: none;
