@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
-import 'antd/dist/antd.css';
 
-export default { title: 'Button' };
+export default { title: 'Button', component: Button };
 
 export const dangerButton = () => <Button type="danger">Danger</Button>;
 export const ghostButton = () => <Button type="ghost">Ghost</Button>;
