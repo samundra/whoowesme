@@ -24,3 +24,7 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+# igore storybook static
+storybook-static
+

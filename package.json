@@ -21,6 +21,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-notes": "^5.2.8",
     "@storybook/preset-typescript": "^1.1.0",
     "@storybook/react": "^5.2.8",
     "@types/jest": "^24.0.18",
@@ -50,7 +52,8 @@
     "eject": "react-scripts eject",
     "prettier-write": "prettier --write",
     "prettier-project": "yarn run prettier-write 'src/**/*.{ts,tsx}'",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook -p 9090",
+    "build-storybook": "build-storybook"
   },
   "eslintConfig": {
     "extends": "react-app"

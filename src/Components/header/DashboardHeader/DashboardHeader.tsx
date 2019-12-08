@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import { profileMenu } from 'Components/menu/ProfileMenu';
 import HamburgerMenu from 'Components/menu/HamburgerMenu/HamburgerMenu';
 import { useHistory, Link } from 'react-router-dom';
+import AddNewItem from 'Components/button/AddNewItem';
 
 const { Header } = Layout;
 const { Search } = Input;
@@ -38,27 +39,22 @@ const StyledUserFullname = styled('span')`
 `;
 
 type Props = {};
-
 const DashboardHeader: React.FunctionComponent<Props> = () => {
   const history = useHistory();
 
   return (
-    <Header style={{ background: '#fff', padding: 0, paddingLeft: '10px' }}>
+    <StyledHeader>
       <Row type="flex" justify="space-between" align="middle" gutter={16}>
-        <Col span={5}>
+        <Col span={5} style={{ float: 'left' }}>
           <HamburgerMenu />
-          <Button onClick={() => history.push('/add-new-item')}>
-            <Icon type="plus" /> Add new Item
-          </Button>
-        </Col>
-        <Col span={11}>
+          <AddNewItem onClick={() => history.push('/add-new-item')} />
           <Search
             placeholder="Search"
             onSearch={value => console.log(value)}
             prefix={<Icon type="right" />}
           />
         </Col>
-        <Col span={8}>
+        <Col span={8} style={{ float: 'right' }}>
           <Row type="flex" justify="center" align="middle" gutter={16}>
             <StyledSettingsMenu>
               <Badge count={10} dot={true}>
@@ -83,8 +79,14 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
           </Row>
         </Col>
       </Row>
-    </Header>
+    </StyledHeader>
   );
 };
+
+const StyledHeader = styled(Header)`
+  background: #fff;
+  padding: 0;
+  paddingleft: 10px;
+`;
 
 export default DashboardHeader;
