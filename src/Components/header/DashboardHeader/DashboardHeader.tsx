@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-  Layout,
-  Button,
-  Input,
-  Col,
-  Divider,
-  Icon,
-  Row,
-  Badge,
-  Avatar,
-  Dropdown,
-} from 'antd';
+import { Layout, Input, Divider, Icon, Badge, Avatar, Dropdown } from 'antd';
 import styled from 'styled-components';
 import { profileMenu } from 'Components/menu/ProfileMenu';
 import HamburgerMenu from 'Components/menu/HamburgerMenu/HamburgerMenu';
@@ -44,41 +33,36 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
 
   return (
     <StyledHeader>
-      <Row type="flex" justify="space-between" align="middle" gutter={16}>
-        <Col span={5} style={{ float: 'left' }}>
-          <HamburgerMenu />
-          <AddNewItem onClick={() => history.push('/add-new-item')} />
-          <Search
-            placeholder="Search"
-            onSearch={value => console.log(value)}
-            prefix={<Icon type="right" />}
-          />
-        </Col>
-        <Col span={8} style={{ float: 'right' }}>
-          <Row type="flex" justify="center" align="middle" gutter={16}>
-            <StyledSettingsMenu>
-              <Badge count={10} dot={true}>
-                <Icon type="notification" style={{ fontSize: 18 }} />
-              </Badge>
-            </StyledSettingsMenu>
-            <Divider type="vertical" />
-            <StyledSettingsMenu>
-              <Link to="/settings">
-                <Icon type="setting" /> Settings
-              </Link>
-            </StyledSettingsMenu>
-            <Divider type="vertical" />
-            <Dropdown overlay={profileMenu} trigger={['click', 'hover']}>
-              <StyledProfileMenu>
-                <Avatar shape="circle" icon="user" style={{ marginRight: 5 }} />
-                {'   '}
-                <StyledUserFullname>Sam Shrestha</StyledUserFullname>
-                <Icon type="down" style={{ marginLeft: 15 }} />
-              </StyledProfileMenu>
-            </Dropdown>
-          </Row>
-        </Col>
-      </Row>
+      <HamburgerMenu />
+      <AddNewItem onClick={() => history.push('/add-new-item')} />
+      <Search
+        style={{ width: 200, marginLeft: '10px' }}
+        placeholder="Search"
+        onSearch={value => console.log(value)}
+        prefix={<Icon type="right" />}
+      />
+      <StyledUserActions>
+        <StyledSettingsMenu>
+          <Badge count={10} dot={true}>
+            <Icon type="notification" style={{ fontSize: 18 }} />
+          </Badge>
+        </StyledSettingsMenu>
+        <Divider type="vertical" />
+        <StyledSettingsMenu>
+          <Link to="/settings">
+            <Icon type="setting" /> Settings
+          </Link>
+        </StyledSettingsMenu>
+        <Divider type="vertical" />
+        <Dropdown overlay={profileMenu} trigger={['click', 'hover']}>
+          <StyledProfileMenu>
+            <Avatar shape="circle" icon="user" style={{ marginRight: 5 }} />
+            {'   '}
+            <StyledUserFullname>Sam Shrestha</StyledUserFullname>
+            <Icon type="down" style={{ marginLeft: 15 }} />
+          </StyledProfileMenu>
+        </Dropdown>
+      </StyledUserActions>
     </StyledHeader>
   );
 };
@@ -87,6 +71,27 @@ const StyledHeader = styled(Header)`
   background: #fff;
   padding: 0;
   paddingleft: 10px;
+  min-width: 470px;
+  max-width: 1024px;
+
+  @media only screen and (max-width: 470px) {
+    display: none;
+  }
+`;
+
+const StyledUserActions = styled('div')`
+  background: #fff;
+  margin-right: 10px;
+  float: right;
+
+  @media only screen and (max-width: 320px) {
+    background: #000;
+    color: #fff;
+  }
+
+  @media only screen and (max-width: 780px) {
+    display: none;
+  }
 `;
 
 export default DashboardHeader;
