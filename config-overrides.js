@@ -9,6 +9,17 @@ function overrideExtra(config, env) {
     })
   )(config, env);
 
+  config.module.rules.push({
+    test: /\.stories\.tsx?$/,
+    loaders: [
+      {
+        loader: require.resolve('@storybook/source-loader'),
+        options: { parser: 'typescript' },
+      },
+    ],
+    enforce: 'pre',
+  });
+
   config.resolve.alias = {
     ...config.resolve.alias,
     'react-dom': '@hot-loader/react-dom',
