@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
 
 const StyledMenuLabel = styled('span')`
@@ -60,43 +61,49 @@ const onMenuItemClick = (key: string) => {
   console.log({ key });
 };
 
-const ProfileMenu = (
-  <div style={menuContainerStyle}>
-    <StyledArrowTop />
-    <Menu style={{ paddingBottom: 0, marginBottom: 0, position: 'relative' }}>
-      <Menu.Item
-        key="menu.profile.about"
-        onClick={() => onMenuItemClick('menu.profile.about')}
-        style={menuFirstItemStyle}
-      >
-        <StyledMenuLabel>
-          <Icon type="user" />
-          <span style={{ marginLeft: 10 }}>Profile</span>
-        </StyledMenuLabel>
-      </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item
-        key="menu.profile.message"
-        onClick={() => onMenuItemClick('menu.profile.message')}
-      >
-        <StyledMenuLabel>
-          <Icon type="message" />
-          <span style={{ marginLeft: 10 }}>Message</span>
-        </StyledMenuLabel>
-      </Menu.Item>
-      <Menu.Item
-        key="menu.profile.logout"
-        onClick={() => onMenuItemClick('menu.profile.logout')}
-        style={logoutMenuStyle}
-      >
-        <StyledLogoutButton>
-          Logout
-          {'  '}
-          <Icon type="poweroff" style={{ marginLeft: 10 }} />
-        </StyledLogoutButton>
-      </Menu.Item>
-    </Menu>
-  </div>
-);
+const ProfileMenu = () => {
+  const history = useHistory();
+
+  return (
+    <div style={menuContainerStyle}>
+      <StyledArrowTop />
+      <Menu style={{ paddingBottom: 0, marginBottom: 0, position: 'relative' }}>
+        <Menu.Item
+          key="menu.profile.about"
+          onClick={() => {
+            history.push('/profile');
+          }}
+          style={menuFirstItemStyle}
+        >
+          <StyledMenuLabel>
+            <Icon type="user" />
+            <span style={{ marginLeft: 10 }}>Profile</span>
+          </StyledMenuLabel>
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item
+          key="menu.profile.message"
+          onClick={() => onMenuItemClick('menu.profile.message')}
+        >
+          <StyledMenuLabel>
+            <Icon type="message" />
+            <span style={{ marginLeft: 10 }}>Message</span>
+          </StyledMenuLabel>
+        </Menu.Item>
+        <Menu.Item
+          key="menu.profile.logout"
+          onClick={() => onMenuItemClick('menu.profile.logout')}
+          style={logoutMenuStyle}
+        >
+          <StyledLogoutButton>
+            Logout
+            {'  '}
+            <Icon type="poweroff" style={{ marginLeft: 10 }} />
+          </StyledLogoutButton>
+        </Menu.Item>
+      </Menu>
+    </div>
+  );
+};
 
 export default ProfileMenu;

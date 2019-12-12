@@ -10,7 +10,13 @@ import TransactionList, {
 import AddFriend, { menu as addFriendMenu } from 'Pages/AddFriend';
 import { Provider } from 'react-redux';
 import store from './Store/Store';
-import { PageNotFound, TransactionEdit, ComingSoon, Settings } from 'Pages';
+import {
+  PageNotFound,
+  TransactionEdit,
+  ComingSoon,
+  Settings,
+  Profile,
+} from 'Pages';
 import AddNewItem, { menu as addNewItemMenu } from 'Pages/AddNewItem';
 import Dashboard, { menu as dashboardMenu } from 'Pages/Dashboard';
 import { hot } from 'react-hot-loader/root';
@@ -47,6 +53,7 @@ const App: React.FunctionComponent<Props> = () => {
           <Route path={transactionMenu.to} component={TransactionList} />
           <Route path="/transaction/:id/edit" component={TransactionEdit} />
           <Route path="/settings" component={Settings} />
+          <Route path="/profile" component={Profile} />
           <Route path="/summary">
             <ComingSoon title="Summary" />
           </Route>
