@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Input, Divider, Icon, Badge, Avatar, Dropdown } from 'antd';
 import styled from 'styled-components';
-import { profileMenu } from 'Components/menu/ProfileMenu';
+import { ProfileMenu } from 'Components/menu/ProfileMenu';
 import HamburgerMenu from 'Components/menu/HamburgerMenu/HamburgerMenu';
 import { useHistory, Link } from 'react-router-dom';
 import AddNewItem from 'Components/button/AddNewItem';
@@ -54,7 +54,7 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
           </Link>
         </StyledSettingsMenu>
         <Divider type="vertical" />
-        <Dropdown overlay={profileMenu} trigger={['click', 'hover']}>
+        <Dropdown overlay={<ProfileMenu />} trigger={['click', 'hover']}>
           <StyledProfileMenu>
             <Avatar shape="circle" icon="user" style={{ marginRight: 5 }} />
             {'   '}
