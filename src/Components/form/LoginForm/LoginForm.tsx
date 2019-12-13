@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { Icon, Spin, Form, Input, Button, Alert } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
+import { useHistory } from 'react-router-dom';
 
 type Props = FormComponentProps;
 
@@ -11,6 +12,7 @@ const SpinnerIcon = (
 const Login: React.FunctionComponent<Props> = props => {
   const { form } = props;
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -23,9 +25,14 @@ const Login: React.FunctionComponent<Props> = props => {
         // TODO: Login with username, password
         // attempt login with credentials
         console.log({ username, password });
+
+        // Redirect to login after success:
+        history.push('/dashboard');
       }
     });
   };
+
+  const hasError = false;
 
   return (
     <Form
@@ -36,11 +43,14 @@ const Login: React.FunctionComponent<Props> = props => {
       <Form.Item style={{ textAlign: 'center' }}>
         <img src="/img/logo.png" alt="Who owes me" />
       </Form.Item>
-      <Form.Item>
-        <Alert type="error" message="Invalid username or password" />
-      </Form.Item>
+      {hasError && (
+        <Form.Item>
+          <Alert type="error" message="Invalid username or password" />
+        </Form.Item>
+      )}
       <Form.Item>
         {form.getFieldDecorator('username', {
+          initialValue: 'admin',
           rules: [{ required: true, message: 'Please input your username!' }],
         })(
           <Input
@@ -52,6 +62,7 @@ const Login: React.FunctionComponent<Props> = props => {
       </Form.Item>
       <Form.Item>
         {form.getFieldDecorator('password', {
+          initialValue: 'password',
           rules: [{ required: true, message: 'Please input your Password!' }],
         })(
           <Input

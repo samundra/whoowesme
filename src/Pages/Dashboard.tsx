@@ -3,11 +3,6 @@ import DashboardPageLayout from 'Layout/DashboardPageLayout';
 import { Breadcrumb } from 'antd';
 import { PageContent, Content } from 'Components/common';
 
-export const menu: MenuLink = {
-  to: '/dashboard',
-  label: 'Dashboard',
-};
-
 type Props = {};
 
 const Dashboard: React.FunctionComponent<Props> = () => {
