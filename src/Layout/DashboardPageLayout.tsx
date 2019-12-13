@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Layout } from 'antd';
 import SidebarMenuLogo from 'Components/logo/SidebarMenuLogo';
 import { AppFooter } from 'Components/section';
 import AppMenu from 'Components/menu/AppMenu/AppMenu';
 import { DashboardHeader } from 'Components';
-import { SiderContext } from 'Components/context/SiderContext';
+import { SiderContext } from 'Components/context';
+import styled from 'styled-components';
 
 const { Sider } = Layout;
 
@@ -15,56 +16,41 @@ type CommonLayoutProps = {
 const DashboardPageLayout: React.FunctionComponent<CommonLayoutProps> = ({
   children,
 }) => {
-  const siderOpenContext = useContext(SiderContext);
-  const [collapsed, setCollapsed] = useState(siderOpenContext.collapsed);
-
-  const onCollapse = (isCollapsed: boolean) => {
-    localStorage.setItem('menu.is_collapsed', isCollapsed ? 'yes' : 'no');
-
-    setCollapsed(isCollapsed);
-  };
-
-  useEffect(() => {
-    const isCollapsed = localStorage.getItem('menu.is_collapsed') === 'yes';
-
-    setCollapsed(isCollapsed);
-  }, []);
-
-  const initialState = {
-    collapsed: collapsed,
-    toggleSider: () => {
-      const toggled = !collapsed;
-      setCollapsed(toggled);
-      localStorage.setItem(
-        'menu.is_collapsed',
-        toggled === true ? 'yes' : 'no'
-      );
-    },
-  };
+  const siderState = useContext(SiderContext);
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <SiderContext.Provider value={initialState}>
-        <Sider
-          collapsible
-          collapsed={collapsed}
-          onCollapse={onCollapse}
-          width={220}
-        >
-          {!collapsed && <SidebarMenuLogo />}
-          {collapsed && <SidebarMenuLogo type="small" />}
-          <AppMenu />
-        </Sider>
-      </SiderContext.Provider>
+    <DashboardLayout>
+      <Sider
+        collapsible
+        collapsed={siderState.collapsed}
+        onCollapse={siderState.toggleSider}
+        width={220}
+      >
+        {!siderState.collapsed && (
+          <SidebarMenuLogo
+            src="/img/sidebarmenu-logo-192x45.jpg"
+            alt="expanded application logo"
+          />
+        )}
+        {siderState.collapsed && (
+          <SidebarMenuLogo
+            src="/img/sidebarmenu-logo-74x45.jpg"
+            alt="collapsed application logo"
+          />
+        )}
+        <AppMenu />
+      </Sider>
       <Layout>
-        <SiderContext.Provider value={initialState}>
-          <DashboardHeader />
-        </SiderContext.Provider>
+        <DashboardHeader />
         {children}
         <AppFooter />
       </Layout>
-    </Layout>
+    </DashboardLayout>
   );
 };
+
+const DashboardLayout = styled(Layout)`
+  min-height: 100vh;
+`;
 
 export default DashboardPageLayout;

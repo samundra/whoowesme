@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import SendInvitation, {
@@ -20,6 +20,7 @@ import {
 import AddNewItem, { menu as addNewItemMenu } from 'Pages/AddNewItem';
 import Dashboard, { menu as dashboardMenu } from 'Pages/Dashboard';
 import { hot } from 'react-hot-loader/root';
+import { SiderContext } from 'Components/context';
 
 type Props = {
   loggedIn?: boolean;
@@ -42,25 +43,40 @@ const App: React.FunctionComponent<Props> = () => {
   //   );
   // }
 
+  const collapsed = localStorage.getItem('menu.is_collapsed');
+  const openState = collapsed === 'yes';
+  const [siderState, setSiderState] = useState(openState);
+
   return (
-    <Provider store={store}>
-      <Router>
-        <Switch>
-          <Route path={dashboardMenu.to} component={Dashboard} />
-          <Route path={addFriendMenu.to} component={AddFriend} />
-          <Route path={addNewItemMenu.to} component={AddNewItem} />
-          <Route path={sendInvitationMenu.to} component={SendInvitation} />
-          <Route path={transactionMenu.to} component={TransactionList} />
-          <Route path="/transaction/:id/edit" component={TransactionEdit} />
-          <Route path="/settings" component={Settings} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/summary">
-            <ComingSoon title="Summary" />
-          </Route>
-          <Route component={PageNotFound} />
-        </Switch>
-      </Router>
-    </Provider>
+    <Router>
+      <Provider store={store}>
+        <SiderContext.Provider
+          value={{
+            collapsed: siderState,
+            toggleSider: () => {
+              const newValue = collapsed === 'yes' ? 'no' : 'yes';
+              localStorage.setItem('menu.is_collapsed', newValue);
+              setSiderState(!siderState);
+            },
+          }}
+        >
+          <Switch>
+            <Route path={dashboardMenu.to} component={Dashboard} />
+            <Route path={addFriendMenu.to} component={AddFriend} />
+            <Route path={addNewItemMenu.to} component={AddNewItem} />
+            <Route path={sendInvitationMenu.to} component={SendInvitation} />
+            <Route path={transactionMenu.to} component={TransactionList} />
+            <Route path="/transaction/:id/edit" component={TransactionEdit} />
+            <Route path="/settings" component={Settings} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/summary">
+              <ComingSoon title="Summary" />
+            </Route>
+            <Route component={PageNotFound} />
+          </Switch>
+        </SiderContext.Provider>
+      </Provider>
+    </Router>
   );
 };
 

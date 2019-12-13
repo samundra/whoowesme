@@ -1,7 +1,6 @@
 import React, { FormEvent } from 'react';
 import { Icon, message, Form, Input, Button } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
-import moment from 'moment';
 import { RouteComponentProps } from 'react-router-dom';
 
 type Props = FormComponentProps & RouteComponentProps;
@@ -50,10 +49,6 @@ const PForm: React.FunctionComponent<Props> = props => {
   };
 
   const { getFieldDecorator } = form;
-
-  function onChange(date: moment.Moment | null, dateString: string) {
-    console.log(date, dateString);
-  }
 
   return (
     <Form {...formItemLayout} onSubmit={onFormSubmit}>
