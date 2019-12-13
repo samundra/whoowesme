@@ -1,5 +1,5 @@
 import React from 'react';
-import { SiderContext } from 'Components/context/SiderContext';
+import { SiderContext } from 'Components/context';
 import { Button } from 'antd';
 
 type Props = {};
