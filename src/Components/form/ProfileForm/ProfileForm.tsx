@@ -1,8 +1,7 @@
 import React, { FormEvent } from 'react';
-import { Icon, Row, Col, message, Form, Input, Button, Select } from 'antd';
+import { Icon, message, Form, Input, Button } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import moment from 'moment';
-// import TextArea from 'antd/lib/input/TextArea';
 import { RouteComponentProps } from 'react-router-dom';
 
 type Props = FormComponentProps & RouteComponentProps;

@@ -1,14 +1,15 @@
-const { override, fixBabelImports } = require('customize-cra');
-const path = require('path');
-// const storysource = require.resolve('@storybook/addon-storysource/loader');
-const storysource = require.resolve('@storybook/source-loader');
+const { override, fixBabelImports, addLessLoader } = require('customize-cra');
 
 function overrideExtra(config, env) {
   override(
     fixBabelImports('import', {
       libraryName: 'antd',
       libraryDirectory: 'es',
-      style: 'css',
+      style: true,
+    }),
+    addLessLoader({
+      javascriptEnabled: true,
+      modifyVars: { '@primary-color': '#1DA57A' },
     })
   )(config, env);
 
@@ -18,7 +19,6 @@ function overrideExtra(config, env) {
   };
 
   config.module.rules.push({
-    // test: /\.stories\.jsx?$/,
     test: /\.(stories|story)\.[tj]sx?$/,
     loaders: [
       {
