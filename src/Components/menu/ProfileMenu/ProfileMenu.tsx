@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import { Menu, Icon } from 'antd';
+import { Menu, Modal, Icon } from 'antd';
+import * as H from 'history';
 
 const StyledMenuLabel = styled('span')`
   margin-left: 15px;
@@ -61,6 +62,25 @@ const onMenuItemClick = (key: string) => {
   console.log({ key });
 };
 
+const onLogout = (history: H.History) => {
+  const logoutModal = Modal.confirm({
+    title: 'Logout',
+    content: 'You are about to logout from system.',
+    icon: 'exit',
+    onCancel: () => {},
+    onOk: async () => {
+      logoutModal.update({
+        okButtonProps: { disabled: true },
+        cancelButtonProps: { disabled: true },
+      });
+
+      // TODO: Send API request to logout then return success from here
+      history.push('/login');
+      Promise.resolve(true);
+    },
+  });
+};
+
 const ProfileMenu = () => {
   const history = useHistory();
 
@@ -92,7 +112,7 @@ const ProfileMenu = () => {
         </Menu.Item>
         <Menu.Item
           key="menu.profile.logout"
-          onClick={() => onMenuItemClick('menu.profile.logout')}
+          onClick={() => onLogout(history)}
           style={logoutMenuStyle}
         >
           <StyledLogoutButton>

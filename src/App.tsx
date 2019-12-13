@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import SendInvitation, {
-  menu as sendInvitationMenu,
-} from 'Pages/SendInvitation';
-import TransactionList, {
-  menu as transactionMenu,
-} from 'Pages/TransactionList';
-import AddFriend, { menu as addFriendMenu } from 'Pages/AddFriend';
+import SendInvitation from 'Pages/SendInvitation';
+import TransactionList from 'Pages/TransactionList';
+import AddFriend from 'Pages/AddFriend';
 import { Provider } from 'react-redux';
 import store from './Store/Store';
 import {
@@ -16,9 +12,10 @@ import {
   ComingSoon,
   Settings,
   Profile,
+  Login,
 } from 'Pages';
-import AddNewItem, { menu as addNewItemMenu } from 'Pages/AddNewItem';
-import Dashboard, { menu as dashboardMenu } from 'Pages/Dashboard';
+import AddNewItem from 'Pages/AddNewItem';
+import Dashboard from 'Pages/Dashboard';
 import { hot } from 'react-hot-loader/root';
 import { SiderContext } from 'Components/context';
 
@@ -61,11 +58,12 @@ const App: React.FunctionComponent<Props> = () => {
           }}
         >
           <Switch>
-            <Route path={dashboardMenu.to} component={Dashboard} />
-            <Route path={addFriendMenu.to} component={AddFriend} />
-            <Route path={addNewItemMenu.to} component={AddNewItem} />
-            <Route path={sendInvitationMenu.to} component={SendInvitation} />
-            <Route path={transactionMenu.to} component={TransactionList} />
+            <Route path="/login" component={Login} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/add-friend" component={AddFriend} />
+            <Route path="/add-new-item" component={AddNewItem} />
+            <Route path="/send-invitation" component={SendInvitation} />
+            <Route path="/transaction/list" component={TransactionList} />
             <Route path="/transaction/:id/edit" component={TransactionEdit} />
             <Route path="/settings" component={Settings} />
             <Route path="/profile" component={Profile} />
