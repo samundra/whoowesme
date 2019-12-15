@@ -1,5 +1,6 @@
 {
   "name": "whooweme",
+  "license": "UNLICENSED",
   "version": "0.3.1",
   "private": true,
   "dependencies": {
@@ -39,7 +40,6 @@
     "babel-loader": "^8.0.6",
     "husky": "^3.0.7",
     "lint-staged": "^9.4.0",
-    "prettier": "^1.18.2",
     "react-docgen-typescript-loader": "^3.6.0",
     "redux-devtools-extension": "^2.13.8",
     "stylelint": "^11.1.1",
@@ -51,7 +51,7 @@
     "typescript-plugin-styled-components": "^1.4.3"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "PORT=8000 react-app-rewired start",
     "build": "react-app-rewired build",
     "lint:css": "stylelint './src/**/*.tsx'",
     "test": "react-app-rewired test",
@@ -60,6 +60,21 @@
     "prettier-project": "yarn run prettier-write 'src/**/*.{ts,tsx}'",
     "storybook": "start-storybook -p 9090",
     "build-storybook": "build-storybook"
+  },
+  "homepage": "http://whooweme.netlify.com/",
+  "bugs": "https://github.com/samundra/whoowesme/issues",
+  "author": {
+    "name": "Samundra Shrestha",
+    "email": "admin@samundra.com.np",
+    "url": "https://www.samundra.com.np"
+  },
+  "config": {
+    "port": "8000"
+  },
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samundra/whoowesme.git"
   },
   "eslintConfig": {
     "extends": "react-app"
