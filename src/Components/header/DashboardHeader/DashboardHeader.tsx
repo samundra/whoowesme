@@ -9,24 +9,6 @@ import AddNewItem from 'Components/button/AddNewItem';
 const { Header } = Layout;
 const { Search } = Input;
 
-const StyledMenu = styled('span')`
-  user-select: none;
-  cursor: pointer;
-`;
-
-const StyledSettingsMenu = styled(StyledMenu)``;
-
-const StyledProfileMenu = styled(StyledMenu)`
-  background: #fff;
-  height: 100%;
-  display: inline-block;
-  padding: 0 5px;
-`;
-
-const StyledUserFullname = styled('span')`
-  margin-right: 5px;
-`;
-
 type Props = {};
 const DashboardHeader: React.FunctionComponent<Props> = () => {
   const history = useHistory();
@@ -44,14 +26,8 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
       <StyledUserActions>
         <StyledSettingsMenu>
           <Badge count={10} dot={true}>
-            <Icon type="notification" style={{ fontSize: 18 }} />
+            <Icon type="bell" style={{ fontSize: 18 }} />
           </Badge>
-        </StyledSettingsMenu>
-        <Divider type="vertical" />
-        <StyledSettingsMenu>
-          <Link to="/settings">
-            <Icon type="setting" /> Settings
-          </Link>
         </StyledSettingsMenu>
         <Divider type="vertical" />
         <Dropdown overlay={<ProfileMenu />} trigger={['click', 'hover']}>
@@ -66,6 +42,24 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
     </StyledHeader>
   );
 };
+
+const StyledMenu = styled('span')`
+  user-select: none;
+  cursor: pointer;
+`;
+
+const StyledSettingsMenu = styled(StyledMenu)``;
+
+const StyledProfileMenu = styled(StyledMenu)`
+  background: #fff;
+  height: 100%;
+  display: inline-block;
+  padding: 0 5px;
+`;
+
+const StyledUserFullname = styled('span')`
+  margin-right: 5px;
+`;
 
 const StyledHeader = styled(Header)`
   background: #fff;

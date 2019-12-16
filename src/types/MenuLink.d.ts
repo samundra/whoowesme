@@ -1,4 +1,4 @@
-type MenuLink = {
-  to: string;
-  label: string;
-};
+// type MenuLink = {
+//   to: string;
+//   label: string;
+// };

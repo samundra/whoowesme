@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import DashboardPageLayout from 'Layout/DashboardPageLayout';
-import { Breadcrumb, Modal, Table, Tag, Button } from 'antd';
+import { Breadcrumb, Modal, Table, Tag, Button, Icon } from 'antd';
+import { Link } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
 import { PageContent, Content } from 'Components/common';
-
-export const menu: MenuLink = {
-  to: '/transaction/list',
-  label: 'Transaction List',
-};
 
 type Props = RouteComponentProps;
 
@@ -52,7 +48,6 @@ const TransactionList: React.FunctionComponent<Props> = props => {
   const [dataSource, setDataSource] = useState<TransactionDataSource[]>(
     initialData
   );
-  const [counter, setCounter] = useState(0);
 
   // API Call to edit
   const onEdit = (id: number) => {
@@ -76,13 +71,12 @@ const TransactionList: React.FunctionComponent<Props> = props => {
         const pos = dataSource.findIndex((t: any) => t.id === id);
         newDataSource.splice(pos, 1);
         setDataSource(newDataSource);
-        // setCounter(counter + 1);
       },
       onCancel: () => {},
     });
-
-    console.log('Delete record number', id);
   };
+
+  const getCurrencySymbol = () => `฿`;
 
   const columns = [
     {
@@ -106,7 +100,7 @@ const TransactionList: React.FunctionComponent<Props> = props => {
       title: 'Amount',
       dataIndex: 'amount',
       key: 'amount',
-      render: (amount: number) => `THB ${amount}`,
+      render: (amount: number) => `${getCurrencySymbol()} ${amount}`,
     },
     {
       title: 'Description',
@@ -137,17 +131,28 @@ const TransactionList: React.FunctionComponent<Props> = props => {
     },
   ];
 
+  /**
+   * Update this code to show loading spinner when data is being fetched from
+   * API
+   */
+  const loading = false;
+
   return (
     <DashboardPageLayout>
       <Content>
         <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Link to="/dashboard">Dashboard</Link>
+          </Breadcrumb.Item>
           <Breadcrumb.Item>List Transaction</Breadcrumb.Item>
         </Breadcrumb>
         <PageContent title="Transactoin List" titleDivider>
-          <span>
-            <Table dataSource={dataSource} columns={columns} />
-          </span>
+          {loading && (
+            <div style={{ textAlign: 'center' }}>
+              <Icon type="loading" />{' '}
+            </div>
+          )}
+          {!loading && <Table dataSource={dataSource} columns={columns} />}
         </PageContent>
       </Content>
     </DashboardPageLayout>

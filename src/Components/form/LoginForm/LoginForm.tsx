@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { Icon, Spin, Form, Input, Button, Alert } from 'antd';
-import { FormComponentProps, FormItemProps } from 'antd/lib/form';
+import { FormComponentProps } from 'antd/lib/form';
 import { useHistory } from 'react-router-dom';
 
 type Props = FormComponentProps;
