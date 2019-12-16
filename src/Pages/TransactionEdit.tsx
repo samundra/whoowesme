@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import DashboardPageLayout from 'Layout/DashboardPageLayout';
 import { Breadcrumb } from 'antd';
+import { Link } from 'react-router-dom';
 import TransactionForm from 'Components/form/TransactionForm';
 import { RouteComponentProps, useParams } from 'react-router';
 import { PageContent, Content } from 'Components/common';
@@ -20,7 +21,9 @@ const TransactionEdit: React.FunctionComponent<Props> = () => {
     <DashboardPageLayout>
       <Content>
         <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Link to="/dashboard">Dashboard</Link>
+          </Breadcrumb.Item>
           <Breadcrumb.Item>Edit Transaction</Breadcrumb.Item>
         </Breadcrumb>
         <PageContent title="Transaction details">

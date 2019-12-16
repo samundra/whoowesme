@@ -1,6 +1,7 @@
 import React from 'react';
 import DashboardPageLayout from 'Layout/DashboardPageLayout';
 import { Breadcrumb } from 'antd';
+import { Link } from 'react-router-dom';
 import { PageContent, Content } from 'Components/common';
 
 type Props = {
@@ -12,7 +13,9 @@ const ComingSoon: React.FunctionComponent<Props> = ({ title }) => {
     <DashboardPageLayout>
       <Content>
         <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Link to="/dashboard">Dashboard</Link>
+          </Breadcrumb.Item>
           {title && <Breadcrumb.Item>{title}</Breadcrumb.Item>}
         </Breadcrumb>
         <PageContent>Coming soon - {title}</PageContent>

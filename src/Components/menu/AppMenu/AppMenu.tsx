@@ -131,7 +131,14 @@ const AppMenu: React.FunctionComponent<Props> = () => {
           </span>
         }
       >
-        <Menu.Item key="notifications">Notifications</Menu.Item>
+        <Menu.Item
+          key="general_settings"
+          onClick={() =>
+            navigatePage(['general_settings'], ['settings'], '/settings')
+          }
+        >
+          <span>General</span>
+        </Menu.Item>
       </SubMenu>
     </Menu>
   );

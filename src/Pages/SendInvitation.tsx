@@ -2,12 +2,8 @@ import React from 'react';
 import { SendInvitationForm } from 'Components/form';
 import DashboardPageLayout from 'Layout/DashboardPageLayout';
 import { Breadcrumb } from 'antd';
+import { Link } from 'react-router-dom';
 import { PageContent, Content } from 'Components/common';
-
-export const menu: MenuLink = {
-  to: '/send-invitation',
-  label: 'Send Invitation',
-};
 
 type Props = {};
 
@@ -16,7 +12,9 @@ const SendInvitation: React.FunctionComponent<Props> = () => {
     <DashboardPageLayout>
       <Content>
         <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Link to="/dashboard">Dashboard</Link>
+          </Breadcrumb.Item>
           <Breadcrumb.Item>Send Invitation</Breadcrumb.Item>
         </Breadcrumb>
         <PageContent title="SEND INVITATION TO FRIEND">
