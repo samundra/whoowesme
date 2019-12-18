@@ -3,7 +3,7 @@ import { Layout, Input, Divider, Icon, Badge, Avatar, Dropdown } from 'antd';
 import styled from 'styled-components';
 import { ProfileMenu } from 'Components/menu/ProfileMenu';
 import HamburgerMenu from 'Components/menu/HamburgerMenu/HamburgerMenu';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import AddNewItem from 'Components/button/AddNewItem';
 
 const { Header } = Layout;
