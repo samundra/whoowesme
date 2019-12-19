@@ -24,7 +24,7 @@
     "webpack": "4.41.3"
   },
   "devDependencies": {
-    "@babel/core": "7.7.5",
+    "@babel/core": "7.7.7",
     "@storybook/addon-actions": "5.2.8",
     "@storybook/addon-docs": "5.2.8",
     "@storybook/addon-notes": "5.2.8",
