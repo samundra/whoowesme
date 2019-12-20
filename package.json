@@ -20,8 +20,7 @@
     "react-router-dom": "5.1.2",
     "react-scripts": "3.3.0",
     "redux": "4.0.4",
-    "styled-components": "4.4.1",
-    "webpack": "4.41.3"
+    "styled-components": "^5.0.0-rc.2"
   },
   "devDependencies": {
     "@babel/core": "7.7.5",
