@@ -28,3 +28,4 @@ yarn-error.log*
 # igore storybook static
 storybook-static
 
+package-lock.json

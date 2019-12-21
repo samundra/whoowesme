@@ -45,7 +45,10 @@ const SendInvitation: React.FunctionComponent<Props> = props => {
       if (!err) {
         const { keys, names } = values;
         console.log('Received values of form: ', values);
-        console.log('Merged values:', keys.map((key: string) => names[key]));
+        console.log(
+          'Merged values:',
+          keys.map((key: string) => names[key])
+        );
       }
     });
   };
