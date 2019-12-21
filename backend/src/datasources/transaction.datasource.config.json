@@ -1,0 +1,10 @@
+{
+  "name": "Transaction",
+  "connector": "postgresql",
+  "url": "",
+  "host": "",
+  "port": 0,
+  "user": "",
+  "password": "",
+  "database": ""
+}
