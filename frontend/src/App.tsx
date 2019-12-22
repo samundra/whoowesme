@@ -5,7 +5,7 @@ import SendInvitation from 'Pages/SendInvitation';
 import TransactionList from 'Pages/TransactionList';
 import AddFriend from 'Pages/AddFriend';
 import { Provider } from 'react-redux';
-import store from './Store/Store';
+import store from './Store';
 import {
   PageNotFound,
   TransactionEdit,

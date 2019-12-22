@@ -1,8 +1,14 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { transactionReducer } from './transaction/reducers';
 
 // Fix: Add store
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  transactionReducer,
+});
+
+export type RootState = ReturnType<typeof rootReducer>;
+
 const composeEnhancers = composeWithDevTools({});
 
 const store = createStore(rootReducer, composeEnhancers());
