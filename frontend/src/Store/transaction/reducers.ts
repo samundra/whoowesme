@@ -6,9 +6,7 @@ import {
   TransactionActionTypes,
 } from './types';
 
-const initialState: TransactionState = {
-  transactions: [],
-};
+const initialState = {} as TransactionState;
 
 export function transactionReducer(
   state = initialState,

@@ -1,23 +1,16 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { transactionReducer } from './transaction/reducers';
-
-// Fix: Add store
-const rootReducer = combineReducers({
-  transactionReducer,
-});
+import rootReducer from './rootReducer';
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-const composeEnhancers = composeWithDevTools({});
+const composeEnhancer = composeWithDevTools({
+  // Specify name here, actionsBlacklist, actionsCreator and other options if needed
+});
 
-const store = createStore(rootReducer, composeEnhancers());
+const storeEnhancer = composeEnhancer(
+  applyMiddleware()
+  // other enhancer if any
+);
 
-export default store;
-
-// export default createStore(
-//   // your reducer
-//   //@ts-ignore
-//   rootReducer
-//   // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// );
+export default createStore(rootReducer, storeEnhancer);
