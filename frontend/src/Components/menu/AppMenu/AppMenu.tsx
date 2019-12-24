@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, Icon } from 'antd';
+import { translate } from 'i18n';
+import TKeys from 'i18n/translationKey';
 
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -52,7 +54,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
         onClick={() => navigatePage(['dashboard'], [], '/dashboard')}
       >
         <Icon type="dashboard" />
-        <span>Dashboard</span>
+        <span>{translate(TKeys.Dashboard.dashboard)}</span>
       </Menu.Item>
       <Menu.Item
         key="summary"

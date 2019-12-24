@@ -1,5 +1,6 @@
 /* eslint-disable */
 const fs = require('fs');
+const path = require('path');
 const readline = require('readline');
 const { google } = require('googleapis');
 
@@ -8,9 +9,12 @@ const { google } = require('googleapis');
 // parsed and created into { key: value } pair by language script
 const SHEET_ID = '1uwAk1xYNKc6S15ytl5OnPYCUKXxF8af4Cd6nFHgQCaM';
 
-const LANGUAGE_NE_PATH = 'src/i18n/languages/ne.ts';
-const LANGUAGE_EN_PATH = 'src/i18n/languages/en.ts';
-const LANGUAGE_KEYS_PATH = 'src/i18n/languages/keys.ts';
+const LANGUAGE_NE_PATH = path.join(__dirname, '../src/i18n/languages/ne.ts');
+const LANGUAGE_EN_PATH = path.join(__dirname, '../src/i18n/languages/en.ts');
+const LANGUAGE_KEYS_PATH = path.join(
+  __dirname,
+  '../src/i18n/languages/keys.ts'
+);
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
@@ -20,7 +24,9 @@ const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 const TOKEN_PATH = 'token.json';
 
 // Load client secrets from a local file.
-fs.readFile('credentials.json', (err, content) => {
+const credentialFilePath = path.join(__dirname, 'credentials.json');
+
+fs.readFile(credentialFilePath, (err, content) => {
   if (err) return console.log('Error loading client secret file:', err);
   console.log('Read credentials.json');
   // Authorize a client with credentials, then call the Google Sheets API.
