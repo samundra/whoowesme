@@ -8,9 +8,6 @@ export default {
   Dashboard: {
     add_new_item: 'Add New Item',
     dashboard: 'Dashboard',
-    profile: 'Profile',
-    message: 'Message',
-    logout: 'Logout',
   },
   Menu: {
     dashboard: 'Dashboard',
@@ -23,5 +20,10 @@ export default {
     add_friend: 'Add friend',
     settings: 'Settings',
     general: 'General',
+  },
+  ProfileMenu: {
+    profile: 'Profile',
+    message: 'Message',
+    logout: 'Logout',
   },
 };

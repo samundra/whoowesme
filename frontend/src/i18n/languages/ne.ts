@@ -5,9 +5,6 @@ export default {
   Dashboard: {
     add_new_item: 'नयाँ खाता राखौं',
     dashboard: 'ड्यासबोर्ड',
-    profile: 'व्यक्तिगत विवरण',
-    message: 'सन्देश',
-    logout: 'बाहिर निस्कनुहोस्',
   },
   Menu: {
     dashboard: 'ड्यासबोर्ड',
@@ -20,5 +17,10 @@ export default {
     add_friend: 'नयाँँ साथी थप्‍नुहोस्',
     settings: 'सेटिंगस्',
     general: 'साधारण',
+  },
+  ProfileMenu: {
+    profile: 'व्यक्तिगत विवरण',
+    message: 'सन्देश',
+    logout: 'बाहिर निस्कनुहोस्',
   },
 };

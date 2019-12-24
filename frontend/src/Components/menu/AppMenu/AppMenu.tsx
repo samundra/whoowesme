@@ -54,14 +54,14 @@ const AppMenu: React.FunctionComponent<Props> = () => {
         onClick={() => navigatePage(['dashboard'], [], '/dashboard')}
       >
         <Icon type="dashboard" />
-        <span>{translate(TKeys.Dashboard.dashboard)}</span>
+        <span>{translate(TKeys.Menu.dashboard)}</span>
       </Menu.Item>
       <Menu.Item
         key="summary"
         onClick={() => navigatePage(['summary'], [], '/summary')}
       >
         <Icon type="snippets" />
-        <span>Summary</span>
+        <span>{translate(TKeys.Menu.summary)}</span>
       </Menu.Item>
       <Menu.Item
         key="send_invitation"
@@ -70,14 +70,14 @@ const AppMenu: React.FunctionComponent<Props> = () => {
         }
       >
         <Icon type="mail" />
-        <span>Send Invitation</span>
+        <span>{translate(TKeys.Menu.send_invitation)}</span>
       </Menu.Item>
       <SubMenu
         key="manage_transaction"
         title={
           <span>
             <Icon type="money-collect" />
-            <span>Manage Transaction</span>
+            <span>{translate(TKeys.Menu.manage_transaction)}</span>
           </span>
         }
       >
@@ -91,7 +91,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
             )
           }
         >
-          <span>List Transaction</span>
+          <span>{translate(TKeys.Menu.list_transaction)}</span>
         </Menu.Item>
         <Menu.Item
           key="add_transaction"
@@ -103,7 +103,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
             )
           }
         >
-          <span>Add transaction</span>
+          <span>{translate(TKeys.Menu.add_transaction)}</span>
         </Menu.Item>
       </SubMenu>
       <SubMenu
@@ -111,7 +111,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
         title={
           <span>
             <Icon type="user" />
-            <span>Manage Friends</span>
+            <span>{translate(TKeys.Menu.manage_friends)}</span>
           </span>
         }
       >
@@ -121,7 +121,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
             navigatePage(['add_friend'], ['manage_friends'], '/add-friend')
           }
         >
-          <span>Add friend</span>
+          <span>{translate(TKeys.Menu.add_friend)}</span>
         </Menu.Item>
       </SubMenu>
       <SubMenu
@@ -129,7 +129,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
         title={
           <span>
             <Icon type="setting" />
-            <span>Settings</span>
+            <span>{translate(TKeys.Menu.settings)}</span>
           </span>
         }
       >
@@ -139,7 +139,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
             navigatePage(['general_settings'], ['settings'], '/settings')
           }
         >
-          <span>General</span>
+          <span>{translate(TKeys.Menu.general)}</span>
         </Menu.Item>
       </SubMenu>
     </Menu>

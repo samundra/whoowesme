@@ -12,9 +12,6 @@ const _keys = {
   Dashboard: {
     add_new_item: 'Dashboard.add_new_item',
     dashboard: 'Dashboard.dashboard',
-    profile: 'Dashboard.profile',
-    message: 'Dashboard.message',
-    logout: 'Dashboard.logout',
   },
   Menu: {
     dashboard: 'Menu.dashboard',
@@ -27,6 +24,11 @@ const _keys = {
     add_friend: 'Menu.add_friend',
     settings: 'Menu.settings',
     general: 'Menu.general',
+  },
+  ProfileMenu: {
+    profile: 'ProfileMenu.profile',
+    message: 'ProfileMenu.message',
+    logout: 'ProfileMenu.logout',
   },
 };
 export default _keys;
