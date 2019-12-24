@@ -1,0 +1,9 @@
+{
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "paths": ["frontend/package.json"],
+      "rangeStrategy": "replace"
+    }
+  ]
+}
