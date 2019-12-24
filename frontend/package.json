@@ -101,7 +101,7 @@
       "prettier --trailing-comma es5 --single-quote --write",
       "git add"
     ],
-    "yarn.lock": [
+    "package-lock.json": [
       "git rm --cached"
     ]
   }

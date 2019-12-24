@@ -1,53 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DashboardPageLayout from 'Layout/DashboardPageLayout';
+import { connect } from 'react-redux';
 import { Breadcrumb, Modal, Table, Tag, Button, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
 import { PageContent, Content } from 'Components/common';
+import { RootState } from 'Store';
+import { addTransaction } from 'Store/transaction/action';
+import transactionService from 'Services/transaction';
 
-type Props = RouteComponentProps;
+type TransactionRecord = Transaction & { key: string | number };
 
-type TransactionDataSource = {
-  key: string | number;
-  id: number;
-  date: string;
-  category: string[];
-  amount: string;
-  description: string;
-};
-
+type Props = RouteComponentProps & ReduxProps & DispatchProps;
 const TransactionList: React.FunctionComponent<Props> = props => {
-  const initialData = [
-    {
-      key: '1',
-      id: 1,
-      date: '2019-10-11',
-      category: ['personal', 'gym'],
-      amount: '22.00',
-      description: 'Spending on grocery items',
-    },
-    {
-      key: '2',
-      id: 2,
-      date: '2019-10-12',
-      category: ['personal', 'gym'],
-      amount: '23.00',
-      description: 'spending on grocery items',
-    },
-    {
-      key: '3',
-      id: 3,
-      date: '2019-10-13',
-      category: ['personal', 'gym'],
-      amount: '24.00',
-      description: 'spending on grocery items',
-    },
-  ];
-
   const { history } = props;
-  const [dataSource, setDataSource] = useState<TransactionDataSource[]>(
-    initialData
-  );
+  const [dataSource, setDataSource] = useState<TransactionRecord[]>([]);
+
+  useEffect(() => {
+    const transactions = transactionService.fetchAll();
+    setDataSource(transactions);
+  }, []);
 
   // API Call to edit
   const onEdit = (id: number) => {
@@ -111,8 +83,7 @@ const TransactionList: React.FunctionComponent<Props> = props => {
       title: 'Action',
       dataIndex: 'action',
       key: 'action',
-      render: (action: any, record: Transaction) => {
-        console.log(action, record);
+      render: (_: any, record: Transaction) => {
         return (
           <>
             <Button
@@ -159,4 +130,18 @@ const TransactionList: React.FunctionComponent<Props> = props => {
   );
 };
 
-export default TransactionList;
+const mapStateToProps = (state: RootState) => {
+  return {
+    transactions: state.transaction.transactions,
+  };
+};
+
+type ReduxProps = ReturnType<typeof mapStateToProps>;
+
+const mapDispatchToProps = {
+  addTransaction,
+};
+
+type DispatchProps = typeof mapDispatchToProps;
+
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
