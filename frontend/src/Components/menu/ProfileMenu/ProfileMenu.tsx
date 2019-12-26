@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { Menu, Modal, Icon } from 'antd';
+import { translate } from 'i18n';
+import TKeys from 'i18n/translationKey';
 import * as H from 'history';
 
 const StyledMenuLabel = styled('span')`
@@ -97,7 +99,9 @@ const ProfileMenu = () => {
         >
           <StyledMenuLabel>
             <Icon type="user" />
-            <span style={{ marginLeft: 10 }}>Profile</span>
+            <MenuLabelItem>
+              {translate(TKeys.ProfileMenu.profile)}
+            </MenuLabelItem>
           </StyledMenuLabel>
         </Menu.Item>
         <Menu.Divider />
@@ -107,7 +111,9 @@ const ProfileMenu = () => {
         >
           <StyledMenuLabel>
             <Icon type="message" />
-            <span style={{ marginLeft: 10 }}>Message</span>
+            <MenuLabelItem>
+              {translate(TKeys.ProfileMenu.message)}{' '}
+            </MenuLabelItem>
           </StyledMenuLabel>
         </Menu.Item>
         <Menu.Item
@@ -116,7 +122,7 @@ const ProfileMenu = () => {
           style={logoutMenuStyle}
         >
           <StyledLogoutButton>
-            Logout
+            {translate(TKeys.ProfileMenu.logout)}
             {'  '}
             <Icon type="poweroff" style={{ marginLeft: 10 }} />
           </StyledLogoutButton>
@@ -125,5 +131,9 @@ const ProfileMenu = () => {
     </div>
   );
 };
+
+const MenuLabelItem = styled.span`
+  margin-left: 10px;
+`;
 
 export default ProfileMenu;
