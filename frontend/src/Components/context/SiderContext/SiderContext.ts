@@ -2,7 +2,9 @@ import React from 'react';
 
 export const SiderContext = React.createContext<SiderContextValue>({
   collapsed: false,
-  toggleSider: () => {},
+  toggleSider: () => {
+    /* epmty body */
+  },
 });
 
 SiderContext.displayName = 'SiderContext';

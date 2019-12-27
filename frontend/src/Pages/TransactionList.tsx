@@ -9,7 +9,7 @@ import { RootState } from 'Store';
 import { addTransaction } from 'Store/transaction/action';
 import transactionService from 'Services/transaction';
 
-type TransactionRecord = Transaction & { key: string | number };
+// type TransactionRecord = Transaction & { key: string | number };
 
 type Props = RouteComponentProps & ReduxProps & DispatchProps;
 const TransactionList: React.FunctionComponent<Props> = props => {

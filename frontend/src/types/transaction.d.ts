@@ -1,7 +1,9 @@
 type Transaction = {
   id: number;
-  date: String;
-  category: String[];
+  date: string;
+  category: string[];
   amount: string;
-  description: String;
+  description: string;
 };
+
+type TransactionRecord = Transaction & { key: number | string };
