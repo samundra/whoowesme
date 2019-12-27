@@ -1,4 +1,6 @@
-const transformForFetch = (data: Transaction[]) => {
+const transformForFetch = (
+  data: Transaction[]
+): Array<Transaction & { key: number }> => {
   return data.map(d => {
     return {
       ...d,
@@ -8,7 +10,7 @@ const transformForFetch = (data: Transaction[]) => {
 };
 
 const transaction = {
-  fetchAll: () => {
+  fetchAll: (): TransactionRecord[] => {
     const data = [
       {
         id: 1,

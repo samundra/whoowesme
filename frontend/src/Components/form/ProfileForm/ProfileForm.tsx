@@ -8,7 +8,7 @@ type Props = FormComponentProps & RouteComponentProps;
 const PForm: React.FunctionComponent<Props> = props => {
   const { form } = props;
 
-  const onFormSubmit = (e: FormEvent) => {
+  const onFormSubmit = (e: FormEvent): void => {
     e.preventDefault();
 
     form.validateFields((err, values) => {

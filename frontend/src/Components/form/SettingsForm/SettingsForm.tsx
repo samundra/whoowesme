@@ -38,11 +38,11 @@ const Setting: React.FunctionComponent<Props> = props => {
     },
   };
 
-  const onSave = () => {
+  const onSave = (): void => {
     console.log('save settings form');
   };
 
-  const onCurrencyChange = (currencyValue: CurrencyValue) => {
+  const onCurrencyChange = (currencyValue: CurrencyValue): void => {
     setCurrency(currencyValue);
   };
 

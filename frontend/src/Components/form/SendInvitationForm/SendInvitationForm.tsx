@@ -31,12 +31,16 @@ const SendInvitation: React.FunctionComponent<Props> = props => {
     },
   };
 
-  const validateEmail = (rule: any, value: any, callback: Function) => {
+  const validateEmail = (
+    rule: unknown,
+    value: string,
+    callback: Function
+  ): void => {
     console.log({ rule, value, callback });
     callback();
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
     const values = form.getFieldsValue();
     console.log({ values });
