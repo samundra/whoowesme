@@ -16,11 +16,11 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
   return (
     <StyledHeader>
       <HamburgerMenu />
-      <AddNewItem onClick={() => history.push('/add-new-item')} />
+      <AddNewItem onClick={(): void => history.push('/add-new-item')} />
       <Search
         style={{ width: 200, marginLeft: '10px' }}
         placeholder="Search"
-        onSearch={value => console.log(value)}
+        onSearch={(value): void => console.log(value)}
         prefix={<Icon type="right" />}
       />
       <StyledUserActions>

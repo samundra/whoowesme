@@ -59,6 +59,8 @@
   "scripts": {
     "start": "PORT=8000 react-app-rewired start",
     "build": "react-app-rewired build",
+    "lint": "eslint '*/**/*.{js,ts,tsx}'",
+    "lint:fix": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "lint:css": "stylelint './src/**/*.tsx'",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",

@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { Icon, Spin, Form, Input, Button, Alert } from 'antd';
-import { FormComponentProps } from 'antd/lib/form';
+import { FormComponentProps, FormItemProps } from 'antd/lib/form';
 import { useHistory } from 'react-router-dom';
 
 type Props = FormComponentProps;
@@ -14,20 +14,24 @@ const Login: React.FunctionComponent<Props> = props => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const history = useHistory();
-  const [usernameValidateStatus, setUsernameValidateStatus] = useState<any>('');
-  const [passwordValidateStatus, setPasswordValidateStatus] = useState<any>('');
+  const [usernameValidateStatus, setUsernameValidateStatus] = useState<
+    FormItemProps['validateStatus']
+  >('');
+  const [passwordValidateStatus, setPasswordValidateStatus] = useState<
+    FormItemProps['validateStatus']
+  >('');
 
-  const onUsernameChange = (value: string) => {
+  const onUsernameChange = (value: string): void => {
     const feedback = value === 'demo' ? 'success' : 'error';
     setUsernameValidateStatus(feedback);
   };
 
-  const onPasswordChange = (value: string) => {
+  const onPasswordChange = (value: string): void => {
     const feedback = value === 'demo' ? 'success' : 'error';
     setPasswordValidateStatus(feedback);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
     setLoading(true);
 
@@ -76,7 +80,7 @@ const Login: React.FunctionComponent<Props> = props => {
             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
             style={{ height: '48px' }}
             placeholder="Username"
-            onChange={e => onUsernameChange(e.currentTarget.value)}
+            onChange={(e): void => onUsernameChange(e.currentTarget.value)}
           />
         )}
       </Form.Item>
@@ -94,7 +98,7 @@ const Login: React.FunctionComponent<Props> = props => {
             style={{ height: '48px' }}
             type="password"
             placeholder="Password"
-            onChange={e => onPasswordChange(e.currentTarget.value)}
+            onChange={(e): void => onPasswordChange(e.currentTarget.value)}
           />
         )}
       </Form.Item>

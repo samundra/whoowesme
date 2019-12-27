@@ -58,16 +58,18 @@ const StyledLogoutButton = styled(StyledMenuLabel)`
 
 type Props = {};
 
-const onMenuItemClick = (key: string) => {
+const onMenuItemClick = (key: string): void => {
   console.log({ key });
 };
 
-const onLogout = (history: H.History) => {
+const onLogout = (history: H.History): void => {
   const logoutModal = Modal.confirm({
     title: 'Logout',
     content: 'You are about to logout from system.',
     icon: 'exit',
-    onCancel: () => {},
+    onCancel: (): void => {
+      /** No need to define body */
+    },
     onOk: async () => {
       logoutModal.update({
         okButtonProps: { disabled: true },
@@ -81,7 +83,7 @@ const onLogout = (history: H.History) => {
   });
 };
 
-const ProfileMenu = () => {
+const ProfileMenu = (): JSX.Element => {
   const history = useHistory();
 
   return (
@@ -90,7 +92,7 @@ const ProfileMenu = () => {
       <Menu style={{ paddingBottom: 0, marginBottom: 0, position: 'relative' }}>
         <Menu.Item
           key="menu.profile.about"
-          onClick={() => {
+          onClick={(): void => {
             history.push('/profile');
           }}
           style={menuFirstItemStyle}
@@ -103,7 +105,7 @@ const ProfileMenu = () => {
         <Menu.Divider />
         <Menu.Item
           key="menu.profile.message"
-          onClick={() => onMenuItemClick('menu.profile.message')}
+          onClick={(): void => onMenuItemClick('menu.profile.message')}
         >
           <StyledMenuLabel>
             <Icon type="message" />
@@ -112,7 +114,7 @@ const ProfileMenu = () => {
         </Menu.Item>
         <Menu.Item
           key="menu.profile.logout"
-          onClick={() => onLogout(history)}
+          onClick={(): void => onLogout(history)}
           style={logoutMenuStyle}
         >
           <StyledLogoutButton>

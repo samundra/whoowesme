@@ -5,13 +5,13 @@ export default {
   title: 'PageContent',
 };
 
-export const withNoTitle = () => (
+export const withNoTitle = (): JSX.Element => (
   <PageContent>
     <div>No page title. Page body only.</div>
   </PageContent>
 );
 
-export const withTitle = () => (
+export const withTitle = (): JSX.Element => (
   <PageContent title="Add new Page">Page title with page body.</PageContent>
 );
 withTitle.story = {
@@ -21,7 +21,7 @@ withTitle.story = {
   },
 };
 
-export const withTitleAndIcon = () => (
+export const withTitleAndIcon = (): JSX.Element => (
   <PageContent title="Add new Page" icon="plus">
     Page title with icon and page body.
   </PageContent>
@@ -33,7 +33,7 @@ withTitleAndIcon.story = {
   },
 };
 
-export const withHorizontalDivider = () => (
+export const withHorizontalDivider = (): JSX.Element => (
   <PageContent title="Add new Page" icon="plus" titleDivider>
     Horizontal bar separator between page title and page body.
   </PageContent>

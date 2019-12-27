@@ -33,7 +33,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
     menuKey: string[],
     parentMenuKey: string[],
     link: string
-  ) => {
+  ): void => {
     setCurrentMenuKey(menuKey);
     setParentMenuKey(parentMenuKey);
 
@@ -49,21 +49,21 @@ const AppMenu: React.FunctionComponent<Props> = () => {
     >
       <Menu.Item
         key="dashboard"
-        onClick={() => navigatePage(['dashboard'], [], '/dashboard')}
+        onClick={(): void => navigatePage(['dashboard'], [], '/dashboard')}
       >
         <Icon type="dashboard" />
         <span>Dashboard</span>
       </Menu.Item>
       <Menu.Item
         key="summary"
-        onClick={() => navigatePage(['summary'], [], '/summary')}
+        onClick={(): void => navigatePage(['summary'], [], '/summary')}
       >
         <Icon type="snippets" />
         <span>Summary</span>
       </Menu.Item>
       <Menu.Item
         key="send_invitation"
-        onClick={() =>
+        onClick={(): void =>
           navigatePage(['send_invitation'], [], '/send-invitation')
         }
       >
@@ -81,7 +81,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
       >
         <Menu.Item
           key="list_transaction"
-          onClick={() =>
+          onClick={(): void =>
             navigatePage(
               ['list_transaction'],
               ['manage_transaction'],
@@ -93,7 +93,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
         </Menu.Item>
         <Menu.Item
           key="add_transaction"
-          onClick={() =>
+          onClick={(): void =>
             navigatePage(
               ['add_transaction'],
               ['manage_transaction'],
@@ -115,7 +115,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
       >
         <Menu.Item
           key="add_friend"
-          onClick={() =>
+          onClick={(): void =>
             navigatePage(['add_friend'], ['manage_friends'], '/add-friend')
           }
         >
@@ -133,7 +133,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
       >
         <Menu.Item
           key="general_settings"
-          onClick={() =>
+          onClick={(): void =>
             navigatePage(['general_settings'], ['settings'], '/settings')
           }
         >

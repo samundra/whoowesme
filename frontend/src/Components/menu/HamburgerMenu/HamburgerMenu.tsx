@@ -7,7 +7,7 @@ type Props = {};
 const HamburgerMenu: React.FunctionComponent<Props> = () => {
   return (
     <SiderContext.Consumer>
-      {({ collapsed, toggleSider }) => (
+      {({ collapsed, toggleSider }): JSX.Element => (
         <Button
           type="link"
           icon={collapsed ? 'menu' : 'menu'}

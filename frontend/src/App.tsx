@@ -50,7 +50,7 @@ const App: React.FunctionComponent<Props> = () => {
         <SiderContext.Provider
           value={{
             collapsed: siderState,
-            toggleSider: () => {
+            toggleSider: (): void => {
               const newValue = collapsed === 'yes' ? 'no' : 'yes';
               localStorage.setItem('menu.is_collapsed', newValue);
               setSiderState(!siderState);

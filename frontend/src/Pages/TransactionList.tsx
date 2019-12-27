@@ -8,6 +8,7 @@ import { PageContent, Content } from 'Components/common';
 import { RootState } from 'Store';
 import { addTransaction } from 'Store/transaction/action';
 import transactionService from 'Services/transaction';
+import { TransactionState } from 'Store/transaction/types';
 
 // type TransactionRecord = Transaction & { key: string | number };
 
@@ -22,7 +23,7 @@ const TransactionList: React.FunctionComponent<Props> = props => {
   }, []);
 
   // API Call to edit
-  const onEdit = (id: number) => {
+  const onEdit = (id: number): void => {
     console.log('Edit record number', id);
     history.push('/transaction/1/edit', {
       menuKey: 'edit_transaction',
@@ -31,7 +32,7 @@ const TransactionList: React.FunctionComponent<Props> = props => {
   };
 
   // API call to delete
-  const onDelete = (id: number) => {
+  const onDelete = (id: number): void => {
     Modal.confirm({
       title: 'Delete Transactions',
       content: 'Are you sure you want to delete it?',
@@ -40,15 +41,17 @@ const TransactionList: React.FunctionComponent<Props> = props => {
       onOk: () => {
         // Send Request to delete it
         const newDataSource = JSON.parse(JSON.stringify(dataSource));
-        const pos = dataSource.findIndex((t: any) => t.id === id);
+        const pos = dataSource.findIndex((t: Transaction) => t.id === id);
         newDataSource.splice(pos, 1);
         setDataSource(newDataSource);
       },
-      onCancel: () => {},
+      onCancel: () => {
+        /* empty body */
+      },
     });
   };
 
-  const getCurrencySymbol = () => `฿`;
+  const getCurrencySymbol = (): string => `฿`;
 
   const columns = [
     {
@@ -60,19 +63,21 @@ const TransactionList: React.FunctionComponent<Props> = props => {
       title: 'Category',
       dataIndex: 'category',
       key: 'category',
-      render: (category: string[]) => {
-        return category.map((c: string) => (
-          <Tag color="blue" key={c}>
-            {c}
-          </Tag>
-        ));
+      render: (category: string[]): JSX.Element[] => {
+        return category.map((c: string) => {
+          return (
+            <Tag color="blue" key={c}>
+              {c}
+            </Tag>
+          );
+        });
       },
     },
     {
       title: 'Amount',
       dataIndex: 'amount',
       key: 'amount',
-      render: (amount: number) => `${getCurrencySymbol()} ${amount}`,
+      render: (amount: number): string => `${getCurrencySymbol()} ${amount}`,
     },
     {
       title: 'Description',
@@ -83,20 +88,21 @@ const TransactionList: React.FunctionComponent<Props> = props => {
       title: 'Action',
       dataIndex: 'action',
       key: 'action',
-      render: (_: any, record: Transaction) => {
+      /* eslint-disable react/display-name */
+      render: (_: string, record: Transaction): JSX.Element => {
         return (
-          <>
+          <React.Fragment>
             <Button
               type="primary"
               icon="edit"
-              onClick={() => onEdit(record.id)}
+              onClick={(): void => onEdit(record.id)}
             >
               Edit
             </Button>{' '}
-            <Button type="link" onClick={() => onDelete(record.id)}>
+            <Button type="link" onClick={(): void => onDelete(record.id)}>
               Delete
             </Button>
-          </>
+          </React.Fragment>
         );
       },
     },
@@ -130,7 +136,7 @@ const TransactionList: React.FunctionComponent<Props> = props => {
   );
 };
 
-const mapStateToProps = (state: RootState) => {
+const mapStateToProps = (state: RootState): TransactionState => {
   return {
     transactions: state.transaction.transactions,
   };

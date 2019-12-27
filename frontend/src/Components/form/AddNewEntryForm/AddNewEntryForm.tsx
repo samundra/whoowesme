@@ -10,7 +10,7 @@ type Props = FormComponentProps & RouteComponentProps;
 const AddNewEntry: React.FunctionComponent<Props> = props => {
   const { form, history } = props;
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
 
     form.validateFields((err, values) => {
@@ -49,7 +49,7 @@ const AddNewEntry: React.FunctionComponent<Props> = props => {
 
   const { getFieldDecorator } = form;
 
-  function onChange(date: moment.Moment | null, dateString: string) {
+  function onChange(date: moment.Moment | null, dateString: string): void {
     console.log(date, dateString);
   }
 
