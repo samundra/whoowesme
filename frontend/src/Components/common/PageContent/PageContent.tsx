@@ -1,15 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import PageTitle from 'Components/common/PageTitle';
-import { Divider } from 'antd';
+import React from 'react'
+import styled from 'styled-components'
+import PageTitle from 'Components/common/PageTitle'
+import {Divider} from 'antd'
 
-type Props = { title?: string; icon?: string; titleDivider?: boolean };
+type Props = {title?: string; icon?: string; titleDivider?: boolean}
 
-const PageContent: React.FunctionComponent<Props> = ({
-  children,
-  ...props
-}) => {
-  const { icon = undefined, titleDivider = false } = props;
+const PageContent: React.FunctionComponent<Props> = ({children, ...props}) => {
+  const {icon = undefined, titleDivider = false} = props
 
   if (icon) {
     return (
@@ -18,7 +15,7 @@ const PageContent: React.FunctionComponent<Props> = ({
         {titleDivider && <Divider type="horizontal" />}
         {children}
       </StyledDiv>
-    );
+    )
   }
 
   return (
@@ -27,13 +24,13 @@ const PageContent: React.FunctionComponent<Props> = ({
       {titleDivider && <Divider type="horizontal" />}
       {children}
     </StyledDiv>
-  );
-};
+  )
+}
 
 const StyledDiv = styled('div')`
   padding: 24px;
   background: #fff;
   minheight: 360px;
-`;
+`
 
-export default PageContent;
+export default PageContent

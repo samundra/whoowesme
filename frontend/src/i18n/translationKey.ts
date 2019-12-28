@@ -1,4 +1,4 @@
-import keys from './languages/keys';
+import keys from './languages/keys'
 
-const TKeys = keys;
-export default TKeys;
+const TKeys = keys
+export default TKeys

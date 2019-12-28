@@ -1,4 +1,4 @@
 type SiderContextValue = {
-  collapsed: boolean;
-  toggleSider: () => void;
-};
+  collapsed: boolean
+  toggleSider: () => void
+}

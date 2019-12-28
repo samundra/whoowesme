@@ -1,35 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import DashboardPageLayout from 'Layout/DashboardPageLayout';
-import { connect } from 'react-redux';
-import { Breadcrumb, Modal, Table, Tag, Button, Icon } from 'antd';
-import { Link } from 'react-router-dom';
-import { RouteComponentProps } from 'react-router';
-import { PageContent, Content } from 'Components/common';
-import { RootState } from 'Store';
-import { addTransaction } from 'Store/transaction/action';
-import transactionService from 'Services/transaction';
-import { TransactionState } from 'Store/transaction/types';
+import React, {useState, useEffect} from 'react'
+import DashboardPageLayout from 'Layout/DashboardPageLayout'
+import {connect} from 'react-redux'
+import {Breadcrumb, Modal, Table, Tag, Button, Icon} from 'antd'
+import {Link} from 'react-router-dom'
+import {RouteComponentProps} from 'react-router'
+import {PageContent, Content} from 'Components/common'
+import {RootState} from 'Store'
+import {addTransaction} from 'Store/transaction/action'
+import transactionService from 'Services/transaction'
+import {TransactionState} from 'Store/transaction/types'
 
 // type TransactionRecord = Transaction & { key: string | number };
 
-type Props = RouteComponentProps & ReduxProps & DispatchProps;
+type Props = RouteComponentProps & ReduxProps & DispatchProps
 const TransactionList: React.FunctionComponent<Props> = props => {
-  const { history } = props;
-  const [dataSource, setDataSource] = useState<TransactionRecord[]>([]);
+  const {history} = props
+  const [dataSource, setDataSource] = useState<TransactionRecord[]>([])
 
   useEffect(() => {
-    const transactions = transactionService.fetchAll();
-    setDataSource(transactions);
-  }, []);
+    const transactions = transactionService.fetchAll()
+    setDataSource(transactions)
+  }, [])
 
   // API Call to edit
   const onEdit = (id: number): void => {
-    console.log('Edit record number', id);
+    console.log('Edit record number', id)
     history.push('/transaction/1/edit', {
       menuKey: 'edit_transaction',
       parentMenuKey: 'manage_transaction',
-    });
-  };
+    })
+  }
 
   // API call to delete
   const onDelete = (id: number): void => {
@@ -40,18 +40,18 @@ const TransactionList: React.FunctionComponent<Props> = props => {
       cancelText: 'Cancel',
       onOk: () => {
         // Send Request to delete it
-        const newDataSource = JSON.parse(JSON.stringify(dataSource));
-        const pos = dataSource.findIndex((t: Transaction) => t.id === id);
-        newDataSource.splice(pos, 1);
-        setDataSource(newDataSource);
+        const newDataSource = JSON.parse(JSON.stringify(dataSource))
+        const pos = dataSource.findIndex((t: Transaction) => t.id === id)
+        newDataSource.splice(pos, 1)
+        setDataSource(newDataSource)
       },
       onCancel: () => {
         /* empty body */
       },
-    });
-  };
+    })
+  }
 
-  const getCurrencySymbol = (): string => `฿`;
+  const getCurrencySymbol = (): string => `฿`
 
   const columns = [
     {
@@ -69,8 +69,8 @@ const TransactionList: React.FunctionComponent<Props> = props => {
             <Tag color="blue" key={c}>
               {c}
             </Tag>
-          );
-        });
+          )
+        })
       },
     },
     {
@@ -103,21 +103,21 @@ const TransactionList: React.FunctionComponent<Props> = props => {
               Delete
             </Button>
           </React.Fragment>
-        );
+        )
       },
     },
-  ];
+  ]
 
   /**
    * Update this code to show loading spinner when data is being fetched from
    * API
    */
-  const loading = false;
+  const loading = false
 
   return (
     <DashboardPageLayout>
       <Content>
-        <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb style={{margin: '16px 0'}}>
           <Breadcrumb.Item>
             <Link to="/dashboard">Dashboard</Link>
           </Breadcrumb.Item>
@@ -125,7 +125,7 @@ const TransactionList: React.FunctionComponent<Props> = props => {
         </Breadcrumb>
         <PageContent title="Transactoin List" titleDivider>
           {loading && (
-            <div style={{ textAlign: 'center' }}>
+            <div style={{textAlign: 'center'}}>
               <Icon type="loading" />{' '}
             </div>
           )}
@@ -133,21 +133,21 @@ const TransactionList: React.FunctionComponent<Props> = props => {
         </PageContent>
       </Content>
     </DashboardPageLayout>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state: RootState): TransactionState => {
   return {
     transactions: state.transaction.transactions,
-  };
-};
+  }
+}
 
-type ReduxProps = ReturnType<typeof mapStateToProps>;
+type ReduxProps = ReturnType<typeof mapStateToProps>
 
 const mapDispatchToProps = {
   addTransaction,
-};
+}
 
-type DispatchProps = typeof mapDispatchToProps;
+type DispatchProps = typeof mapDispatchToProps
 
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionList)

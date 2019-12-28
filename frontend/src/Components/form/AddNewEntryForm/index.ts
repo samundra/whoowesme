@@ -1,3 +1,3 @@
-import AddNewEntryForm from './AddNewEntryForm';
+import AddNewEntryForm from './AddNewEntryForm'
 
-export default AddNewEntryForm;
+export default AddNewEntryForm

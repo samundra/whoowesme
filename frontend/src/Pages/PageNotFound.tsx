@@ -1,16 +1,16 @@
-import React from 'react';
-import DashboardPageLayout from 'Layout/DashboardPageLayout';
-import { Breadcrumb } from 'antd';
-import { Link } from 'react-router-dom';
-import { PageContent, Content } from 'Components/common';
+import React from 'react'
+import DashboardPageLayout from 'Layout/DashboardPageLayout'
+import {Breadcrumb} from 'antd'
+import {Link} from 'react-router-dom'
+import {PageContent, Content} from 'Components/common'
 
-type Props = {};
+type Props = {}
 
 const PageNotFound: React.FunctionComponent<Props> = () => {
   return (
     <DashboardPageLayout>
       <Content>
-        <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb style={{margin: '16px 0'}}>
           <Breadcrumb.Item>
             <Link to="/dashboard">Dashboard</Link>
           </Breadcrumb.Item>
@@ -21,7 +21,7 @@ const PageNotFound: React.FunctionComponent<Props> = () => {
         </PageContent>
       </Content>
     </DashboardPageLayout>
-  );
-};
+  )
+}
 
-export default PageNotFound;
+export default PageNotFound

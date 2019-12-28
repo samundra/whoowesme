@@ -1,15 +1,15 @@
-import React from 'react';
-import DashboardPageLayout from 'Layout/DashboardPageLayout';
-import { Breadcrumb } from 'antd';
-import { PageContent, Content } from 'Components/common';
+import React from 'react'
+import DashboardPageLayout from 'Layout/DashboardPageLayout'
+import {Breadcrumb} from 'antd'
+import {PageContent, Content} from 'Components/common'
 
-type Props = {};
+type Props = {}
 
 const Dashboard: React.FunctionComponent<Props> = () => {
   return (
     <DashboardPageLayout>
       <Content>
-        <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb style={{margin: '16px 0'}}>
           <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
         </Breadcrumb>
         <PageContent>
@@ -18,7 +18,7 @@ const Dashboard: React.FunctionComponent<Props> = () => {
         </PageContent>
       </Content>
     </DashboardPageLayout>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

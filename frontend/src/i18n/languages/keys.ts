@@ -30,5 +30,5 @@ const _keys = {
     message: 'ProfileMenu.message',
     logout: 'ProfileMenu.logout',
   },
-};
-export default _keys;
+}
+export default _keys

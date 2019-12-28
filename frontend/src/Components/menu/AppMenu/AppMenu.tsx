@@ -1,46 +1,46 @@
-import React, { useState } from 'react';
-import { Menu, Icon } from 'antd';
-import { translate } from 'i18n';
-import TKeys from 'i18n/translationKey';
+import React, {useState} from 'react'
+import {Menu, Icon} from 'antd'
+import {translate} from 'i18n'
+import TKeys from 'i18n/translationKey'
 
-import { useHistory, useLocation } from 'react-router-dom';
+import {useHistory, useLocation} from 'react-router-dom'
 
-type Props = {};
+type Props = {}
 
-const { SubMenu } = Menu;
+const {SubMenu} = Menu
 
 type LocationState = {
-  menuKey: string[];
-  parentMenuKey: string[];
-};
+  menuKey: string[]
+  parentMenuKey: string[]
+}
 
 const AppMenu: React.FunctionComponent<Props> = () => {
-  const history = useHistory();
-  const location = useLocation();
+  const history = useHistory()
+  const location = useLocation()
 
   const initialMenuState = {
     menuKey: [''],
     parentMenuKey: [''],
-  };
+  }
 
   const locationState: LocationState =
-    (location && (location.state as LocationState)) || initialMenuState;
+    (location && (location.state as LocationState)) || initialMenuState
 
-  const [currentMenuKey, setCurrentMenuKey] = useState(locationState.menuKey);
+  const [currentMenuKey, setCurrentMenuKey] = useState(locationState.menuKey)
   const [parentMenuKey, setParentMenuKey] = useState(
-    locationState.parentMenuKey
-  );
+    locationState.parentMenuKey,
+  )
 
   const navigatePage = (
     menuKey: string[],
     parentMenuKey: string[],
-    link: string
+    link: string,
   ): void => {
-    setCurrentMenuKey(menuKey);
-    setParentMenuKey(parentMenuKey);
+    setCurrentMenuKey(menuKey)
+    setParentMenuKey(parentMenuKey)
 
-    history.push(link, { menuKey, parentMenuKey });
-  };
+    history.push(link, {menuKey, parentMenuKey})
+  }
 
   return (
     <Menu
@@ -87,7 +87,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
             navigatePage(
               ['list_transaction'],
               ['manage_transaction'],
-              '/transaction/list'
+              '/transaction/list',
             )
           }
         >
@@ -99,7 +99,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
             navigatePage(
               ['add_transaction'],
               ['manage_transaction'],
-              '/add-new-item'
+              '/add-new-item',
             )
           }
         >
@@ -143,7 +143,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
         </Menu.Item>
       </SubMenu>
     </Menu>
-  );
-};
+  )
+}
 
-export default AppMenu;
+export default AppMenu

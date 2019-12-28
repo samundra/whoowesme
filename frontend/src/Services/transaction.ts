@@ -1,13 +1,13 @@
 const transformForFetch = (
-  data: Transaction[]
-): Array<Transaction & { key: number }> => {
+  data: Transaction[],
+): Array<Transaction & {key: number}> => {
   return data.map(d => {
     return {
       ...d,
       key: d.id,
-    };
-  });
-};
+    }
+  })
+}
 
 const transaction = {
   fetchAll: (): TransactionRecord[] => {
@@ -44,10 +44,10 @@ const transaction = {
         description: 'Spending on grocery items',
         timestamp: 4,
       },
-    ];
+    ]
 
-    return transformForFetch(data);
+    return transformForFetch(data)
   },
-};
+}
 
-export default transaction;
+export default transaction
