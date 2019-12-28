@@ -1,11 +1,11 @@
-import React, { FormEvent } from 'react';
-import { Form, Input, Button } from 'antd';
-import { FormComponentProps } from 'antd/lib/form';
+import React, {FormEvent} from 'react'
+import {Form, Input, Button} from 'antd'
+import {FormComponentProps} from 'antd/lib/form'
 
-type Props = FormComponentProps;
+type Props = FormComponentProps
 
 const AddFriend: React.FunctionComponent<Props> = props => {
-  const { form } = props;
+  const {form} = props
 
   const tailFormItemLayout = {
     wrapperCol: {
@@ -18,51 +18,51 @@ const AddFriend: React.FunctionComponent<Props> = props => {
         offset: 0,
       },
     },
-  };
+  }
 
   const formItemLayout = {
     labelCol: {
-      xs: { span: 24 },
-      sm: { span: 6 },
+      xs: {span: 24},
+      sm: {span: 6},
     },
     wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 18 },
+      xs: {span: 24},
+      sm: {span: 18},
     },
-  };
+  }
 
   const validateEmail = (
     rule: unknown,
     value: string,
-    callback: Function
+    callback: Function,
   ): void => {
-    console.log({ rule, value, callback });
-    callback();
-  };
+    console.log({rule, value, callback})
+    callback()
+  }
   const validateFirstName = (
     rule: unknown,
     value: string,
-    callback: Function
+    callback: Function,
   ): void => {
-    console.log({ rule, value, callback });
-    callback();
-  };
+    console.log({rule, value, callback})
+    callback()
+  }
   const handleSubmit = (e: FormEvent): void => {
-    e.preventDefault();
-    const values = form.getFieldsValue();
-    console.log({ values });
+    e.preventDefault()
+    const values = form.getFieldsValue()
+    console.log({values})
     form.validateFields((err, values) => {
-      console.log({ err, values });
+      console.log({err, values})
       if (!err) {
-        const { keys, names } = values;
-        console.log('Received values of form: ', values);
+        const {keys, names} = values
+        console.log('Received values of form: ', values)
         console.log(
           'Merged values:',
-          keys.map((key: string) => names[key])
-        );
+          keys.map((key: string) => names[key]),
+        )
       }
-    });
-  };
+    })
+  }
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -101,9 +101,9 @@ const AddFriend: React.FunctionComponent<Props> = props => {
         </Button>
       </Form.Item>
     </Form>
-  );
-};
+  )
+}
 
-const AddFriendForm = Form.create({ name: 'add_friend' })(AddFriend);
+const AddFriendForm = Form.create({name: 'add_friend'})(AddFriend)
 
-export default AddFriendForm;
+export default AddFriendForm

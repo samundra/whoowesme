@@ -1,14 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
-import { Menu, Modal, Icon } from 'antd';
-import { translate } from 'i18n';
-import TKeys from 'i18n/translationKey';
-import * as H from 'history';
+import React from 'react'
+import styled from 'styled-components'
+import {useHistory} from 'react-router-dom'
+import {Menu, Modal, Icon} from 'antd'
+import {translate} from 'i18n'
+import TKeys from 'i18n/translationKey'
+import * as H from 'history'
 
 const StyledMenuLabel = styled('span')`
   margin-left: 15px;
-`;
+`
 
 const StyledArrowTop = styled('span')`
   content: '.';
@@ -25,14 +25,14 @@ const StyledArrowTop = styled('span')`
   border-right-width: 0;
   transform: rotate(45deg);
   margin-bottom: -4px;
-`;
+`
 
 const logoutMenuStyle: React.CSSProperties = {
   background: '#7a8994',
   color: '#fff',
   margin: 0,
   padding: 0,
-};
+}
 
 const menuContainerStyle = {
   position: 'relative',
@@ -40,13 +40,13 @@ const menuContainerStyle = {
   height: '100%',
   boxShadow: '1px 6px 5px #ccc',
   color: '#7a8994',
-} as React.CSSProperties;
+} as React.CSSProperties
 
 const menuFirstItemStyle: React.CSSProperties = {
   marginTop: '0',
   borderTopRightRadius: '5px',
   borderTopLeftRadius: '5px',
-};
+}
 
 const StyledLogoutButton = styled(StyledMenuLabel)`
   display: flex;
@@ -56,13 +56,13 @@ const StyledLogoutButton = styled(StyledMenuLabel)`
   &:hover {
     color: #fff;
   }
-`;
+`
 
-type Props = {};
+type Props = {}
 
 const onMenuItemClick = (key: string): void => {
-  console.log({ key });
-};
+  console.log({key})
+}
 
 const onLogout = (history: H.History): void => {
   const logoutModal = Modal.confirm({
@@ -74,28 +74,28 @@ const onLogout = (history: H.History): void => {
     },
     onOk: async () => {
       logoutModal.update({
-        okButtonProps: { disabled: true },
-        cancelButtonProps: { disabled: true },
-      });
+        okButtonProps: {disabled: true},
+        cancelButtonProps: {disabled: true},
+      })
 
       // TODO: Send API request to logout then return success from here
-      history.push('/login');
-      Promise.resolve(true);
+      history.push('/login')
+      Promise.resolve(true)
     },
-  });
-};
+  })
+}
 
 const ProfileMenu = (): JSX.Element => {
-  const history = useHistory();
+  const history = useHistory()
 
   return (
     <div style={menuContainerStyle}>
       <StyledArrowTop />
-      <Menu style={{ paddingBottom: 0, marginBottom: 0, position: 'relative' }}>
+      <Menu style={{paddingBottom: 0, marginBottom: 0, position: 'relative'}}>
         <Menu.Item
           key="menu.profile.about"
           onClick={(): void => {
-            history.push('/profile');
+            history.push('/profile')
           }}
           style={menuFirstItemStyle}
         >
@@ -126,16 +126,16 @@ const ProfileMenu = (): JSX.Element => {
           <StyledLogoutButton>
             {translate(TKeys.ProfileMenu.logout)}
             {'  '}
-            <Icon type="poweroff" style={{ marginLeft: 10 }} />
+            <Icon type="poweroff" style={{marginLeft: 10}} />
           </StyledLogoutButton>
         </Menu.Item>
       </Menu>
     </div>
-  );
-};
+  )
+}
 
 const MenuLabelItem = styled.span`
   margin-left: 10px;
-`;
+`
 
-export default ProfileMenu;
+export default ProfileMenu

@@ -1,24 +1,24 @@
-import React from 'react';
-import { Layout, Input, Divider, Icon, Badge, Avatar, Dropdown } from 'antd';
-import styled from 'styled-components';
-import { ProfileMenu } from 'Components/menu/ProfileMenu';
-import HamburgerMenu from 'Components/menu/HamburgerMenu/HamburgerMenu';
-import { useHistory } from 'react-router-dom';
-import AddNewItem from 'Components/button/AddNewItem';
+import React from 'react'
+import {Layout, Input, Divider, Icon, Badge, Avatar, Dropdown} from 'antd'
+import styled from 'styled-components'
+import {ProfileMenu} from 'Components/menu/ProfileMenu'
+import HamburgerMenu from 'Components/menu/HamburgerMenu/HamburgerMenu'
+import {useHistory} from 'react-router-dom'
+import AddNewItem from 'Components/button/AddNewItem'
 
-const { Header } = Layout;
-const { Search } = Input;
+const {Header} = Layout
+const {Search} = Input
 
-type Props = {};
+type Props = {}
 const DashboardHeader: React.FunctionComponent<Props> = () => {
-  const history = useHistory();
+  const history = useHistory()
 
   return (
     <StyledHeader>
       <HamburgerMenu />
       <AddNewItem onClick={(): void => history.push('/add-new-item')} />
       <Search
-        style={{ width: 200, marginLeft: '10px' }}
+        style={{width: 200, marginLeft: '10px'}}
         placeholder="Search"
         onSearch={(value): void => console.log(value)}
         prefix={<Icon type="right" />}
@@ -26,40 +26,40 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
       <StyledUserActions>
         <StyledSettingsMenu>
           <Badge count={10} dot={true}>
-            <Icon type="bell" style={{ fontSize: 18 }} />
+            <Icon type="bell" style={{fontSize: 18}} />
           </Badge>
         </StyledSettingsMenu>
         <Divider type="vertical" />
         <Dropdown overlay={<ProfileMenu />} trigger={['click', 'hover']}>
           <StyledProfileMenu>
-            <Avatar shape="circle" icon="user" style={{ marginRight: 5 }} />
+            <Avatar shape="circle" icon="user" style={{marginRight: 5}} />
             {'   '}
             <StyledUserFullname>Sam Shrestha</StyledUserFullname>
-            <Icon type="down" style={{ marginLeft: 15 }} />
+            <Icon type="down" style={{marginLeft: 15}} />
           </StyledProfileMenu>
         </Dropdown>
       </StyledUserActions>
     </StyledHeader>
-  );
-};
+  )
+}
 
 const StyledMenu = styled('span')`
   user-select: none;
   cursor: pointer;
-`;
+`
 
-const StyledSettingsMenu = styled(StyledMenu)``;
+const StyledSettingsMenu = styled(StyledMenu)``
 
 const StyledProfileMenu = styled(StyledMenu)`
   background: #fff;
   height: 100%;
   display: inline-block;
   padding: 0 5px;
-`;
+`
 
 const StyledUserFullname = styled('span')`
   margin-right: 5px;
-`;
+`
 
 const StyledHeader = styled(Header)`
   background: #fff;
@@ -71,7 +71,7 @@ const StyledHeader = styled(Header)`
   @media only screen and (max-width: 470px) {
     display: none;
   }
-`;
+`
 
 const StyledUserActions = styled('div')`
   background: #fff;
@@ -86,6 +86,6 @@ const StyledUserActions = styled('div')`
   @media only screen and (max-width: 780px) {
     display: none;
   }
-`;
+`
 
-export default DashboardHeader;
+export default DashboardHeader

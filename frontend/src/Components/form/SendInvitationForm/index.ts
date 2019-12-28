@@ -1,3 +1,3 @@
-import SendInvitationForm from './SendInvitationForm';
+import SendInvitationForm from './SendInvitationForm'
 
-export default SendInvitationForm;
+export default SendInvitationForm

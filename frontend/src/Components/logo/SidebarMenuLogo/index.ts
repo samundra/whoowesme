@@ -1,3 +1,3 @@
-import SidebarMenuLogo from './SidebarMenuLogo';
+import SidebarMenuLogo from './SidebarMenuLogo'
 
-export default SidebarMenuLogo;
+export default SidebarMenuLogo

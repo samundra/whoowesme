@@ -1,3 +1,3 @@
-import SettingsForm from './SettingsForm';
+import SettingsForm from './SettingsForm'
 
-export default SettingsForm;
+export default SettingsForm

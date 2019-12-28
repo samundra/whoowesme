@@ -23,4 +23,4 @@ export default {
     message: 'सन्देश',
     logout: 'बाहिर निस्कनुहोस्',
   },
-};
+}

@@ -1,3 +1,3 @@
-import AddNewItem from './AddNewItem';
+import AddNewItem from './AddNewItem'
 
-export default AddNewItem;
+export default AddNewItem

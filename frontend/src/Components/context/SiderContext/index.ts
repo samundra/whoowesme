@@ -1,3 +1,3 @@
-import SiderContext from './SiderContext';
+import SiderContext from './SiderContext'
 
-export default SiderContext;
+export default SiderContext

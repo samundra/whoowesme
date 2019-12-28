@@ -1,15 +1,15 @@
-import React from 'react';
-import { Layout } from 'antd';
-const { Footer } = Layout;
+import React from 'react'
+import {Layout} from 'antd'
+const {Footer} = Layout
 
-type Props = {};
+type Props = {}
 
 const AppFooter: React.FunctionComponent<Props> = () => {
   return (
-    <Footer style={{ textAlign: 'center' }}>
+    <Footer style={{textAlign: 'center'}}>
       Whoowesme ©2019 Created by Love
     </Footer>
-  );
-};
+  )
+}
 
-export default AppFooter;
+export default AppFooter

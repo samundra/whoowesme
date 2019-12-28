@@ -1,13 +1,13 @@
-import React from 'react';
-import { SiderContext } from 'Components/context';
-import { Button } from 'antd';
+import React from 'react'
+import {SiderContext} from 'Components/context'
+import {Button} from 'antd'
 
-type Props = {};
+type Props = {}
 
 const HamburgerMenu: React.FunctionComponent<Props> = () => {
   return (
     <SiderContext.Consumer>
-      {({ collapsed, toggleSider }): JSX.Element => (
+      {({collapsed, toggleSider}): JSX.Element => (
         <Button
           type="link"
           icon={collapsed ? 'menu' : 'menu'}
@@ -15,7 +15,7 @@ const HamburgerMenu: React.FunctionComponent<Props> = () => {
         />
       )}
     </SiderContext.Consumer>
-  );
-};
+  )
+}
 
-export default HamburgerMenu;
+export default HamburgerMenu

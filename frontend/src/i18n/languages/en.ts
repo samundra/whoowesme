@@ -26,4 +26,4 @@ export default {
     message: 'Message',
     logout: 'Logout',
   },
-};
+}

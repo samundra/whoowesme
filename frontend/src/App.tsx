@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import './App.css';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import SendInvitation from 'Pages/SendInvitation';
-import TransactionList from 'Pages/TransactionList';
-import AddFriend from 'Pages/AddFriend';
-import { Provider } from 'react-redux';
-import store from './Store';
+import React, {useState} from 'react'
+import './App.css'
+import {Switch, Route, BrowserRouter as Router} from 'react-router-dom'
+import SendInvitation from 'Pages/SendInvitation'
+import TransactionList from 'Pages/TransactionList'
+import AddFriend from 'Pages/AddFriend'
+import {Provider} from 'react-redux'
+import store from './Store'
 import {
   PageNotFound,
   TransactionEdit,
@@ -13,15 +13,15 @@ import {
   Settings,
   Profile,
   Login,
-} from 'Pages';
-import AddNewItem from 'Pages/AddNewItem';
-import Dashboard from 'Pages/Dashboard';
-import { hot } from 'react-hot-loader/root';
-import { SiderContext } from 'Components/context';
+} from 'Pages'
+import AddNewItem from 'Pages/AddNewItem'
+import Dashboard from 'Pages/Dashboard'
+import {hot} from 'react-hot-loader/root'
+import {SiderContext} from 'Components/context'
 
 type Props = {
-  loggedIn?: boolean;
-};
+  loggedIn?: boolean
+}
 
 // TODO: add context to toggle sidebar
 
@@ -40,9 +40,9 @@ const App: React.FunctionComponent<Props> = () => {
   //   );
   // }
 
-  const collapsed = localStorage.getItem('menu.is_collapsed');
-  const openState = collapsed === 'yes';
-  const [siderState, setSiderState] = useState(openState);
+  const collapsed = localStorage.getItem('menu.is_collapsed')
+  const openState = collapsed === 'yes'
+  const [siderState, setSiderState] = useState(openState)
 
   return (
     <Router>
@@ -51,9 +51,9 @@ const App: React.FunctionComponent<Props> = () => {
           value={{
             collapsed: siderState,
             toggleSider: (): void => {
-              const newValue = collapsed === 'yes' ? 'no' : 'yes';
-              localStorage.setItem('menu.is_collapsed', newValue);
-              setSiderState(!siderState);
+              const newValue = collapsed === 'yes' ? 'no' : 'yes'
+              localStorage.setItem('menu.is_collapsed', newValue)
+              setSiderState(!siderState)
             },
           }}
         >
@@ -75,7 +75,7 @@ const App: React.FunctionComponent<Props> = () => {
         </SiderContext.Provider>
       </Provider>
     </Router>
-  );
-};
+  )
+}
 
-export default process.env.NODE_ENV === 'development' ? hot(App) : App;
+export default process.env.NODE_ENV === 'development' ? hot(App) : App

@@ -1,3 +1,3 @@
-import AddFriendForm from './AddFriendForm';
+import AddFriendForm from './AddFriendForm'
 
-export default AddFriendForm;
+export default AddFriendForm

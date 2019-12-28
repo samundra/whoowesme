@@ -1,39 +1,39 @@
-import React, { FormEvent } from 'react';
-import { Icon, Form, Input, Button, DatePicker, Select } from 'antd';
-import { FormComponentProps } from 'antd/lib/form';
-import moment from 'moment';
-import TextArea from 'antd/lib/input/TextArea';
-import { RouteComponentProps } from 'react-router-dom';
+import React, {FormEvent} from 'react'
+import {Icon, Form, Input, Button, DatePicker, Select} from 'antd'
+import {FormComponentProps} from 'antd/lib/form'
+import moment from 'moment'
+import TextArea from 'antd/lib/input/TextArea'
+import {RouteComponentProps} from 'react-router-dom'
 
-type Props = FormComponentProps & RouteComponentProps;
+type Props = FormComponentProps & RouteComponentProps
 
 const AddNewEntry: React.FunctionComponent<Props> = props => {
-  const { form, history } = props;
+  const {form, history} = props
 
   const handleSubmit = (e: FormEvent): void => {
-    e.preventDefault();
+    e.preventDefault()
 
     form.validateFields((err, values) => {
       if (!err) {
-        console.log({ values });
+        console.log({values})
 
         // Todo: Make API call to save this
         // For now lets take to listing page only
-        history.push('/transactions/list'); // We don't have this page yet.
+        history.push('/transactions/list') // We don't have this page yet.
       }
-    });
-  };
+    })
+  }
 
   const formItemLayout = {
     labelCol: {
-      xs: { span: 24 },
-      sm: { span: 8 },
+      xs: {span: 24},
+      sm: {span: 8},
     },
     wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 },
+      xs: {span: 24},
+      sm: {span: 16},
     },
-  };
+  }
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
@@ -45,15 +45,15 @@ const AddNewEntry: React.FunctionComponent<Props> = props => {
         offset: 8,
       },
     },
-  };
-
-  const { getFieldDecorator } = form;
-
-  function onChange(date: moment.Moment | null, dateString: string): void {
-    console.log(date, dateString);
   }
 
-  const { Option } = Select;
+  const {getFieldDecorator} = form
+
+  function onChange(date: moment.Moment | null, dateString: string): void {
+    console.log(date, dateString)
+  }
+
+  const {Option} = Select
 
   return (
     <Form {...formItemLayout} onSubmit={handleSubmit}>
@@ -69,7 +69,7 @@ const AddNewEntry: React.FunctionComponent<Props> = props => {
             <Option value="personal">Personal</Option>
             <Option value="gym">Gym</Option>
             <Option value="spotify">Spotify</Option>
-          </Select>
+          </Select>,
         )}
       </Form.Item>
       <Form.Item label="Enter amount" extra="Application currency is in THB.">
@@ -84,9 +84,9 @@ const AddNewEntry: React.FunctionComponent<Props> = props => {
         </Button>
       </Form.Item>
     </Form>
-  );
-};
+  )
+}
 
-const AddNewEntryForm = Form.create({ name: 'login_form' })(AddNewEntry);
+const AddNewEntryForm = Form.create({name: 'login_form'})(AddNewEntry)
 
-export default AddNewEntryForm;
+export default AddNewEntryForm

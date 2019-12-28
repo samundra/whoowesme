@@ -3,15 +3,15 @@ import {
   ADD_TRANSACTION,
   DELETE_TRANSACTION,
   TransactionActionTypes,
-} from './types';
+} from './types'
 
 export function addTransaction(
-  newTransaction: Transaction
+  newTransaction: Transaction,
 ): TransactionActionTypes {
   return {
     type: ADD_TRANSACTION,
     payload: newTransaction,
-  };
+  }
 }
 
 export function deleteTransaction(timestamp: number): TransactionActionTypes {
@@ -20,5 +20,5 @@ export function deleteTransaction(timestamp: number): TransactionActionTypes {
     meta: {
       timestamp,
     },
-  };
+  }
 }

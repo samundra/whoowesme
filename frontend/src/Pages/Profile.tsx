@@ -1,17 +1,17 @@
-import React from 'react';
-import DashboardPageLayout from 'Layout/DashboardPageLayout';
-import { Breadcrumb } from 'antd';
-import { Link } from 'react-router-dom';
-import { PageContent, Content } from 'Components/common';
-import { ProfileForm } from 'Components/form';
+import React from 'react'
+import DashboardPageLayout from 'Layout/DashboardPageLayout'
+import {Breadcrumb} from 'antd'
+import {Link} from 'react-router-dom'
+import {PageContent, Content} from 'Components/common'
+import {ProfileForm} from 'Components/form'
 
-type Props = {};
+type Props = {}
 
 const Profile: React.FunctionComponent<Props> = () => {
   return (
     <DashboardPageLayout>
       <Content>
-        <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb style={{margin: '16px 0'}}>
           <Breadcrumb.Item>
             <Link to="/dashboard">Dashboard</Link>
           </Breadcrumb.Item>
@@ -22,7 +22,7 @@ const Profile: React.FunctionComponent<Props> = () => {
         </PageContent>
       </Content>
     </DashboardPageLayout>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

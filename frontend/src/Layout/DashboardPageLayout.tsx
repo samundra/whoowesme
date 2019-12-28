@@ -1,22 +1,22 @@
-import React, { useContext } from 'react';
-import { Layout } from 'antd';
-import SidebarMenuLogo from 'Components/logo/SidebarMenuLogo';
-import { AppFooter } from 'Components/section';
-import AppMenu from 'Components/menu/AppMenu/AppMenu';
-import { DashboardHeader } from 'Components';
-import { SiderContext } from 'Components/context';
-import styled from 'styled-components';
+import React, {useContext} from 'react'
+import {Layout} from 'antd'
+import SidebarMenuLogo from 'Components/logo/SidebarMenuLogo'
+import {AppFooter} from 'Components/section'
+import AppMenu from 'Components/menu/AppMenu/AppMenu'
+import {DashboardHeader} from 'Components'
+import {SiderContext} from 'Components/context'
+import styled from 'styled-components'
 
-const { Sider } = Layout;
+const {Sider} = Layout
 
 type CommonLayoutProps = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
 const DashboardPageLayout: React.FunctionComponent<CommonLayoutProps> = ({
   children,
 }) => {
-  const siderState = useContext(SiderContext);
+  const siderState = useContext(SiderContext)
 
   return (
     <DashboardLayout>
@@ -46,11 +46,11 @@ const DashboardPageLayout: React.FunctionComponent<CommonLayoutProps> = ({
         <AppFooter />
       </Layout>
     </DashboardLayout>
-  );
-};
+  )
+}
 
 const DashboardLayout = styled(Layout)`
   min-height: 100vh;
-`;
+`
 
-export default DashboardPageLayout;
+export default DashboardPageLayout
