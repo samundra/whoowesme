@@ -1,28 +1,30 @@
 [build]
   base = 'frontend'
   publish = 'build'
-  command = 'npm run build'
+  command = 'npm install && npm run build'
+
+[build.environment]
+  NODE_VERSION = "v12.14.0"
 
 [context.production]
-  base = 'frontend'
-  publish = 'build'
-  command = 'npm run build'
-  environment = { NODE_VERSION = 'v12.14.0' }
+  command = "echo 'production'; npm install && npm run build"
+
+[context.production.environment]
+  NODE_ENV = "production"
 
 [context.develop]
-  base = 'frontend'
-  publish = 'build'
-  command = 'npm run build'
-  environment = { NODE_VERSION = 'v12.14.0' }
+  command = "echo 'development'; npm install && npm run build"
+
+[context.develop.environment]
+  NODE_ENV = "development"
 
 [context.netlify-deploy]
-  base = 'frontend'
-  publish = 'build'
-  command = 'npm run build'
-  environment = { NODE_VERSION = 'v12.14.0' }
+  command = "echo 'netlify-deploy'; npm install && npm run build"
+
+[context.netlify-deploy.environment]
+  NODE_ENV = "development"
 
 [[redirects]]
-  from = '/*'
+  from = "/*"
   to = "/index.html"
   status = 200
-  headers = { X-From = "Netlify" }
