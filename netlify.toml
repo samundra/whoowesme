@@ -1,25 +1,25 @@
 [build]
   base = 'frontend'
-  publish = 'frontend/build'
+  publish = 'build'
   command = 'npm run build'
 
 [context.production]
   base = 'frontend'
-  publish = 'frontend/build'
+  publish = 'build'
   command = 'npm run build'
-  environment = { NODE_VERSION = 'v10.15.0' }
+  environment = { NODE_VERSION = 'v12.14.0' }
 
 [context.develop]
   base = 'frontend'
-  publish = 'frontend/build'
+  publish = 'build'
   command = 'npm run build'
-  environment = { NODE_VERSION = 'v10.15.0' }
+  environment = { NODE_VERSION = 'v12.14.0' }
 
 [context.netlify-deploy]
   base = 'frontend'
-  publish = 'frontend/build'
+  publish = 'build'
   command = 'npm run build'
-  environment = { NODE_VERSION = 'v10.15.0' }
+  environment = { NODE_VERSION = 'v12.14.0' }
 
 [[redirects]]
   from = '/*'
