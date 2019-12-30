@@ -62,13 +62,14 @@
   "scripts": {
     "start": "PORT=8000 react-app-rewired start",
     "build": "NODE_ENV=development react-app-rewired build",
-    "lint": "eslint '*/**/*.{js,ts,tsx}'",
+    "lint": "eslint --ignore-path .gitignore '*/**/*.{js,ts,tsx}'",
     "lint:fix": "eslint --ignore-path .gitignore '*/**/*.{js,ts,tsx}' --quiet --fix",
     "lint:css": "stylelint './src/**/*.tsx'",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "prettier-write": "prettier --ignore-path .gitignore --write",
-    "format": "npm run prettier-write 'src/**/*.{ts,tsx}'",
+    "prettier": "prettier --ignore-path .gitignore --write '**/*.+(js|json|ts|tsx)'",
+    "format": "npm run prettier -- --write",
+    "check-format": "npm run prettier -- --list-different",
     "storybook": "start-storybook -p 9090",
     "build-storybook": "build-storybook",
     "fetch-language": "node scripts/load-language.js && eslint --fix src/i18n/languages/*.ts && prettier --write src/i18n/languages/*.ts"

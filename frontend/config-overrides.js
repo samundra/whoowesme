@@ -5,7 +5,7 @@ const {
   disableEsLint,
   fixBabelImports,
   addLessLoader,
-} = require('customize-cra');
+} = require('customize-cra')
 
 function overrideExtra(config, env) {
   override(
@@ -20,31 +20,31 @@ function overrideExtra(config, env) {
     }),
     addLessLoader({
       javascriptEnabled: true,
-      modifyVars: { '@primary-color': '#1DA57A' },
-    })
-  )(config, env);
+      modifyVars: {'@primary-color': '#1DA57A'},
+    }),
+  )(config, env)
 
   // Include source loader only on development version
   if (env === 'development') {
     config.resolve.alias = {
       ...config.resolve.alias,
       'react-dom': '@hot-loader/react-dom',
-    };
+    }
 
     config.module.rules.push({
       test: /\.(stories|story)\.[tj]sx?$/,
       loaders: [
         {
           loader: require.resolve('@storybook/source-loader'),
-          options: { injectDecorator: false },
+          options: {injectDecorator: false},
         },
       ],
       exclude: [/node_modules/],
       enforce: 'pre',
-    });
+    })
   }
 
-  return config;
+  return config
 }
 
-module.exports = overrideExtra;
+module.exports = overrideExtra
