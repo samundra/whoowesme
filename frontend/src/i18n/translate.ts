@@ -6,7 +6,7 @@ import './i18n'
  *
  * @param key The i18n key.
  */
-export function translate(key: string) {
+export function translate(key: string): string {
   return key ? I18n.t(key) : ''
 }
 
@@ -16,15 +16,15 @@ export function translate(key: string) {
  * @param key The i18n key
  * @param vars Additional values sure to replace.
  */
-export function translateWithVars(key: string, vars: object) {
+export function translateWithVars(key: string, vars: object): string {
   return key ? I18n.t(key, vars) : ''
 }
 
-export function currentLocale() {
+export function currentLocale(): string {
   return I18n.currentLocale()
 }
 
-export function changeLocale(locale: string) {
+export function changeLocale(locale: string): void {
   I18n.locale = locale
 }
 

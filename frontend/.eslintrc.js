@@ -7,15 +7,14 @@ module.exports = {
   ],
   env: {
     browser: true,
-    node: true,
-    es6: true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2019,
     sourceType: 'module',
   },
   rules: {
+    strict: ['error', 'never'],
     // place to specify rules
     'react/prop-types': 0,
     // disable the rule for all files
@@ -24,16 +23,11 @@ module.exports = {
   overrides: [
     {
       // enable the rule specifically for TypeScript files
-      files: ['*.ts', '*.tsx'],
+      files: '**/*.+(ts|tsx)',
       rules: {
         '@typescript-eslint/explicit-function-return-type': ['error'],
-      },
-    },
-    // https://github.com/typescript-eslint/typescript-eslint/issues/46#issuecomment-470486034
-    {
-      files: ['*.ts', '*.tsx'],
-      rules: {
-        '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
+        // https://github.com/typescript-eslint/typescript-eslint/issues/46#issuecomment-470486034
+        '@typescript-eslint/no-unused-vars': [2, {args: 'none'}],
       },
     },
   ],
@@ -42,4 +36,4 @@ module.exports = {
       version: '16.9',
     },
   },
-};
+}
