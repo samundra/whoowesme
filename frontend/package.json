@@ -35,7 +35,7 @@
     "@storybook/addon-storysource": "5.3.3",
     "@storybook/preset-typescript": "1.2.0",
     "@storybook/react": "5.3.3",
-    "@types/jest": "24.0.25",
+    "@types/jest": "24.9.0",
     "@types/node": "12.12.24",
     "@types/react": "16.9.17",
     "@types/react-dom": "16.9.4",
