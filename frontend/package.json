@@ -57,7 +57,7 @@
     "stylelint-processor-styled-components": "1.9.0",
     "ts-loader": "6.2.1",
     "typescript": "3.7.5",
-    "typescript-plugin-styled-components": "1.4.3"
+    "typescript-plugin-styled-components": "1.4.4"
   },
   "scripts": {
     "start": "PORT=8000 react-app-rewired start",
