@@ -13,7 +13,7 @@
     "customize-cra": "0.9.1",
     "googleapis": "^47.0.0",
     "i18n-js": "^3.5.1",
-    "less": "3.10.3",
+    "less": "3.11.1",
     "less-loader": "5.0.0",
     "prettier": "^1.19.1",
     "react": "16.12.0",
