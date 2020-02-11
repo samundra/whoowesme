@@ -49,7 +49,7 @@
     "@loopback/boot": "^1.6.0",
     "@loopback/context": "^1.25.0",
     "@loopback/core": "^1.12.0",
-    "@loopback/openapi-v3": "^1.10.3",
+    "@loopback/openapi-v3": "^2.0.0",
     "@loopback/repository": "^1.16.0",
     "@loopback/rest": "^2.0.0",
     "@loopback/rest-explorer": "^1.4.6",
