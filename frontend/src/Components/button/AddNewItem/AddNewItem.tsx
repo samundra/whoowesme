@@ -1,16 +1,17 @@
 import React from 'react'
-import {Button, Icon} from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
+import { Button } from 'antd'
 
 type Props = {
   onClick(): void
 }
 
 const AddNewItem: React.FunctionComponent<Props> = props => {
-  const {onClick} = props
+  const { onClick } = props
 
   return (
     <Button onClick={onClick}>
-      <Icon type="plus" /> Add new Item
+      <PlusOutlined /> Add new Item
     </Button>
   )
 }

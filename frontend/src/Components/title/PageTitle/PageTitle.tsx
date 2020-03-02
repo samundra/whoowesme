@@ -5,7 +5,7 @@ interface PageTitleProps {
   title: string
 }
 
-const PageTitle: React.FunctionComponent<PageTitleProps> = ({title}) => {
+const PageTitle: React.FunctionComponent<PageTitleProps> = ({ title }) => {
   return <StyledPageTitle>{title}</StyledPageTitle>
 }
 

@@ -6,4 +6,4 @@ type Transaction = {
   description: string
 }
 
-type TransactionRecord = Transaction & {key: number | string}
+type TransactionRecord = Transaction & { key: number | string }

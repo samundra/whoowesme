@@ -1,18 +1,18 @@
 import React from 'react'
-import {Icon} from 'antd'
+import { Icon as LegacyIcon } from '@ant-design/compatible'
 
 type Props = {
   title: string
   icon?: string
 }
 
-const PageTitle: React.FunctionComponent<Props> = ({title, ...props}) => {
-  const {icon} = props
+const PageTitle: React.FunctionComponent<Props> = ({ title, ...props }) => {
+  const { icon } = props
 
   if (icon) {
     return (
       <h3 {...props}>
-        <Icon type={icon} /> {title}
+        <LegacyIcon type={icon} /> {title}
       </h3>
     )
   }

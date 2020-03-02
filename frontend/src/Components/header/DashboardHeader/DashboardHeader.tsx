@@ -1,13 +1,14 @@
 import React from 'react'
-import {Layout, Input, Divider, Icon, Badge, Avatar, Dropdown} from 'antd'
+import { BellOutlined, DownOutlined, RightOutlined, UserOutlined } from '@ant-design/icons'
+import { Layout, Input, Divider, Badge, Avatar, Dropdown } from 'antd'
 import styled from 'styled-components'
-import {ProfileMenu} from 'Components/menu/ProfileMenu'
+import { ProfileMenu } from 'Components/menu/ProfileMenu'
 import HamburgerMenu from 'Components/menu/HamburgerMenu/HamburgerMenu'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import AddNewItem from 'Components/button/AddNewItem'
 
-const {Header} = Layout
-const {Search} = Input
+const { Header } = Layout
+const { Search } = Input
 
 type Props = {}
 const DashboardHeader: React.FunctionComponent<Props> = () => {
@@ -18,24 +19,24 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
       <HamburgerMenu />
       <AddNewItem onClick={(): void => history.push('/add-new-item')} />
       <Search
-        style={{width: 200, marginLeft: '10px'}}
+        style={{ width: 200, marginLeft: '10px' }}
         placeholder="Search"
         onSearch={(value): void => console.log(value)}
-        prefix={<Icon type="right" />}
+        prefix={<RightOutlined />}
       />
       <StyledUserActions>
         <StyledSettingsMenu>
           <Badge count={10} dot={true}>
-            <Icon type="bell" style={{fontSize: 18}} />
+            <BellOutlined style={{ fontSize: 18 }} />
           </Badge>
         </StyledSettingsMenu>
         <Divider type="vertical" />
         <Dropdown overlay={<ProfileMenu />} trigger={['click', 'hover']}>
           <StyledProfileMenu>
-            <Avatar shape="circle" icon="user" style={{marginRight: 5}} />
+            <Avatar shape="circle" icon={<UserOutlined />} style={{ marginRight: 5 }} />
             {'   '}
             <StyledUserFullname>Sam Shrestha</StyledUserFullname>
-            <Icon type="down" style={{marginLeft: 15}} />
+            <DownOutlined style={{ marginLeft: 15 }} />
           </StyledProfileMenu>
         </Dropdown>
       </StyledUserActions>

@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import {useHistory} from 'react-router-dom'
-import {Menu, Modal, Icon} from 'antd'
-import {translate} from 'i18n'
+import { useHistory } from 'react-router-dom'
+import { MessageOutlined, PoweroffOutlined, UserOutlined } from '@ant-design/icons'
+import { Icon as LegacyIcon } from '@ant-design/compatible'
+import { Menu, Modal } from 'antd'
+import { translate } from 'i18n'
 import TKeys from 'i18n/translationKey'
 import * as H from 'history'
 
@@ -61,21 +63,21 @@ const StyledLogoutButton = styled(StyledMenuLabel)`
 type Props = {}
 
 const onMenuItemClick = (key: string): void => {
-  console.log({key})
+  console.log({ key })
 }
 
 const onLogout = (history: H.History): void => {
   const logoutModal = Modal.confirm({
     title: 'Logout',
     content: 'You are about to logout from system.',
-    icon: 'exit',
+    icon: <LegacyIcon type={'exit'} />,
     onCancel: (): void => {
       /** No need to define body */
     },
     onOk: async () => {
       logoutModal.update({
-        okButtonProps: {disabled: true},
-        cancelButtonProps: {disabled: true},
+        okButtonProps: { disabled: true },
+        cancelButtonProps: { disabled: true },
       })
 
       // TODO: Send API request to logout then return success from here
@@ -91,7 +93,7 @@ const ProfileMenu = (): JSX.Element => {
   return (
     <div style={menuContainerStyle}>
       <StyledArrowTop />
-      <Menu style={{paddingBottom: 0, marginBottom: 0, position: 'relative'}}>
+      <Menu style={{ paddingBottom: 0, marginBottom: 0, position: 'relative' }}>
         <Menu.Item
           key="menu.profile.about"
           onClick={(): void => {
@@ -100,33 +102,22 @@ const ProfileMenu = (): JSX.Element => {
           style={menuFirstItemStyle}
         >
           <StyledMenuLabel>
-            <Icon type="user" />
-            <MenuLabelItem>
-              {translate(TKeys.ProfileMenu.profile)}
-            </MenuLabelItem>
+            <UserOutlined />
+            <MenuLabelItem>{translate(TKeys.ProfileMenu.profile)}</MenuLabelItem>
           </StyledMenuLabel>
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item
-          key="menu.profile.message"
-          onClick={(): void => onMenuItemClick('menu.profile.message')}
-        >
+        <Menu.Item key="menu.profile.message" onClick={(): void => onMenuItemClick('menu.profile.message')}>
           <StyledMenuLabel>
-            <Icon type="message" />
-            <MenuLabelItem>
-              {translate(TKeys.ProfileMenu.message)}{' '}
-            </MenuLabelItem>
+            <MessageOutlined />
+            <MenuLabelItem>{translate(TKeys.ProfileMenu.message)} </MenuLabelItem>
           </StyledMenuLabel>
         </Menu.Item>
-        <Menu.Item
-          key="menu.profile.logout"
-          onClick={(): void => onLogout(history)}
-          style={logoutMenuStyle}
-        >
+        <Menu.Item key="menu.profile.logout" onClick={(): void => onLogout(history)} style={logoutMenuStyle}>
           <StyledLogoutButton>
             {translate(TKeys.ProfileMenu.logout)}
             {'  '}
-            <Icon type="poweroff" style={{marginLeft: 10}} />
+            <PoweroffOutlined style={{ marginLeft: 10 }} />
           </StyledLogoutButton>
         </Menu.Item>
       </Menu>

@@ -1,23 +1,16 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './App.css'
-import {Switch, Route, BrowserRouter as Router} from 'react-router-dom'
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import SendInvitation from 'Pages/SendInvitation'
 import TransactionList from 'Pages/TransactionList'
 import AddFriend from 'Pages/AddFriend'
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import store from './Store'
-import {
-  PageNotFound,
-  TransactionEdit,
-  ComingSoon,
-  Settings,
-  Profile,
-  Login,
-} from 'Pages'
+import { PageNotFound, TransactionEdit, ComingSoon, Settings, Profile, Login } from 'Pages'
 import AddNewItem from 'Pages/AddNewItem'
 import Dashboard from 'Pages/Dashboard'
-import {hot} from 'react-hot-loader/root'
-import {SiderContext} from 'Components/context'
+import { hot } from 'react-hot-loader/root'
+import { SiderContext } from 'Components/context'
 
 type Props = {
   loggedIn?: boolean

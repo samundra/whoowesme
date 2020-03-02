@@ -1,21 +1,24 @@
-import React, {FormEvent} from 'react'
-import {Icon, Form, Input, Button, DatePicker, Select} from 'antd'
-import {FormComponentProps} from 'antd/lib/form'
+import React, { FormEvent } from 'react'
+import { SaveFilled } from '@ant-design/icons'
+import { Form } from '@ant-design/compatible'
+import '@ant-design/compatible/assets/index.css'
+import { Input, Button, DatePicker, Select } from 'antd'
+import { FormComponentProps } from '@ant-design/compatible/lib/form'
 import moment from 'moment'
 import TextArea from 'antd/lib/input/TextArea'
-import {RouteComponentProps} from 'react-router-dom'
+import { RouteComponentProps } from 'react-router-dom'
 
 type Props = FormComponentProps & RouteComponentProps
 
 const AddNewEntry: React.FunctionComponent<Props> = props => {
-  const {form, history} = props
+  const { form, history } = props
 
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault()
 
     form.validateFields((err, values) => {
       if (!err) {
-        console.log({values})
+        console.log({ values })
 
         // Todo: Make API call to save this
         // For now lets take to listing page only
@@ -26,12 +29,12 @@ const AddNewEntry: React.FunctionComponent<Props> = props => {
 
   const formItemLayout = {
     labelCol: {
-      xs: {span: 24},
-      sm: {span: 8},
+      xs: { span: 24 },
+      sm: { span: 8 },
     },
     wrapperCol: {
-      xs: {span: 24},
-      sm: {span: 16},
+      xs: { span: 24 },
+      sm: { span: 16 },
     },
   }
   const tailFormItemLayout = {
@@ -47,20 +50,17 @@ const AddNewEntry: React.FunctionComponent<Props> = props => {
     },
   }
 
-  const {getFieldDecorator} = form
+  const { getFieldDecorator } = form
 
   function onChange(date: moment.Moment | null, dateString: string): void {
     console.log(date, dateString)
   }
 
-  const {Option} = Select
+  const { Option } = Select
 
   return (
     <Form {...formItemLayout} onSubmit={handleSubmit}>
-      <Form.Item
-        label="Choose date"
-        extra="Pick date on which transaction occured."
-      >
+      <Form.Item label="Choose date" extra="Pick date on which transaction occured.">
         {getFieldDecorator('date')(<DatePicker onChange={onChange} />)}
       </Form.Item>
       <Form.Item label="Category">
@@ -80,13 +80,13 @@ const AddNewEntry: React.FunctionComponent<Props> = props => {
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
-          <Icon type="save" theme="filled" /> Add Entry
+          <SaveFilled /> Add Entry
         </Button>
       </Form.Item>
     </Form>
   )
 }
 
-const AddNewEntryForm = Form.create({name: 'login_form'})(AddNewEntry)
+const AddNewEntryForm = Form.create({ name: 'login_form' })(AddNewEntry)
 
 export default AddNewEntryForm

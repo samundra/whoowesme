@@ -26,6 +26,4 @@ export interface DeleteTransactionAction {
   }
 }
 
-export type TransactionActionTypes =
-  | AddTransactionAction
-  | DeleteTransactionAction
+export type TransactionActionTypes = AddTransactionAction | DeleteTransactionAction

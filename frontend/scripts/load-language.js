@@ -2,7 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 const readline = require('readline')
-const {google} = require('googleapis')
+const { google } = require('googleapis')
 
 // Google sheet ID that contains the localization strings
 // These localization strings are fetched and automatically
@@ -37,12 +37,8 @@ fs.readFile(credentialFilePath, (err, content) => {
  * @param {function} callback The callback to call with the authorized client.
  */
 function authorize(credentials, callback) {
-  const {client_secret, client_id, redirect_uris} = credentials.installed
-  const oAuth2Client = new google.auth.OAuth2(
-    client_id,
-    client_secret,
-    redirect_uris[0],
-  )
+  const { client_secret, client_id, redirect_uris } = credentials.installed
+  const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0])
 
   // Check if we have previously stored a token.
   fs.readFile(TOKEN_PATH, (err, token) => {
@@ -72,8 +68,7 @@ function getNewToken(oAuth2Client, callback) {
   rl.question('Enter the code from that page here: ', code => {
     rl.close()
     oAuth2Client.getToken(code, (err, token) => {
-      if (err)
-        return console.error('Error while trying to retrieve access token', err)
+      if (err) return console.error('Error while trying to retrieve access token', err)
       oAuth2Client.setCredentials(token)
       // Store the token to disk for later program executions
       fs.writeFile(TOKEN_PATH, JSON.stringify(token), err => {
@@ -86,7 +81,7 @@ function getNewToken(oAuth2Client, callback) {
 }
 
 function readSheets(auth) {
-  const sheets = google.sheets({version: 'v4', auth})
+  const sheets = google.sheets({ version: 'v4', auth })
   sheets.spreadsheets.get(
     {
       spreadsheetId: SHEET_ID,
@@ -115,13 +110,11 @@ function readSheets(auth) {
           })
 
           writeLanguageFile(
-            '/* eslint-disable */\nexport default ' +
-              JSON.stringify(enData, null, 2).replace(/\\\\/g, '\\'),
+            '/* eslint-disable */\nexport default ' + JSON.stringify(enData, null, 2).replace(/\\\\/g, '\\'),
             LANGUAGE_EN_PATH,
           )
           writeLanguageFile(
-            '/* eslint-disable */\nexport default ' +
-              JSON.stringify(thData, null, 2).replace(/\\\\/g, '\\'),
+            '/* eslint-disable */\nexport default ' + JSON.stringify(thData, null, 2).replace(/\\\\/g, '\\'),
             LANGUAGE_NE_PATH,
           )
           writeLanguageFile(

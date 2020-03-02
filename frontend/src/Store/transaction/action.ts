@@ -1,13 +1,6 @@
-import {
-  Transaction,
-  ADD_TRANSACTION,
-  DELETE_TRANSACTION,
-  TransactionActionTypes,
-} from './types'
+import { Transaction, ADD_TRANSACTION, DELETE_TRANSACTION, TransactionActionTypes } from './types'
 
-export function addTransaction(
-  newTransaction: Transaction,
-): TransactionActionTypes {
+export function addTransaction(newTransaction: Transaction): TransactionActionTypes {
   return {
     type: ADD_TRANSACTION,
     payload: newTransaction,

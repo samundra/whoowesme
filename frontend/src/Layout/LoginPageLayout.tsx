@@ -1,5 +1,5 @@
 import React from 'react'
-import {Row, Col} from 'antd'
+import { Row, Col } from 'antd'
 
 const contentStyle = {
   paddingLeft: '10px',
@@ -22,11 +22,9 @@ type LoginPageLayoutProps = {
   children: React.ReactNode
 }
 
-const LoginPageLayout: React.FunctionComponent<LoginPageLayoutProps> = ({
-  children,
-}) => {
+const LoginPageLayout: React.FunctionComponent<LoginPageLayoutProps> = ({ children }) => {
   return (
-    <Row className="App" style={{height: '100%'}}>
+    <Row className="App" style={{ height: '100%' }}>
       <Row style={midBlockStyle}>
         <Col style={contentStyle}>
           <Row>{children}</Row>

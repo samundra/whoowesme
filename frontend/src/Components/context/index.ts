@@ -1,1 +1,1 @@
-export {default as SiderContext} from './SiderContext'
+export { default as SiderContext } from './SiderContext'
