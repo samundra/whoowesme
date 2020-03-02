@@ -1,19 +1,22 @@
-import React, {FormEvent} from 'react'
-import {Icon, message, Form, Input, Button} from 'antd'
-import {FormComponentProps} from 'antd/lib/form'
-import {RouteComponentProps} from 'react-router-dom'
+import React, { FormEvent } from 'react'
+import { UserOutlined } from '@ant-design/icons'
+import { Form } from '@ant-design/compatible'
+import '@ant-design/compatible/assets/index.css'
+import { message, Input, Button } from 'antd'
+import { FormComponentProps } from '@ant-design/compatible/lib/form'
+import { RouteComponentProps } from 'react-router-dom'
 
 type Props = FormComponentProps & RouteComponentProps
 
 const PForm: React.FunctionComponent<Props> = props => {
-  const {form} = props
+  const { form } = props
 
   const onFormSubmit = (e: FormEvent): void => {
     e.preventDefault()
 
     form.validateFields((err, values) => {
       if (!err) {
-        console.log({values})
+        console.log({ values })
 
         // Todo: Make API call to save this
         // For now lets take to listing page only
@@ -27,12 +30,12 @@ const PForm: React.FunctionComponent<Props> = props => {
 
   const formItemLayout = {
     labelCol: {
-      xs: {span: 24},
-      sm: {span: 8},
+      xs: { span: 24 },
+      sm: { span: 8 },
     },
     wrapperCol: {
-      xs: {span: 24},
-      sm: {span: 16},
+      xs: { span: 24 },
+      sm: { span: 16 },
     },
   }
   const tailFormItemLayout = {
@@ -48,20 +51,20 @@ const PForm: React.FunctionComponent<Props> = props => {
     },
   }
 
-  const {getFieldDecorator} = form
+  const { getFieldDecorator } = form
 
   return (
     <Form {...formItemLayout} onSubmit={onFormSubmit}>
       <Form.Item label="Firstname">
         {getFieldDecorator('firstname', {
           initialValue: '',
-          rules: [{required: true, message: 'Please enter firstname.'}],
+          rules: [{ required: true, message: 'Please enter firstname.' }],
         })(<Input placeholder="Enter firstname" />)}
       </Form.Item>
       <Form.Item label="Lastname">
         {getFieldDecorator('lastname', {
           initialValue: '',
-          rules: [{required: true, message: 'Please enter lastname.'}],
+          rules: [{ required: true, message: 'Please enter lastname.' }],
         })(<Input placeholder="Enter Lastname" />)}
       </Form.Item>
       <Form.Item label="Email">
@@ -79,18 +82,18 @@ const PForm: React.FunctionComponent<Props> = props => {
       <Form.Item label="Password">
         {getFieldDecorator('password', {
           initialValue: '',
-          rules: [{required: true, message: 'Enter password'}],
+          rules: [{ required: true, message: 'Enter password' }],
         })(<Input type="password" placeholder="Enter password" />)}
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
-          <Icon type="user" /> Update profile
+          <UserOutlined /> Update profile
         </Button>
       </Form.Item>
     </Form>
   )
 }
 
-const ProfileForm = Form.create({name: 'profile_form'})(PForm)
+const ProfileForm = Form.create({ name: 'profile_form' })(PForm)
 
 export default ProfileForm

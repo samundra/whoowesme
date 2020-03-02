@@ -1,18 +1,18 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import DashboardPageLayout from 'Layout/DashboardPageLayout'
-import {Breadcrumb} from 'antd'
-import {Link} from 'react-router-dom'
+import { Breadcrumb } from 'antd'
+import { Link } from 'react-router-dom'
 import TransactionForm from 'Components/form/TransactionForm'
-import {RouteComponentProps, useParams} from 'react-router'
-import {PageContent, Content} from 'Components/common'
+import { RouteComponentProps, useParams } from 'react-router'
+import { PageContent, Content } from 'Components/common'
 
 type Props = RouteComponentProps
 
 const TransactionEdit: React.FunctionComponent<Props> = () => {
-  const params = useParams<{id: string | undefined}>()
+  const params = useParams<{ id: string | undefined }>()
   useEffect(() => {
-    const {id} = params
-    console.log({id})
+    const { id } = params
+    console.log({ id })
 
     // Fetch record from API
     // api.fetch(id)
@@ -20,7 +20,7 @@ const TransactionEdit: React.FunctionComponent<Props> = () => {
   return (
     <DashboardPageLayout>
       <Content>
-        <Breadcrumb style={{margin: '16px 0'}}>
+        <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>
             <Link to="/dashboard">Dashboard</Link>
           </Breadcrumb.Item>

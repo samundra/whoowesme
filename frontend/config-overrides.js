@@ -20,7 +20,7 @@ function overrideExtra(config, env) {
     }),
     addLessLoader({
       javascriptEnabled: true,
-      modifyVars: {'@primary-color': '#1DA57A'},
+      modifyVars: { '@primary-color': '#1DA57A' },
     }),
   )(config, env)
 
@@ -36,7 +36,7 @@ function overrideExtra(config, env) {
       loaders: [
         {
           loader: require.resolve('@storybook/source-loader'),
-          options: {injectDecorator: false},
+          options: { injectDecorator: false },
         },
       ],
       exclude: [/node_modules/],

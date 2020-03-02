@@ -1,20 +1,21 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import DashboardPageLayout from 'Layout/DashboardPageLayout'
-import {connect} from 'react-redux'
-import {Breadcrumb, Modal, Table, Tag, Button, Icon} from 'antd'
-import {Link} from 'react-router-dom'
-import {RouteComponentProps} from 'react-router'
-import {PageContent, Content} from 'Components/common'
-import {RootState} from 'Store'
-import {addTransaction} from 'Store/transaction/action'
+import { connect } from 'react-redux'
+import { EditOutlined, LoadingOutlined } from '@ant-design/icons'
+import { Breadcrumb, Modal, Table, Tag, Button } from 'antd'
+import { Link } from 'react-router-dom'
+import { RouteComponentProps } from 'react-router'
+import { PageContent, Content } from 'Components/common'
+import { RootState } from 'Store'
+import { addTransaction } from 'Store/transaction/action'
 import transactionService from 'Services/transaction'
-import {TransactionState} from 'Store/transaction/types'
+import { TransactionState } from 'Store/transaction/types'
 
 // type TransactionRecord = Transaction & { key: string | number };
 
 type Props = RouteComponentProps & ReduxProps & DispatchProps
 const TransactionList: React.FunctionComponent<Props> = props => {
-  const {history} = props
+  const { history } = props
   const [dataSource, setDataSource] = useState<TransactionRecord[]>([])
 
   useEffect(() => {
@@ -92,11 +93,7 @@ const TransactionList: React.FunctionComponent<Props> = props => {
       render: (_: string, record: Transaction): JSX.Element => {
         return (
           <React.Fragment>
-            <Button
-              type="primary"
-              icon="edit"
-              onClick={(): void => onEdit(record.id)}
-            >
+            <Button type="primary" icon={<EditOutlined />} onClick={(): void => onEdit(record.id)}>
               Edit
             </Button>{' '}
             <Button type="link" onClick={(): void => onDelete(record.id)}>
@@ -117,7 +114,7 @@ const TransactionList: React.FunctionComponent<Props> = props => {
   return (
     <DashboardPageLayout>
       <Content>
-        <Breadcrumb style={{margin: '16px 0'}}>
+        <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>
             <Link to="/dashboard">Dashboard</Link>
           </Breadcrumb.Item>
@@ -125,8 +122,8 @@ const TransactionList: React.FunctionComponent<Props> = props => {
         </Breadcrumb>
         <PageContent title="Transactoin List" titleDivider>
           {loading && (
-            <div style={{textAlign: 'center'}}>
-              <Icon type="loading" />{' '}
+            <div style={{ textAlign: 'center' }}>
+              <LoadingOutlined />{' '}
             </div>
           )}
           {!loading && <Table dataSource={dataSource} columns={columns} />}

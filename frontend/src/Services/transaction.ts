@@ -1,6 +1,4 @@
-const transformForFetch = (
-  data: Transaction[],
-): Array<Transaction & {key: number}> => {
+const transformForFetch = (data: Transaction[]): Array<Transaction & { key: number }> => {
   return data.map(d => {
     return {
       ...d,
