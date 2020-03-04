@@ -1,9 +1,13 @@
 {
   "extends": ["config:base"],
+  "timezone": "Asia/Bangkok",
   "packageRules": [
     {
+      "updateTypes": ["major"],
+      "labels": ["UPDATE-MAJOR"],
       "paths": ["frontend/package.json"],
-      "rangeStrategy": "replace"
+      "rangeStrategy": "replace",
+      "schedule": ["after 9pm on sunday"]
     }
   ]
 }
