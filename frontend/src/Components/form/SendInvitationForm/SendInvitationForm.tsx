@@ -6,8 +6,6 @@ import { Store } from 'rc-field-form/lib/interface'
 type Props = {}
 
 const SendInvitation: React.FunctionComponent<Props> = () => {
-  const [form] = Form.useForm()
-
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
@@ -32,11 +30,6 @@ const SendInvitation: React.FunctionComponent<Props> = () => {
     },
   }
 
-  const validateEmail = (rule: unknown, value: string, callback: Function): void => {
-    console.log({ rule, value, callback })
-    callback()
-  }
-
   const onFinish = (values: Store): void => {
     const { keys, names } = values
     console.log('Received values of form: ', values)
@@ -57,9 +50,6 @@ const SendInvitation: React.FunctionComponent<Props> = () => {
             required: true,
             whitespace: true,
             message: 'Please enter email of your friend',
-          },
-          {
-            validator: validateEmail,
           },
         ]}
       >
