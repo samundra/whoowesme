@@ -1,18 +1,14 @@
 import React, { useState } from 'react'
 import { SaveOutlined } from '@ant-design/icons'
-import { Form } from '@ant-design/compatible'
 import '@ant-design/compatible/assets/index.css'
-import { Button, Select, Row, Col } from 'antd'
-import { FormComponentProps } from '@ant-design/compatible/lib/form'
+import { Button, Form, Select, Row, Col } from 'antd'
 
 const { Option } = Select
 
-type Props = FormComponentProps
+type Props = {}
 type CurrencyValue = string
 
-const Setting: React.FunctionComponent<Props> = props => {
-  const { form } = props
-  const { getFieldDecorator } = form
+const Settings: React.FunctionComponent<Props> = () => {
   const defaultCurrencySymbol = 'baht'
   const [currency, setCurrency] = useState<CurrencyValue>(defaultCurrencySymbol)
   const formItemLayout = {
@@ -50,25 +46,24 @@ const Setting: React.FunctionComponent<Props> = props => {
   return (
     <Row justify="center" align="middle">
       <Col flex={16}>
+        <Row style={{ textAlign: 'left' }}>
+          <Col span={16}>You choose : {currency}</Col>
+        </Row>
         <Form {...formItemLayout}>
           <Form.Item
             label="Choose currency"
+            name="currency"
             extra="This currency symbol will be used in application and all transctions."
+            rules={[{ required: true }]}
           >
-            {getFieldDecorator('currency', {
-              initialValue: 'baht',
-              rules: [{ required: true, message: 'Please choose currency symbol.' }],
-            })(
-              <Select
-                placeholder="Choose currency"
-                onChange={onCurrencyChange}
-                style={{ width: 280, display: 'block' }}
-              >
-                <Option value="baht">Baht (฿)</Option>
-                <Option value="npr">Nepalese Rupee (Rs.)</Option>
-              </Select>,
-            )}
-            You chose : {currency}
+            <Select
+              placeholder="Choose currency"
+              onChange={onCurrencyChange}
+              style={{ width: 280, display: 'block' }}
+            >
+              <Option value="baht">Baht (฿)</Option>
+              <Option value="npr">Nepalese Rupee (Rs.)</Option>
+            </Select>
           </Form.Item>
 
           <Form.Item {...tailFormItemLayout}>
@@ -82,6 +77,6 @@ const Setting: React.FunctionComponent<Props> = props => {
   )
 }
 
-const SettingsForm = Form.create({ name: 'settings_form' })(Setting)
+const SettingsForm = Settings
 
 export default SettingsForm

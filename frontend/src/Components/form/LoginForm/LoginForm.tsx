@@ -1,20 +1,17 @@
-import React, { FormEvent, useState } from 'react'
+import React, { useState } from 'react'
 import { LoadingOutlined, LockOutlined, UserOutlined } from '@ant-design/icons'
-import { Form } from '@ant-design/compatible'
 import '@ant-design/compatible/assets/index.css'
-import { Spin, Input, Button, Alert } from 'antd'
-import { FormComponentProps } from '@ant-design/compatible/lib/form'
+import { Spin, Input, Form, Button, message } from 'antd'
 import { FormItemProps } from 'antd/lib/form'
+import { Store } from 'rc-field-form/lib/interface'
 import { useHistory } from 'react-router-dom'
 
-type Props = FormComponentProps
+type Props = {}
 
 const SpinnerIcon = <LoadingOutlined style={{ fontSize: '24px', color: '#ffffff' }} spin />
 
-const Login: React.FunctionComponent<Props> = props => {
-  const { form } = props
+const Login: React.FunctionComponent<Props> = () => {
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
   const history = useHistory()
   const [usernameValidateStatus, setUsernameValidateStatus] = useState<FormItemProps['validateStatus']>('')
   const [passwordValidateStatus, setPasswordValidateStatus] = useState<FormItemProps['validateStatus']>('')
@@ -29,68 +26,52 @@ const Login: React.FunctionComponent<Props> = props => {
     setPasswordValidateStatus(feedback)
   }
 
-  const handleSubmit = (e: FormEvent): void => {
-    e.preventDefault()
+  const onFinish = (values: Store): void => {
+    console.log({ values })
     setLoading(true)
+    const { username, password } = values
 
-    form.validateFields((err, values) => {
-      if (!err) {
-        const { username, password } = values
-
-        // TODO: Login with username, password
-        // attempt login with credentials
-        console.log({ username, password })
-        if (username === 'demo' && password === 'demo') {
-          // Redirect to login after success:
-          history.push('/dashboard')
-        } else {
-          setLoading(false)
-          setError('Invalid username or password.')
-        }
-      }
-    })
+    // TODO: Login with username, password
+    // attempt login with credentials
+    console.log({ username, password })
+    if (username === 'demo' && password === 'demo') {
+      message.success('Logged in successfully.', 0.5)
+      // Redirect to login after success:
+      history.push('/dashboard')
+    } else {
+      setLoading(false)
+    }
   }
 
   return (
-    <Form
-      onSubmit={handleSubmit}
-      className="login-form"
-      style={{ width: '300px', margin: '0 auto', height: '100%' }}
-    >
+    <Form onFinish={onFinish} className="login-form" style={{ width: '300px' }}>
       <Form.Item style={{ textAlign: 'center' }}>
         <img src="/img/logo.png" alt="Who owes me" />
       </Form.Item>
-      {error && (
-        <Form.Item>
-          <Alert type="error" message="Invalid username or password" />
-        </Form.Item>
-      )}
-      <Form.Item hasFeedback extra="username: demo" validateStatus={usernameValidateStatus}>
-        {form.getFieldDecorator('username', {
-          initialValue: 'demo',
-          rules: [{ required: true, message: 'Please input your username!' }],
-        })(
-          <Input
-            prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
-            style={{ height: '48px' }}
-            placeholder="Username"
-            onChange={(e): void => onUsernameChange(e.currentTarget.value)}
-          />,
-        )}
+      <Form.Item
+        name="username"
+        hasFeedback
+        validateStatus={usernameValidateStatus}
+        rules={[{ required: true, message: 'Please enter username' }]}
+      >
+        <Input
+          prefix={<UserOutlined />}
+          placeholder="Username"
+          onChange={(e): void => onUsernameChange(e.currentTarget.value)}
+        />
       </Form.Item>
-      <Form.Item hasFeedback help="password: demo" validateStatus={passwordValidateStatus}>
-        {form.getFieldDecorator('password', {
-          initialValue: 'demo',
-          rules: [{ required: true, message: 'Please input your Password!' }],
-        })(
-          <Input
-            prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
-            style={{ height: '48px' }}
-            type="password"
-            placeholder="Password"
-            onChange={(e): void => onPasswordChange(e.currentTarget.value)}
-          />,
-        )}
+      <Form.Item
+        hasFeedback
+        name="password"
+        validateStatus={passwordValidateStatus}
+        rules={[{ required: true, message: 'Please enter password' }]}
+      >
+        <Input
+          prefix={<LockOutlined />}
+          type="password"
+          placeholder="Password"
+          onChange={(e): void => onPasswordChange(e.currentTarget.value)}
+        />
       </Form.Item>
       <Form.Item>
         <Button
@@ -103,10 +84,13 @@ const Login: React.FunctionComponent<Props> = props => {
           {!loading && 'Log in'}
         </Button>
       </Form.Item>
+      <Form.Item>
+        <p>username: demo / password: demo</p>
+      </Form.Item>
     </Form>
   )
 }
 
-const LoginForm = Form.create({ name: 'login_form' })(Login)
+const LoginForm = Login
 
 export default LoginForm
