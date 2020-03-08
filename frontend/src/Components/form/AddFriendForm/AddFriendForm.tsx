@@ -1,14 +1,11 @@
-import React, { FormEvent } from 'react'
-import { Form } from '@ant-design/compatible'
+import React from 'react'
 import '@ant-design/compatible/assets/index.css'
-import { Input, Button } from 'antd'
-import { FormComponentProps } from '@ant-design/compatible/lib/form'
+import { Input, Form, Button } from 'antd'
+import { Store } from 'rc-field-form/lib/interface'
 
-type Props = FormComponentProps
+type Props = {}
 
-const AddFriend: React.FunctionComponent<Props> = props => {
-  const { form } = props
-
+const AddFriend: React.FunctionComponent<Props> = () => {
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
@@ -33,60 +30,33 @@ const AddFriend: React.FunctionComponent<Props> = props => {
     },
   }
 
-  const validateEmail = (rule: unknown, value: string, callback: Function): void => {
-    console.log({ rule, value, callback })
-    callback()
-  }
-  const validateFirstName = (rule: unknown, value: string, callback: Function): void => {
-    console.log({ rule, value, callback })
-    callback()
-  }
-  const handleSubmit = (e: FormEvent): void => {
-    e.preventDefault()
-    const values = form.getFieldsValue()
+  const onFinish = (values: Store): void => {
     console.log({ values })
-    form.validateFields((err, values) => {
-      console.log({ err, values })
-      if (!err) {
-        const { keys, names } = values
-        console.log('Received values of form: ', values)
-        console.log(
-          'Merged values:',
-          keys.map((key: string) => names[key]),
-        )
-      }
-    })
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Item label="First Name" {...formItemLayout}>
-        {form.getFieldDecorator('first_name', {
-          rules: [
-            {
-              required: true,
-              whitespace: true,
-              message: 'Please add first name of your friend.',
-            },
-            {
-              validator: validateFirstName,
-            },
-          ],
-        })(<Input placeholder="First name" />)}
+    <Form onFinish={onFinish}>
+      <Form.Item
+        label="First Name"
+        {...formItemLayout}
+        name="first_name"
+        rules={[{ required: true, message: 'Please add first name of your friend' }]}
+      >
+        <Input placeholder="First name" />
       </Form.Item>
-      <Form.Item label="Email" {...formItemLayout}>
-        {form.getFieldDecorator('email', {
-          rules: [
-            {
-              required: true,
-              whitespace: true,
-              message: 'Please enter email of your friend',
-            },
-            {
-              validator: validateEmail,
-            },
-          ],
-        })(<Input placeholder="Email" />)}
+      <Form.Item
+        label="Email"
+        {...formItemLayout}
+        name="email"
+        rules={[
+          {
+            required: true,
+            whitespace: true,
+            message: 'Please enter email of your friend',
+          },
+        ]}
+      >
+        <Input placeholder="Email" />
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
@@ -98,6 +68,6 @@ const AddFriend: React.FunctionComponent<Props> = props => {
   )
 }
 
-const AddFriendForm = Form.create({ name: 'add_friend' })(AddFriend)
+const AddFriendForm = AddFriend
 
 export default AddFriendForm
