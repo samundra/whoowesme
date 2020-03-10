@@ -19,7 +19,7 @@ export default {
     general: 'साधारण',
     add_category: 'नयाँ कोटी',
     category: 'कोटी',
-    list_category: 'कोटहरु देखाउँनुहोस्',
+    list_category: 'कोटीहरु देखाउँनुहोस्',
   },
   ProfileMenu: {
     profile: 'व्यक्तिगत विवरण',
