@@ -20,6 +20,9 @@ export default {
     add_friend: 'Add friend',
     settings: 'Settings',
     general: 'General',
+    add_category: 'Add Category',
+    category: 'Category',
+    list_category: 'List Category\n',
   },
   ProfileMenu: {
     profile: 'Profile',

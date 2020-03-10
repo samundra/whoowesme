@@ -118,6 +118,28 @@ const AppMenu: React.FunctionComponent<Props> = () => {
           <span>{translate(TKeys.Menu.general)}</span>
         </Menu.Item>
       </SubMenu>
+      <SubMenu
+        key="category"
+        title={
+          <span>
+            <SettingOutlined />
+            <span>{translate(TKeys.Menu.category)}</span>
+          </span>
+        }
+      >
+        <Menu.Item
+          key="add_category"
+          onClick={(): void => navigatePage(['add_category'], ['category'], '/add-category')}
+        >
+          <span>{translate(TKeys.Menu.add_category)}</span>
+        </Menu.Item>
+        <Menu.Item
+          key="list_category"
+          onClick={(): void => navigatePage(['list_category'], ['category'], '/list-category')}
+        >
+          <span>{translate(TKeys.Menu.list_category)}</span>
+        </Menu.Item>
+      </SubMenu>
     </Menu>
   )
 }

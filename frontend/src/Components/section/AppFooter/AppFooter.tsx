@@ -1,11 +1,17 @@
 import React from 'react'
 import { Layout } from 'antd'
+import styled from 'styled-components'
+
 const { Footer } = Layout
 
 type Props = {}
 
 const AppFooter: React.FunctionComponent<Props> = () => {
-  return <Footer style={{ textAlign: 'center' }}>Whoowesme ©2019 Created by Love</Footer>
+  return <StyledFooter>Whoowesme ©{new Date().getFullYear()}</StyledFooter>
 }
+
+const StyledFooter = styled(Footer)`
+  text-align: center;
+`
 
 export default AppFooter
