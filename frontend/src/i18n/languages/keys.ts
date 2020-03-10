@@ -24,6 +24,9 @@ const _keys = {
     add_friend: 'Menu.add_friend',
     settings: 'Menu.settings',
     general: 'Menu.general',
+    add_category: 'Menu.add_category',
+    category: 'Menu.category',
+    list_category: 'Menu.list_category',
   },
   ProfileMenu: {
     profile: 'ProfileMenu.profile',

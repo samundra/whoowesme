@@ -17,6 +17,9 @@ export default {
     add_friend: 'नयाँँ साथी थप्‍नुहोस्',
     settings: 'सेटिंगस्',
     general: 'साधारण',
+    add_category: 'नयाँ कोटी',
+    category: 'कोटी',
+    list_category: 'कोटीहरु देखाउँनुहोस्',
   },
   ProfileMenu: {
     profile: 'व्यक्तिगत विवरण',

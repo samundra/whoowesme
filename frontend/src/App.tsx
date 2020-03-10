@@ -6,7 +6,7 @@ import TransactionList from 'Pages/TransactionList'
 import AddFriend from 'Pages/AddFriend'
 import { Provider } from 'react-redux'
 import store from './Store'
-import { PageNotFound, TransactionEdit, ComingSoon, Settings, Profile, Login } from 'Pages'
+import { PageNotFound, TransactionEdit, ComingSoon, Settings, AddCategory, Profile, Login } from 'Pages'
 import AddNewItem from 'Pages/AddNewItem'
 import Dashboard from 'Pages/Dashboard'
 import { hot } from 'react-hot-loader/root'
@@ -59,6 +59,7 @@ const App: React.FunctionComponent<Props> = () => {
             <Route path="/transaction/list" component={TransactionList} />
             <Route path="/transaction/:id/edit" component={TransactionEdit} />
             <Route path="/settings" component={Settings} />
+            <Route path="/add-category" component={AddCategory} />
             <Route path="/profile" component={Profile} />
             <Route path="/summary">
               <ComingSoon title="Summary" />
