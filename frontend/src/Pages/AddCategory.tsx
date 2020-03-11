@@ -3,6 +3,7 @@ import DashboardPageLayout from 'Layout/DashboardPageLayout'
 import { Breadcrumb } from 'antd'
 import { Link } from 'react-router-dom'
 import { PageContent, Content } from 'Components/common'
+import { AddNewCategoryForm } from 'Components/form'
 
 type Props = {}
 
@@ -17,7 +18,7 @@ const AddCategory: React.FunctionComponent<Props> = () => {
           <Breadcrumb.Item>Add Category</Breadcrumb.Item>
         </Breadcrumb>
         <PageContent title="Add Category">
-          <p>Add Category page here</p>
+          <AddNewCategoryForm />
         </PageContent>
       </Content>
     </DashboardPageLayout>
