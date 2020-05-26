@@ -27,7 +27,7 @@
     "react-router-dom": "5.1.2",
     "react-scripts": "^3.4.0",
     "redux": "4.0.5",
-    "styled-components": "^5.0.0-rc.2"
+    "styled-components": "5.1.1"
   },
   "devDependencies": {
     "@babel/core": "7.8.3",
@@ -41,7 +41,7 @@
     "@types/node": "12.12.27",
     "@types/react": "16.9.19",
     "@types/react-dom": "16.9.5",
-    "@types/styled-components": "5.0.1",
+    "@types/styled-components": "5.1.0",
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.13.0",
     "babel-loader": "8.0.6",
