@@ -30,7 +30,7 @@
     "styled-components": "^5.0.0-rc.2"
   },
   "devDependencies": {
-    "@babel/core": "7.8.3",
+    "@babel/core": "7.10.2",
     "@storybook/addon-actions": "5.3.14",
     "@storybook/addon-docs": "5.3.14",
     "@storybook/addon-notes": "5.3.14",
@@ -44,7 +44,7 @@
     "@types/styled-components": "5.0.1",
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.13.0",
-    "babel-loader": "8.0.6",
+    "babel-loader": "8.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-prettier": "^3.1.2",
