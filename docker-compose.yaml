@@ -51,3 +51,28 @@ services:
       command: npm run start
       tty: true
 
+    whoowesme-api:
+      build:  
+        context: "."
+        dockerfile: "./.docker/backend/Dockerfile"
+      container_name: whoowesme-api
+      restart: always
+      volumes:
+        - ./backend:/app
+        - /app/node_modules
+      ports:
+        - 5000
+      labels:
+        - "traefik.docker.network=web"
+        - "traefik.frontend.rule=Host:api.whoowesme.local"
+        - "traefik.port=5000"
+        - "traefik.enable=true"
+        - "traefik.default.protocol=http"
+      networks:
+        web:
+          aliases:
+            - api.whoowesme.local
+      command: npm install
+      command: npm run start:dev
+      tty: true
+
