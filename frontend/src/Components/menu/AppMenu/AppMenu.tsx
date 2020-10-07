@@ -6,7 +6,8 @@ import {
   MoneyCollectOutlined,
   SettingOutlined,
   SnippetsOutlined,
-  UserOutlined,
+  UsergroupAddOutlined,
+  UnorderedListOutlined,
 } from '@ant-design/icons'
 
 import { Menu } from 'antd'
@@ -52,7 +53,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
         <span>{translate(TKeys.Menu.dashboard)}</span>
       </Menu.Item>
       <Menu.Item key="summary" onClick={(): void => navigatePage(['summary'], [], '/summary')}>
-        <SnippetsOutlined />
+        <UnorderedListOutlined />
         <span>{translate(TKeys.Menu.summary)}</span>
       </Menu.Item>
       <Menu.Item
@@ -90,7 +91,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
         key="manage_friends"
         title={
           <span>
-            <UserOutlined />
+            <UsergroupAddOutlined />
             <span>{translate(TKeys.Menu.manage_friends)}</span>
           </span>
         }
@@ -100,6 +101,28 @@ const AppMenu: React.FunctionComponent<Props> = () => {
           onClick={(): void => navigatePage(['add_friend'], ['manage_friends'], '/add-friend')}
         >
           <span>{translate(TKeys.Menu.add_friend)}</span>
+        </Menu.Item>
+      </SubMenu>
+      <SubMenu
+        key="category"
+        title={
+          <span>
+            <SnippetsOutlined />
+            <span>{translate(TKeys.Menu.category)}</span>
+          </span>
+        }
+      >
+        <Menu.Item
+          key="add_category"
+          onClick={(): void => navigatePage(['add_category'], ['category'], '/add-category')}
+        >
+          <span>{translate(TKeys.Menu.add_category)}</span>
+        </Menu.Item>
+        <Menu.Item
+          key="list_category"
+          onClick={(): void => navigatePage(['list_category'], ['category'], '/list-category')}
+        >
+          <span>{translate(TKeys.Menu.list_category)}</span>
         </Menu.Item>
       </SubMenu>
       <SubMenu
@@ -116,28 +139,6 @@ const AppMenu: React.FunctionComponent<Props> = () => {
           onClick={(): void => navigatePage(['general_settings'], ['settings'], '/settings')}
         >
           <span>{translate(TKeys.Menu.general)}</span>
-        </Menu.Item>
-      </SubMenu>
-      <SubMenu
-        key="category"
-        title={
-          <span>
-            <SettingOutlined />
-            <span>{translate(TKeys.Menu.category)}</span>
-          </span>
-        }
-      >
-        <Menu.Item
-          key="add_category"
-          onClick={(): void => navigatePage(['add_category'], ['category'], '/add-category')}
-        >
-          <span>{translate(TKeys.Menu.add_category)}</span>
-        </Menu.Item>
-        <Menu.Item
-          key="list_category"
-          onClick={(): void => navigatePage(['list_category'], ['category'], '/list-category')}
-        >
-          <span>{translate(TKeys.Menu.list_category)}</span>
         </Menu.Item>
       </SubMenu>
     </Menu>

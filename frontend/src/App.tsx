@@ -64,6 +64,7 @@ const App: React.FunctionComponent<Props> = () => {
             <Route path="/summary">
               <ComingSoon title="Summary" />
             </Route>
+            <Route path="/" component={Dashboard} />
             <Route component={PageNotFound} />
           </Switch>
         </SiderContext.Provider>

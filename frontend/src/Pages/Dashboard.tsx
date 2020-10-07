@@ -49,6 +49,11 @@ const Dashboard: React.FunctionComponent<Props> = () => {
                 Credit card payment: ฿23,000.00
               </Card>
             </Col>
+            <Col xs={24} sm={24} md={6}>
+              <Card title="Month Budget" bordered={false}>
+                Show graph here
+              </Card>
+            </Col>
           </Row>
         </div>
       </Content>
