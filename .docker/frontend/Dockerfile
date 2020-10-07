@@ -8,16 +8,14 @@ COPY ./frontend /app
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-RUN ls -al
-
-ARG REACT_APP_API_BASEURI=http://localhost:5000
+ARG REACT_APP_API_BASEURI=http://who-api:5000
 ENV REACT_APP_API_BASEURI=${REACT_APP_API_BASEURI}
 ARG REACT_APP_ENV=development
 ENV REACT_APP_ENV=${REACT_APP_ENV}
 
 Expose 8000
 
-RUN env && npm install
+RUN env && npm install --silent
 
 CMD ["npm", "run", "start"]
 

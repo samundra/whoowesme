@@ -8,9 +8,9 @@ COPY ./backend /app
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-Expose 5000
+EXPOSE 5000
 
-RUN env && npm install
+RUN env && npm install --silent
 
 CMD ["npm", "run", "start:dev"]
 
