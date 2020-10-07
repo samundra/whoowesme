@@ -1,0 +1,17 @@
+debug = false
+checkNewVersion = true
+logLevel = "ERROR"
+defaultEntryPoints = ["http"]
+
+[entryPoints]
+    [entryPoints.http]
+    address = ":80"
+
+[retry]
+
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "whoowesme.local"
+watch = true
+exposedbydefault = false
+
