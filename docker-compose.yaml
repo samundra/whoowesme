@@ -36,7 +36,7 @@ services:
         - REACT_APP_API_BASEURI=http://localhost:5000
         - REACT_APP_ENV=development
       ports:
-        - 8000
+        - "8000"
       labels:
         - "traefik.docker.network=web"
         - "traefik.frontend.rule=Host:frontend.whoowesme.local"
@@ -61,7 +61,7 @@ services:
         - ./backend:/app
         - /app/node_modules
       ports:
-        - 5000
+        - "5000"
       labels:
         - "traefik.docker.network=web"
         - "traefik.frontend.rule=Host:api.whoowesme.local"
