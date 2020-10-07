@@ -10,13 +10,19 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 RUN ls -al
 
-ARG REACT_APP_API_BASEURI=http://localhost:3000
+ARG REACT_APP_API_BASEURI=http://localhost:5000
 ENV REACT_APP_API_BASEURI=${REACT_APP_API_BASEURI}
 ARG REACT_APP_ENV=development
 ENV REACT_APP_ENV=${REACT_APP_ENV}
 
-RUN env && npm install \
-    && npm run build \
-    && npm install -g serve
+Expose 8000
 
-CMD [ "serve", "-s", "build" ]
+RUN env && npm install
+
+CMD ["npm", "run", "start"]
+
+# RUN env && npm install \
+#     && npm run build \
+#     && npm install -g serve
+
+#CMD [ "serve", "-s", "build" ]
