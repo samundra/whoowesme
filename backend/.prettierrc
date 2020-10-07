@@ -1,4 +1,7 @@
 {
   "singleQuote": true,
-  "trailingComma": "all"
+  "semi": false,
+  "printWidth": 110,
+  "trailingComma": "all",
+  "useTabs": false
 }

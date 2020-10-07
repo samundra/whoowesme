@@ -52,6 +52,9 @@ Create external network that will be used for networking.
 # Create external network
 $ docker network create web
 
+# Create external volume
+$ docker volume create who-data
+
 # Run docker containers
 $ docker-compose up -d
 ```
