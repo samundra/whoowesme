@@ -1,0 +1,80 @@
+version: '2'
+
+networks:
+  web:
+    external: true
+
+services:
+    who-web:
+      image: traefik:1.5.2-alpine
+      container_name: whoowesme-web-traefik
+      restart: always
+      networks:
+        - web
+      ports:
+        - 80:80
+        - 8080:8080
+      links:
+        - who-api
+        - who-frontend
+      depends_on:
+        - who-api
+        - who-frontend
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - ./.docker/traefik/traefik.dev.toml:/traefik.toml
+      command: --web --docker --docker.domain=whoowesme.local
+
+    who-frontend:
+      build:  
+        context: "."
+        dockerfile: "./.docker/frontend/Dockerfile"
+      container_name: whoowesme-frontend
+      restart: always
+      volumes:
+        - ./frontend:/app
+        - /app/node_modules
+      environment:
+        - REACT_APP_API_BASEURI=http://api.whoowesme.local
+        - REACT_APP_ENV=development
+      ports:
+        - "8000"
+      labels:
+        - "traefik.docker.network=web"
+        - "traefik.frontend.rule=Host:whoowesme.local"
+        - "traefik.port=8000"
+        - "traefik.enable=true"
+        - "traefik.default.protocol=http"
+      networks:
+        web:
+          aliases:
+            - whoowesme.local
+      command: npm install
+      command: npm run start
+      tty: true
+
+    who-api:
+      build:  
+        context: "."
+        dockerfile: "./.docker/backend/Dockerfile"
+      container_name: whoowesme-api
+      restart: always
+      volumes:
+        - ./backend:/app
+        - /app/node_modules
+      ports:
+        - "5000"
+      labels:
+        - "traefik.docker.network=web"
+        - "traefik.frontend.rule=Host:api.whoowesme.local"
+        - "traefik.port=5000"
+        - "traefik.enable=true"
+        - "traefik.default.protocol=http"
+      networks:
+        web:
+          aliases:
+            - api.whoowesme.local
+      command: npm install
+      command: npm run start:dev
+      tty: true
+
