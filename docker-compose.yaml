@@ -33,7 +33,7 @@ services:
       restart: always
       volumes:
         - ./frontend:/app
-        - /app/node_modules
+        - ./frontend/node_modules:/app/node_modules
       environment:
         - REACT_APP_API_BASEURI=http://api.whoowesme.local
         - REACT_APP_ENV=development
@@ -59,9 +59,13 @@ services:
         dockerfile: "./.docker/backend/Dockerfile"
       container_name: whoowesme-api
       restart: always
+      links:
+        - who-db
+      depends_on:
+        - who-db
       volumes:
         - ./backend:/app
-        - /app/node_modules
+        - ./backend/node_modules:/app/node_modules
       ports:
         - "5000"
       labels:
@@ -77,4 +81,19 @@ services:
       command: npm install
       command: npm run start:dev
       tty: true
+
+    who-db:
+      image: "postgres:12.3"
+      container_name: whoowesme-db
+      ports:
+        - "5432:5432"
+      environment:
+        POSTGRES_PASSWORD: "postgres"
+        POSTGRES_USER: "postgres"
+      volumes:
+        - who-data:/var/lib/postgres/data
+
+volumes:
+  who-data:
+    external: true
 
