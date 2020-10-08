@@ -59,6 +59,10 @@ services:
         dockerfile: "./.docker/backend/Dockerfile"
       container_name: whoowesme-api
       restart: always
+      links:
+        - who-db
+      depends_on:
+        - who-db
       volumes:
         - ./backend:/app
         - ./backend/node_modules:/app/node_modules
