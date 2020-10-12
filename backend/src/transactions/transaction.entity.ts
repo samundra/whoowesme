@@ -18,12 +18,15 @@ export class Transactions {
   @Column({ type: 'varchar', length: 300 })
   description: string;
 
+  @Column({ type: 'timestamp with time zone', nullable: true })
+  date: Date;
+
   @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
   @Column("text", { array: true, nullable: true })
   categories: string[];
 
-  @ManyToOne(type => User, user => user.transactions)
+  @ManyToOne(() => User, user => user.transactions)
   user: User;
 }

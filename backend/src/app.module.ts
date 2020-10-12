@@ -7,9 +7,10 @@ import { BaseEntity } from './models/base.entity'
 import { Transactions } from './transactions/transaction.entity'
 import { TransactionsModule } from './transactions/transactions.module'
 import { TransactionsService } from './transactions/transactions.service'
-import { UsersModule } from './users/users.module';
-import { User } from './users/user.entity';
-import { Connection } from 'typeorm';
+import { UsersModule } from './users/users.module'
+import { User } from './users/user.entity'
+import { Connection } from 'typeorm'
+import { TransactionsController } from './transactions/transactions.controller'
 
 require('dotenv').config()
 
@@ -26,13 +27,13 @@ require('dotenv').config()
       Transactions,
       User,
     ],
-    logging: ["error"],
+    logging: ['query'],
     logger: 'advanced-console',
     synchronize: true,
 
   }), TransactionsModule, UsersModule],
-  controllers: [AppController, CatsController],
-  providers: [AppService, TransactionsService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {
   constructor(private connection: Connection) {
