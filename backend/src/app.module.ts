@@ -1,16 +1,13 @@
 import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { CatsController } from './cats/cats.controller'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { BaseEntity } from './models/base.entity'
 import { Transactions } from './transactions/transaction.entity'
 import { TransactionsModule } from './transactions/transactions.module'
-import { TransactionsService } from './transactions/transactions.service'
 import { UsersModule } from './users/users.module'
 import { User } from './users/user.entity'
 import { Connection } from 'typeorm'
-import { TransactionsController } from './transactions/transactions.controller'
 import { AuthModule } from './auth/auth.module';
 
 require('dotenv').config()
