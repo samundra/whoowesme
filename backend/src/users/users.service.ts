@@ -8,11 +8,30 @@ import { Transactions } from '../transactions/transaction.entity'
 
 @Injectable()
 export class UsersService {
+  private readonly users: User[];
+
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
     private connection: Connection,
   ) {
+    this.users = [
+      {
+        id: 1,
+        email: 'admin@whooweme.local',
+        password: 'changeme',
+      },
+      {
+        id: 2,
+        email: 'admin@samundra.com.np',
+        password: 'secret',
+      },
+      {
+        id: 3,
+        email: 'admin11@samundra.com.np',
+        password: 'guess',
+      }
+    ]
   }
 
   // async createMany(users: User[]) {
@@ -38,8 +57,9 @@ export class UsersService {
     return this.usersRepository.find()
   }
 
-  findOne(id: string): Promise<User> {
-    return this.usersRepository.findOne(id)
+  async findOne(email: string): Promise<User | undefined> {
+    return this.users.find(user => user.email === email);
+    // return this.usersRepository.findOne(id)
   }
 
   async remove(id: string): Promise<void> {

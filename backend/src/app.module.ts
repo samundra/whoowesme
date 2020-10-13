@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module'
 import { User } from './users/user.entity'
 import { Connection } from 'typeorm'
 import { TransactionsController } from './transactions/transactions.controller'
+import { AuthModule } from './auth/auth.module';
 
 require('dotenv').config()
 
@@ -31,9 +32,9 @@ require('dotenv').config()
     logger: 'advanced-console',
     synchronize: true,
 
-  }), TransactionsModule, UsersModule],
-  controllers: [],
-  providers: [],
+  }), TransactionsModule, UsersModule, AuthModule],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {
   constructor(private connection: Connection) {
