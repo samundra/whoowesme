@@ -7,10 +7,10 @@ export class User {
   id: number;
 
   @Column({ nullable: false })
-  firstName: string;
+  firstName?: string;
 
   @Column({ nullable: false })
-  lastName: string;
+  lastName?: string;
 
   @Column({ nullable: false })
   email: string;
@@ -19,8 +19,8 @@ export class User {
   password: string;
 
   @Column({ default: true })
-  isActive: boolean;
+  isActive?: boolean;
 
   @OneToMany(() => Transactions, transactions => transactions.user)
-  transactions: Transactions[];
+  transactions?: Transactions[];
 }
