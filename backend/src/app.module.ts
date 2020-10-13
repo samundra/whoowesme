@@ -10,8 +10,6 @@ import { User } from './users/user.entity'
 import { Connection } from 'typeorm'
 import { AuthModule } from './auth/auth.module';
 
-require('dotenv').config()
-
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'postgres',
