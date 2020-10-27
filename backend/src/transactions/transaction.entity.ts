@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   Entity,
   PrimaryGeneratedColumn,
@@ -8,7 +9,7 @@ import {
 import { User } from '../users/user.entity'
 
 @Entity({ name: 'transactions' })
-export class Transactions {
+export class Transaction extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -29,4 +30,7 @@ export class Transactions {
 
   @ManyToOne(() => User, user => user.transactions)
   user: User;
+
+  @Column()
+  userId: number
 }
