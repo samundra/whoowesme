@@ -1,10 +1,10 @@
 {
   "name": "backend",
-  "version": "0.2.0",
-  "description": "",
-  "author": "",
+  "version": "0.3.0",
+  "description": "API for whoowesme",
+  "author": "Samundra Shrestha",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -32,6 +32,7 @@
     "@nestjs/typeorm": "^7.1.4",
     "class-transformer": "^0.3.1",
     "class-validator": "^0.12.2",
+    "config": "^3.3.2",
     "dotenv": "^8.2.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
