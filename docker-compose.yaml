@@ -1,97 +1,86 @@
-version: '2'
+version: "2"
 
 networks:
-  web:
-    external: true
+  default:
+      external:
+        name: "web"
 
 services:
-    who-web:
-      image: traefik:1.5.2-alpine
-      container_name: whoowesme-web-traefik
-      restart: always
-      networks:
-        - web
-      ports:
-        - 80:80
-        - 8080:8080
-      links:
-        - who-api
-        - who-frontend
-      depends_on:
-        - who-api
-        - who-frontend
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - ./.docker/traefik/traefik.dev.toml:/traefik.toml
-      command: --web --docker --docker.domain=whoowesme.local
+  whotraefik:
+    image: "traefik:v2.3"
+    container_name: "whotraefik"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
-    who-frontend:
-      build:  
-        context: "."
-        dockerfile: "./.docker/frontend/Dockerfile"
-      container_name: whoowesme-frontend
-      restart: always
-      volumes:
-        - ./frontend:/app
-        - ./frontend/node_modules:/app/node_modules
-      environment:
-        - REACT_APP_API_BASEURI=http://api.whoowesme.local
-        - REACT_APP_ENV=development
-      ports:
-        - "8000"
-      labels:
-        - "traefik.docker.network=web"
-        - "traefik.frontend.rule=Host:whoowesme.local"
-        - "traefik.port=8000"
-        - "traefik.enable=true"
-        - "traefik.default.protocol=http"
-      networks:
-        web:
-          aliases:
-            - whoowesme.local
-      command: npm install
-      command: npm run start
-      tty: true
+  who-frontend:
+    build:
+      context: "."
+      dockerfile: "./.docker/frontend/Dockerfile"
+    container_name: "who-frontend"
+    volumes:
+      - "./frontend:/app"
+      - "./frontend/node_modules:/app/node_modules"
+    environment:
+      - "REACT_APP_API_BASEURI=http://api.whoowesme.local"
+      - "REACT_APP_ENV=development"
+    ports:
+      - "8000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.whofrontend.rule=Host(`whoowesme.local`)"
+      - "traefik.http.services.whofrontend.loadBalancer.server.port=8000"
+      - "traefik.http.routers.whofrontend.entrypoints=web"
+    command: "npm run start"
+    tty: "true"
 
-    who-api:
-      build:  
-        context: "."
-        dockerfile: "./.docker/backend/Dockerfile"
-      container_name: whoowesme-api
-      restart: always
-      links:
-        - who-db
-      depends_on:
-        - who-db
-      volumes:
-        - ./backend:/app
-        - ./backend/node_modules:/app/node_modules
-      ports:
-        - "5000"
-      labels:
-        - "traefik.docker.network=web"
-        - "traefik.frontend.rule=Host:api.whoowesme.local"
-        - "traefik.port=5000"
-        - "traefik.enable=true"
-        - "traefik.default.protocol=http"
-      networks:
-        web:
-          aliases:
-            - api.whoowesme.local
-      command: npm install
-      command: npm run start:dev
-      tty: true
+  who-api:
+    container_name: "who-api"
+    build:
+      context: "."
+      dockerfile: "./.docker/backend/Dockerfile"
+    volumes:
+      - "./backend:/app"
+      - "./backend/node_modules:/app/node_modules"
+    ports:
+      - "5000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.whobackend.rule=Host(`api.whoowesme.local`)"
+      - "traefik.http.services.whobackend.loadBalancer.server.port=5000"
+      - "traefik.http.routers.whobackend.entrypoints=web"
+      # Service Loadbalancer configs
+      # Healthcheck
+      - "traefik.http.services.whobackend.loadBalancer.healthcheck.path=/health"
+      - "traefik.http.services.whobackend.loadBalancer.healthcheck.interval=60s"
+      - "traefik.http.services.whobackend.loadBalancer.healthcheck.timeout=10s"
+    command: "npm run start:dev"
+    tty: "true"
 
-    who-db:
-      image: "postgres:12.3"
-      container_name: whoowesme-db
-      ports:
-        - "5432:5432"
-      environment:
-        POSTGRES_PASSWORD: "postgres"
-        POSTGRES_USER: "postgres"
-      volumes:
-        - who-data:/var/lib/postgres/data
+  who-db:
+    image: "postgres:12.3"
+    container_name: "who-db"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "db_whoowesme"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+    volumes:
+      - "who-data:/var/lib/postgres/data"
 
 volumes:
   who-data:

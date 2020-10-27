@@ -5,7 +5,12 @@ import { JwtAuthGuard } from "./auth/jwt-auth.guard";
 
 @Controller()
 export class AppController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
+
+  @Get('health')
+  async healthCheck() {
+    return 'OK'
+  }
 
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')

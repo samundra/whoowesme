@@ -13,4 +13,3 @@ EXPOSE 5000
 RUN env && npm install --silent
 
 CMD ["npm", "run", "start:dev"]
-
