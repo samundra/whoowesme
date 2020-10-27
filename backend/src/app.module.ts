@@ -3,7 +3,7 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { BaseEntity } from './models/base.entity'
-import { Transactions } from './transactions/transaction.entity'
+import { Transaction } from './transactions/transaction.entity'
 import { TransactionsModule } from './transactions/transactions.module'
 import { UsersModule } from './users/users.module'
 import { User } from './users/user.entity'
@@ -20,14 +20,14 @@ import { AuthModule } from './auth/auth.module';
     database: process.env.POSTGRES_DATABASE || 'db_whoowesme',
     entities: [
       BaseEntity,
-      Transactions,
+      Transaction,
       User,
     ],
     logging: ['query'],
     logger: 'advanced-console',
     synchronize: true,
 
-  }), TransactionsModule, UsersModule, AuthModule],
+  }), TransactionsModule, UsersModule, AuthModule, TransactionsModule],
   controllers: [AppController],
   providers: [AppService],
 })
