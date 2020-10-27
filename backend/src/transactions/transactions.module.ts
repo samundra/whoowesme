@@ -1,15 +1,17 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { AuthModule } from '../auth/auth.module';
+import { TransactionRepository } from './transaction.repository';
 import { TransactionsController } from './transactions.controller';
 import { TransactionsService } from './transactions.service';
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { Transactions } from './transaction.entity'
-import { Connection } from 'typeorm'
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Transactions])],
+  imports: [
+    TypeOrmModule.forFeature([TransactionRepository]),
+    AuthModule,
+  ],
   controllers: [TransactionsController],
   providers: [TransactionsService]
 })
-export class TransactionsModule {
-  constructor(private connection: Connection) {}
-}
+export class TransactionsModule { }
