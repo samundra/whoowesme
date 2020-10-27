@@ -1,14 +1,21 @@
-require('dotenv').config()
+import { NestFactory } from '@nestjs/core';
+import * as config from 'config';
 
-import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 
-const APPLICATION_PORT = process.env.PORT
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
-  await app.listen(APPLICATION_PORT)
+  const serverConfig = config.get('server');
+  const app = await NestFactory.create(AppModule, {});
 
-  console.log(`Application started on http://localhost:${APPLICATION_PORT}`)
+  if (process.env.NODE_ENV === 'development') {
+    app.enableCors();
+  } else {
+    const allowedOriginForCors = process.env.SERVER_ORIGIN || serverConfig.origin;
+    app.enableCors({ origin: allowedOriginForCors });
+  }
+
+  const port = process.env.PORT || serverConfig.port;
+  await app.listen(port);
 }
 
 bootstrap()

@@ -1,33 +1,16 @@
-import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { BaseEntity } from './models/base.entity'
-import { Transactions } from './transactions/transaction.entity'
-import { TransactionsModule } from './transactions/transactions.module'
-import { UsersModule } from './users/users.module'
-import { User } from './users/user.entity'
-import { Connection } from 'typeorm'
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Connection } from 'typeorm';
+
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
+import { typeOrmConfig } from './config/typeorm.config';
+import { TransactionsModule } from './transactions/transactions.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
-    type: 'postgres',
-    host: process.env.POSTGRES_HOST || 'localhost',
-    port: +process.env.POSTGRES_PORT || 5432,
-    username: process.env.POSTGRES_USER || 'postgres',
-    password: process.env.POSTGRES_PASSWORD || 'postgres',
-    database: process.env.POSTGRES_DATABASE || 'db_whoowesme',
-    entities: [
-      BaseEntity,
-      Transactions,
-      User,
-    ],
-    logging: ['query'],
-    logger: 'advanced-console',
-    synchronize: true,
-
-  }), TransactionsModule, UsersModule, AuthModule],
+  imports: [TypeOrmModule.forRoot(typeOrmConfig), TransactionsModule, UsersModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
