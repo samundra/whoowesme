@@ -1,0 +1,17 @@
+server:
+  port: 80
+  origin: http://whoowesme.local
+
+db:
+  type: "postgres"
+  port: 5432
+  database: "db_whoowesme"
+  username: "postgres"
+  password: "postgres"
+  host: "localhost"
+
+jwt:
+  secret: "123"
+  refreshSecret: "456"
+  expiresIn: "1h"
+  refreshExpiresIn: "7d"
