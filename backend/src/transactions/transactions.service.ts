@@ -53,7 +53,10 @@ export class TransactionsService {
     transaction.date = date;
     transaction.categories = categories;
     transaction.user = user;
-    await transaction.save();
+
+    await this.transactionRepository.save(transaction);
+
+    delete transaction.user;
 
     return transaction;
   }
