@@ -25,9 +25,11 @@ import { AuthModule } from './auth/auth.module';
     ],
     logging: ['query'],
     logger: 'advanced-console',
+    autoLoadEntities: true,
+    // Set to false for production
     synchronize: true,
 
-  }), TransactionsModule, UsersModule, AuthModule, TransactionsModule],
+  }), TransactionsModule, UsersModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

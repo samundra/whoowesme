@@ -1,5 +1,5 @@
 import { InternalServerErrorException } from '@nestjs/common';
-import { Brackets, EntityRepository, Repository } from 'typeorm';
+import { EntityRepository, Repository } from 'typeorm';
 
 import { User } from '../users/user.entity';
 import { CreateTransactionDto } from './dto/transaction.dto';

@@ -4,7 +4,7 @@ import { User } from './user.entity'
 import { Connection, Repository } from 'typeorm'
 import { CreateUserDto } from './dto/create-user.dto'
 import { CreateTransactionDto } from '../transactions/dto/transaction.dto'
-import { Transactions } from '../transactions/transaction.entity'
+import { Transaction } from '../transactions/transaction.entity'
 
 @Injectable()
 export class UsersService {
@@ -52,7 +52,7 @@ export class UsersService {
   }
 
   async createTransaction(createTransactionDto: CreateTransactionDto) {
-    const transaction = new Transactions()
+    const transaction = new Transaction()
     transaction.amount = createTransactionDto.amount
     transaction.description = createTransactionDto.description
     transaction.date = createTransactionDto.date
