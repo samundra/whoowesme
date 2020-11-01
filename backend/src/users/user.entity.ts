@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import { Transaction } from '../transactions/transaction.entity'
+import { JoinTable } from "typeorm";
 
 @Entity({ name: 'users' })
 export class User {
@@ -21,6 +22,7 @@ export class User {
   @Column({ default: true })
   isActive?: boolean;
 
-  @OneToMany(() => Transaction, transactions => transactions.user)
+  @JoinTable()
+  @OneToMany(() => Transaction, (transactions) => transactions.user)
   transactions?: Transaction[];
 }

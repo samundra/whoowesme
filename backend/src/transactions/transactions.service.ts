@@ -4,18 +4,20 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../users/user.entity';
 import { CreateTransactionDto } from './dto/transaction.dto';
 import { Transaction } from './transaction.entity';
-import { TransactionRepository } from './transaction.repository';
+import { Repository } from "typeorm";
 
 @Injectable()
 export class TransactionsService {
   constructor(
-    @InjectRepository(TransactionRepository) private transactionRepository: TransactionRepository) {
+    @InjectRepository(Transaction)
+    private transactionRepository: Repository<Transaction>) {
   }
 
-  async getTransactions(
-    user: User
-  ): Promise<Transaction[]> {
-    return this.transactionRepository.getTransactions(user);
+  // Get transactions for user
+  async getTransactions(user: User): Promise<Transaction[]> {
+    return this.transactionRepository.find({
+      where: { userId: user.id }
+    });
   }
 
   async getTransactionById(
@@ -31,9 +33,10 @@ export class TransactionsService {
     return foundTransaction;
   }
 
-  async createTransaction(createTransactionDto: CreateTransactionDto, user: User): Promise<Transaction> {
-    return this.transactionRepository.createTransaction(createTransactionDto, user);
-  }
+  // async createTransaction(createTransactionDto: CreateTransactionDto, user: User): Promise<Transaction> {
+  //   // return this.transactionRepository.createTransaction(createTransactionDto, user);
+  //   return []
+  // }
 
   async deleteTransaction(id: number, user: User): Promise<void> {
     const transaction = await this.transactionRepository.delete({ id, userId: user.id });
