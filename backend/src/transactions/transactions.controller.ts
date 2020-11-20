@@ -10,6 +10,7 @@ import {
   UseGuards,
   UsePipes,
   ValidationPipe,
+  Query,
 } from '@nestjs/common'
 import { GetUser } from '../auth/get-user.decorator'
 
@@ -19,6 +20,7 @@ import { Transaction } from './transaction.entity'
 import { TransactionsService } from './transactions.service'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
 import { UpdateTransactionDto } from './dto/update-transaction.dto'
+import { PaginationQueryDto } from "../common/pagination-query.dto";
 
 @Controller('transactions')
 @UseGuards(JwtAuthGuard)
@@ -26,8 +28,8 @@ export class TransactionsController {
   constructor(private transactionsService: TransactionsService) {}
 
   @Get()
-  getTransactions(@GetUser() user: User): Promise<Transaction[]> {
-    return this.transactionsService.getTransactions(user)
+  getTransactions(@GetUser() user: User, @Query() paginationQueryDto: PaginationQueryDto): Promise<Transaction[]> {
+    return this.transactionsService.getTransactions(user, paginationQueryDto)
   }
 
   @Get('/:id')

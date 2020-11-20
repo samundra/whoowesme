@@ -18,8 +18,8 @@ export class UsersController {
 
   @UseGuards(JwtAuthGuard)
   @Get('me')
-  getProfile(@Request() req) {
-    return req.user
+  async getProfile(@Request() req) {
+    return await this.userService.findOne(req.user.email);
   }
 
   @Post('/register')

@@ -6,6 +6,7 @@ import { CreateTransactionDto } from './dto/create-transaction.dto'
 import { Transaction } from './transaction.entity'
 import { Repository } from 'typeorm'
 import { UpdateTransactionDto } from './dto/update-transaction.dto'
+import { PaginationQueryDto } from "../common/pagination-query.dto";
 
 @Injectable()
 export class TransactionsService {
@@ -15,9 +16,12 @@ export class TransactionsService {
   ) {}
 
   // Get transactions for user
-  async getTransactions(user: User): Promise<Transaction[]> {
+  async getTransactions(user: User, paginationQueryDto: PaginationQueryDto): Promise<Transaction[]> {
+    const { offset, limit } = paginationQueryDto
     return this.transactionRepository.find({
       where: { userId: user.id },
+      skip: offset,
+      take: limit,
     })
   }
 
