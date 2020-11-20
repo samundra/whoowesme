@@ -15,7 +15,7 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
       transformOptions: {
         enableImplicitConversion: true,
-      }
+      },
     }),
   )
   await app.listen(APPLICATION_PORT, '0.0.0.0', () => {

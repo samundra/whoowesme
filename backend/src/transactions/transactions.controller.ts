@@ -20,7 +20,7 @@ import { Transaction } from './transaction.entity'
 import { TransactionsService } from './transactions.service'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
 import { UpdateTransactionDto } from './dto/update-transaction.dto'
-import { PaginationQueryDto } from "../common/pagination-query.dto";
+import { PaginationQueryDto } from '../common/pagination-query.dto'
 
 @Controller('transactions')
 @UseGuards(JwtAuthGuard)
@@ -28,7 +28,10 @@ export class TransactionsController {
   constructor(private transactionsService: TransactionsService) {}
 
   @Get()
-  getTransactions(@GetUser() user: User, @Query() paginationQueryDto: PaginationQueryDto): Promise<Transaction[]> {
+  getTransactions(
+    @GetUser() user: User,
+    @Query() paginationQueryDto: PaginationQueryDto,
+  ): Promise<Transaction[]> {
     return this.transactionsService.getTransactions(user, paginationQueryDto)
   }
 

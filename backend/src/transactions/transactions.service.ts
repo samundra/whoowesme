@@ -6,7 +6,7 @@ import { CreateTransactionDto } from './dto/create-transaction.dto'
 import { Transaction } from './transaction.entity'
 import { Repository } from 'typeorm'
 import { UpdateTransactionDto } from './dto/update-transaction.dto'
-import { PaginationQueryDto } from "../common/pagination-query.dto";
+import { PaginationQueryDto } from '../common/pagination-query.dto'
 
 @Injectable()
 export class TransactionsService {
