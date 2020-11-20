@@ -1,7 +1,7 @@
 import { InternalServerErrorException } from '@nestjs/common'
 import { EntityRepository, Repository } from 'typeorm'
 
-import { User } from '../users/user.entity'
+import { User } from '../users/entity/user.entity'
 import { CreateTransactionDto } from './dto/create-transaction.dto'
 import { Transaction } from './transaction.entity'
 

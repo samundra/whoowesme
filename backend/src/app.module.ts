@@ -6,7 +6,7 @@ import { BaseEntity } from './models/base.entity'
 import { Transaction } from './transactions/transaction.entity'
 import { TransactionsModule } from './transactions/transactions.module'
 import { UsersModule } from './users/users.module'
-import { User } from './users/user.entity'
+import { User } from './users/entity/user.entity'
 import { Connection } from 'typeorm'
 import { AuthModule } from './auth/auth.module'
 
