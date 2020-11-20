@@ -23,6 +23,9 @@ export class User {
   isActive?: boolean
 
   @JoinTable()
-  @OneToMany(() => Transaction, (transactions) => transactions.user)
+  @OneToMany(
+    () => Transaction,
+    transactions => transactions.user,
+  )
   transactions?: Transaction[]
 }

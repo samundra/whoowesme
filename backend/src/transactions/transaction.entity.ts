@@ -1,11 +1,4 @@
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  ManyToOne
-} from 'typeorm'
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne } from 'typeorm'
 import { User } from '../users/entity/user.entity'
 
 @Entity({ name: 'transactions' })
@@ -28,8 +21,11 @@ export class Transaction extends BaseEntity {
   @Column('text', { array: true, nullable: true })
   categories: string[]
 
-  @ManyToOne(() => User, user => user.transactions)
-  user: User;
+  @ManyToOne(
+    () => User,
+    user => user.transactions,
+  )
+  user: User
 
   @Column({ name: 'userId' })
   userId: number
