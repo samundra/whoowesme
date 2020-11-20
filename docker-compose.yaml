@@ -65,7 +65,7 @@ services:
       - "traefik.http.services.whobackend.loadBalancer.healthcheck.interval=60s"
       - "traefik.http.services.whobackend.loadBalancer.healthcheck.timeout=10s"
     command: "npm run start:dev"
-    tty: "true"
+    tty: true
 
   who-db:
     image: "postgres:12.3"

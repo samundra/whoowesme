@@ -1,15 +1,14 @@
-import { Module } from '@nestjs/common';
-import { TransactionsController } from './transactions.controller';
-import { TransactionsService } from './transactions.service';
+import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { Transactions } from './transaction.entity'
-import { Connection } from 'typeorm'
+
+import { AuthModule } from '../auth/auth.module'
+import { TransactionsController } from './transactions.controller'
+import { TransactionsService } from './transactions.service'
+import { Transaction } from './transaction.entity'
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Transactions])],
+  imports: [TypeOrmModule.forFeature([Transaction]), AuthModule],
   controllers: [TransactionsController],
-  providers: [TransactionsService]
+  providers: [TransactionsService],
 })
-export class TransactionsModule {
-  constructor(private connection: Connection) {}
-}
+export class TransactionsModule {}
