@@ -7,6 +7,14 @@ import { JwtAuthGuard } from "./auth/jwt-auth.guard";
 export class AppController {
   constructor(private authService: AuthService) { }
 
+  @Get('/')
+  async home() {
+    return {
+      'status': 'OK',
+      'version': '0.0.1',
+    }
+  }
+
   @Get('health')
   async healthCheck() {
     return 'OK'
