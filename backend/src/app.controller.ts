@@ -1,17 +1,17 @@
 import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common'
 import { LocalAuthGuard } from './auth/local-auth.guard'
 import { AuthService } from './auth/auth.service'
-import { JwtAuthGuard } from "./auth/jwt-auth.guard";
+import { JwtAuthGuard } from './auth/jwt-auth.guard'
 
 @Controller()
 export class AppController {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
   @Get('/')
   async home() {
     return {
-      'status': 'OK',
-      'version': '0.0.1',
+      status: 'OK',
+      version: '0.0.1',
     }
   }
 
@@ -30,6 +30,6 @@ export class AppController {
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
-    return req.user;
+    return req.user
   }
 }

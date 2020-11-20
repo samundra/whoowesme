@@ -8,7 +8,7 @@ import { Transaction } from '../transactions/transaction.entity'
 
 @Injectable()
 export class UsersService {
-  private readonly users: User[];
+  private readonly users: User[]
 
   constructor(
     @InjectRepository(User)
@@ -30,7 +30,7 @@ export class UsersService {
         id: 3,
         email: 'admin11@samundra.com.np',
         password: 'guess',
-      }
+      },
     ]
   }
 
@@ -39,7 +39,7 @@ export class UsersService {
   }
 
   async findOne(email: string): Promise<User | undefined> {
-    return this.users.find(user => user.email === email);
+    return this.users.find(user => user.email === email)
     // return this.usersRepository.findOne(id)
   }
 
@@ -52,22 +52,21 @@ export class UsersService {
   }
 
   // async createTransaction(createTransactionDto: CreateTransactionDto) {
-    // const transaction = new Transaction()
-    // transaction.amount = createTransactionDto.amount
-    // transaction.description = createTransactionDto.description
-    // transaction.date = createTransactionDto.date
-    // transaction.categories = createTransactionDto.categories
-    //
-    // // todo: Get user from the active session
-    // const user = await this.usersRepository.findOne({
-    //   where: { id: 1 },
-    //   cache: false,
-    // })
-    //
-    // transaction.user = user
-    //
-    // const transactionRepository = this.connection.getRepository('Transactions')
-    // await transactionRepository.save(transaction)
+  // const transaction = new Transaction()
+  // transaction.amount = createTransactionDto.amount
+  // transaction.description = createTransactionDto.description
+  // transaction.date = createTransactionDto.date
+  // transaction.categories = createTransactionDto.categories
+  //
+  // // todo: Get user from the active session
+  // const user = await this.usersRepository.findOne({
+  //   where: { id: 1 },
+  //   cache: false,
+  // })
+  //
+  // transaction.user = user
+  //
+  // const transactionRepository = this.connection.getRepository('Transactions')
+  // await transactionRepository.save(transaction)
   // }
 }
-

@@ -1,30 +1,27 @@
-import { InternalServerErrorException } from '@nestjs/common';
-import { EntityRepository, Repository } from 'typeorm';
+import { InternalServerErrorException } from '@nestjs/common'
+import { EntityRepository, Repository } from 'typeorm'
 
-import { User } from '../users/user.entity';
-import { CreateTransactionDto } from './dto/create-transaction.dto';
-import { Transaction } from './transaction.entity';
+import { User } from '../users/user.entity'
+import { CreateTransactionDto } from './dto/create-transaction.dto'
+import { Transaction } from './transaction.entity'
 
 @EntityRepository(Transaction)
 export class TransactionRepository extends Repository<Transaction> {
-
   constructor() {
-    super();
+    super()
   }
 
-  async getTransactions(
-    user: User
-  ): Promise<Transaction[]> {
-    const query = this.createQueryBuilder('transaction');
+  async getTransactions(user: User): Promise<Transaction[]> {
+    const query = this.createQueryBuilder('transaction')
 
     query.where('transaction.userId =  :userId', { userId: user.id })
     query.orderBy('updated', 'DESC')
 
     try {
-      const transactions = await query.getMany();
-      return transactions;
+      const transactions = await query.getMany()
+      return transactions
     } catch (error) {
-      throw new InternalServerErrorException();
+      throw new InternalServerErrorException()
     }
   }
 

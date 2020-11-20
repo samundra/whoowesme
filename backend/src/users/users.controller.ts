@@ -1,11 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get, HttpStatus,
-  Post, Res,
-  SetMetadata,
-  UseGuards,
-} from '@nestjs/common'
+import { Body, Controller, Get, HttpStatus, Post, Res, SetMetadata, UseGuards } from '@nestjs/common'
 import { UsersService } from './users.service'
 import { RolesGuard } from '../roles.guard'
 import { CreateUserDto } from './dto/create-user.dto'
@@ -15,8 +8,7 @@ import { Response } from 'express'
 @Controller('users')
 @UseGuards(RolesGuard)
 export class UsersController {
-  constructor(private userService: UsersService) {
-  }
+  constructor(private userService: UsersService) {}
 
   @Get('/')
   async findAll(): Promise<string> {

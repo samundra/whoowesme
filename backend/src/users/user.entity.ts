@@ -1,28 +1,28 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import { Transaction } from '../transactions/transaction.entity'
-import { JoinTable } from "typeorm";
+import { JoinTable } from 'typeorm'
 
 @Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Column({ nullable: false })
-  firstName?: string;
+  firstName?: string
 
   @Column({ nullable: false })
-  lastName?: string;
+  lastName?: string
 
   @Column({ nullable: false })
-  email: string;
+  email: string
 
   @Column({ length: 65 })
-  password: string;
+  password: string
 
   @Column({ default: true })
-  isActive?: boolean;
+  isActive?: boolean
 
   @JoinTable()
   // @OneToMany(() => Transaction, (transactions) => transactions.user)
-  transactions?: Transaction[];
+  transactions?: Transaction[]
 }

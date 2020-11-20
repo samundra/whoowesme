@@ -1,15 +1,15 @@
-import { IsOptional, IsNotEmpty, IsString } from "class-validator";
+import { IsOptional, IsNotEmpty, IsString } from 'class-validator'
 
 export class CreateTransactionDto {
   @IsNotEmpty()
-  readonly amount: number;
+  readonly amount: number
 
   @IsOptional()
-  readonly description: string;
+  readonly description: string
 
   @IsOptional()
-  readonly date: Date;
+  readonly date: Date
 
   @IsString({ each: true })
-  readonly categories: string[];
+  readonly categories: string[]
 }

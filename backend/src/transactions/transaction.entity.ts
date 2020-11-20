@@ -1,32 +1,25 @@
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  ManyToOne,
-} from 'typeorm'
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne } from 'typeorm'
 import { User } from '../users/user.entity'
 
 @Entity({ name: 'transactions' })
 export class Transaction extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Column({ type: 'numeric', precision: 10, scale: 2 })
-  amount: number;
+  amount: number
 
   @Column({ type: 'varchar', length: 300 })
-  description: string;
+  description: string
 
   @Column({ type: 'timestamp with time zone', nullable: true })
-  date: Date;
+  date: Date
 
   @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  createdAt: Date
 
-  @Column("text", { array: true, nullable: true })
-  categories: string[];
+  @Column('text', { array: true, nullable: true })
+  categories: string[]
 
   // @ManyToOne(() => User, user => user.transactions)
   // user: User;
