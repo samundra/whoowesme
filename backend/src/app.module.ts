@@ -7,7 +7,6 @@ import { Transaction } from './transactions/transaction.entity'
 import { TransactionsModule } from './transactions/transactions.module'
 import { UsersModule } from './users/users.module'
 import { User } from './users/entity/user.entity'
-import { Connection } from 'typeorm'
 import { AuthModule } from './auth/auth.module'
 
 @Module({
@@ -33,6 +32,4 @@ import { AuthModule } from './auth/auth.module'
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-  constructor(private connection: Connection) {}
-}
+export class AppModule {}
