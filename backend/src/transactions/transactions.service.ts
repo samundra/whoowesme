@@ -10,7 +10,7 @@ import { Repository } from "typeorm";
 export class TransactionsService {
   constructor(
     @InjectRepository(Transaction)
-    private transactionRepository: Repository<Transaction>) {
+    private readonly transactionRepository: Repository<Transaction>) {
   }
 
   // Get transactions for user
@@ -33,12 +33,23 @@ export class TransactionsService {
     return foundTransaction;
   }
 
-  // async createTransaction(createTransactionDto: CreateTransactionDto, user: User): Promise<Transaction> {
-  //   // return this.transactionRepository.createTransaction(createTransactionDto, user);
-  //   return []
-  // }
+  /**
+   * Create Transaction
+   * @param createTransactionDto
+   * @param user
+   */
+  async create(createTransactionDto: CreateTransactionDto, user: User): Promise<Transaction> {
+    const transaction = this.transactionRepository.create(createTransactionDto);
+    await this.transactionRepository.merge(transaction, { userId: user.id });
+    return this.transactionRepository.save(transaction);
+  }
 
-  async deleteTransaction(id: number, user: User): Promise<void> {
+  /**
+   * Delete Transaction
+   * @param id
+   * @param user
+   */
+  async delete(id: number, user: User): Promise<void> {
     const transaction = await this.transactionRepository.delete({ id, userId: user.id });
 
     if (transaction.affected === 0) {
@@ -46,21 +57,24 @@ export class TransactionsService {
     }
   }
 
-  async updateTransaction(id: number, createTransactionDto: CreateTransactionDto, user: User): Promise<Transaction> {
-    const { amount, description, date, categories } = createTransactionDto;
+  /**
+   * Update Transaction
+   * @param id
+   * @param updateTransactionDto
+   * @param user
+   */
+  async update(id: number, updateTransactionDto: CreateTransactionDto, user: User): Promise<Transaction> {
+    // Remove userId from updateTransactionDto
+    const transaction = await this.transactionRepository.preload({
+      id: +id,
+      userId: +user.id,
+      ...updateTransactionDto,
+    });
 
-    const transaction = await this.getTransactionById(id, user);
+    if (!transaction) {
+      throw new NotFoundException(`Transaction #${id} not found`);
+    }
 
-    transaction.amount = amount;
-    transaction.description = description;
-    transaction.date = date;
-    transaction.categories = categories;
-    transaction.user = user;
-
-    await this.transactionRepository.save(transaction);
-
-    delete transaction.user;
-
-    return transaction;
+    return this.transactionRepository.save(transaction);
   }
 }

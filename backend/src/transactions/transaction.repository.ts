@@ -28,23 +28,23 @@ export class TransactionRepository extends Repository<Transaction> {
     }
   }
 
-  async createTransaction(createTransactionDto: CreateTransactionDto, user: User): Promise<Transaction> {
-    const { amount, description, date, categories } = createTransactionDto;
-    const transaction = new Transaction();
-    transaction.amount = amount;
-    transaction.description = description;
-    transaction.date = date;
-    transaction.categories = categories;
-    transaction.user = user;
-
-    try {
-      await transaction.save();
-    } catch (error) {
-      throw new InternalServerErrorException();
-    }
-
-    delete transaction.user;
-
-    return transaction;
-  }
+  // async createTransaction(createTransactionDto: CreateTransactionDto, user: User): Promise<Transaction> {
+  //   const { amount, description, date, categories } = createTransactionDto;
+  //   const transaction = new Transaction();
+  //   transaction.amount = amount;
+  //   transaction.description = description;
+  //   transaction.date = date;
+  //   transaction.categories = categories;
+  //   transaction.user = user;
+  //
+  //   try {
+  //     await transaction.save();
+  //   } catch (error) {
+  //     throw new InternalServerErrorException();
+  //   }
+  //
+  //   delete transaction.user;
+  //
+  //   return transaction;
+  // }
 }

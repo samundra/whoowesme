@@ -15,7 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: any) {
     // Note: Object returned from here will be attached to req.user by NestJS
-    console.log({ payload })
+    // console.log({ payload })
     return { id: payload.sub, email: payload.email }
   }
 }

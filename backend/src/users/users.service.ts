@@ -51,23 +51,23 @@ export class UsersService {
     // Create user
   }
 
-  async createTransaction(createTransactionDto: CreateTransactionDto) {
-    const transaction = new Transaction()
-    transaction.amount = createTransactionDto.amount
-    transaction.description = createTransactionDto.description
-    transaction.date = createTransactionDto.date
-    transaction.categories = createTransactionDto.categories
-
-    // todo: Get user from the active session
-    const user = await this.usersRepository.findOne({
-      where: { id: 1 },
-      cache: false,
-    })
-
-    transaction.user = user
-
-    const transactionRepository = this.connection.getRepository('Transactions')
-    await transactionRepository.save(transaction)
-  }
+  // async createTransaction(createTransactionDto: CreateTransactionDto) {
+    // const transaction = new Transaction()
+    // transaction.amount = createTransactionDto.amount
+    // transaction.description = createTransactionDto.description
+    // transaction.date = createTransactionDto.date
+    // transaction.categories = createTransactionDto.categories
+    //
+    // // todo: Get user from the active session
+    // const user = await this.usersRepository.findOne({
+    //   where: { id: 1 },
+    //   cache: false,
+    // })
+    //
+    // transaction.user = user
+    //
+    // const transactionRepository = this.connection.getRepository('Transactions')
+    // await transactionRepository.save(transaction)
+  // }
 }
 

@@ -28,9 +28,9 @@ export class Transaction extends BaseEntity {
   @Column("text", { array: true, nullable: true })
   categories: string[];
 
-  @ManyToOne(() => User, user => user.transactions)
-  user: User;
+  // @ManyToOne(() => User, user => user.transactions)
+  // user: User;
 
-  @Column()
+  @Column({ name: 'userId' })
   userId: number
 }
