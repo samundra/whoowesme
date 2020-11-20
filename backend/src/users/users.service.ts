@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { User } from './user.entity'
 import { Connection, Repository } from 'typeorm'
 import { CreateUserDto } from './dto/create-user.dto'
-import { CreateTransactionDto } from '../transactions/dto/transaction.dto'
+import { CreateTransactionDto } from '../transactions/dto/create-transaction.dto'
 import { Transaction } from '../transactions/transaction.entity'
 
 @Injectable()

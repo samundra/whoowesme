@@ -1,12 +1,12 @@
-import { Body, HttpCode, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
-// import { AuthGuard } from '@nestjs/passport';
+import { Body, HttpCode, Controller, Delete, Get, Param, Patch, Post, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { GetUser } from '../auth/get-user.decorator';
 
 import { User } from '../users/user.entity';
-import { CreateTransactionDto } from './dto/transaction.dto';
+import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { Transaction } from './transaction.entity';
 import { TransactionsService } from './transactions.service';
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
+import { UpdateTransactionDto } from "./dto/update-transaction.dto";
 
 @Controller('transactions')
 @UseGuards(JwtAuthGuard)
@@ -20,7 +20,7 @@ export class TransactionsController {
 
   @Get('/:id')
   getTransactionById(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id') id: number,
     @GetUser() user: User
   ): Promise<Transaction> {
     return this.transactionsService.getTransactionById(id, user);
@@ -28,6 +28,7 @@ export class TransactionsController {
 
   @Post('/')
   @UsePipes(ValidationPipe)
+  @HttpCode(201)
   createTransaction(
     @Body() createTransactionDto: CreateTransactionDto,
     @GetUser() user: User
@@ -37,7 +38,7 @@ export class TransactionsController {
 
   @Delete('/:id')
   @HttpCode(204)
-  deleteTransaction(@Param('id', ParseIntPipe) id: number,
+  deleteTransaction(@Param('id') id: number,
     @GetUser() user: User
   ): Promise<void> {
       return this.transactionsService.delete(id, user);
@@ -46,10 +47,10 @@ export class TransactionsController {
   @Patch('/:id')
   @UsePipes(ValidationPipe)
   updateTransaction(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() CreateTransactionDto: any,
+    @Param('id') id: number,
+    @Body() updateTransactionDto: UpdateTransactionDto,
     @GetUser() user: User
   ): Promise<Transaction> {
-    return this.transactionsService.update(id, CreateTransactionDto, user);
+    return this.transactionsService.update(id, updateTransactionDto, user);
   }
 }
