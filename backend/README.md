@@ -1,6 +1,7 @@
 ## Introduction
 
 - Backend for Whoowesme
+- URL : `api.whoowesme.local`
 
 ## Description
 
@@ -37,6 +38,10 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Database & ORM
+- [Postgres](https://www.postgresql.org/)
+- [TypeORM](https://typeorm.io/#/)
 
 ## License
 

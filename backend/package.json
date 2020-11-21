@@ -1,10 +1,9 @@
 {
   "name": "backend",
-  "version": "0.2.0",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "version": "0.4.0",
+  "description": "API for whoowesme",
+  "author": "Samundra Shrestha",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -24,6 +23,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^7.4.4",
+    "@nestjs/config": "^0.6.1",
     "@nestjs/core": "^7.4.4",
     "@nestjs/jwt": "^7.1.0",
     "@nestjs/mapped-types": "^0.1.1",

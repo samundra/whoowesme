@@ -2,34 +2,33 @@ import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { BaseEntity } from './models/base.entity'
-import { Transaction } from './transactions/transaction.entity'
 import { TransactionsModule } from './transactions/transactions.module'
 import { UsersModule } from './users/users.module'
-import { User } from './users/entity/user.entity'
 import { AuthModule } from './auth/auth.module'
+import { ConfigModule } from '@nestjs/config'
+import TypeOrmConfig from './config/typeorm.config'
+import AuthConfig from './config/auth.config'
+import { ConfigService } from "@nestjs/config";
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.POSTGRES_HOST || 'localhost',
-      port: +process.env.POSTGRES_PORT || 5432,
-      username: process.env.POSTGRES_USER || 'postgres',
-      password: process.env.POSTGRES_PASSWORD || 'postgres',
-      database: process.env.POSTGRES_DATABASE || 'db_whoowesme',
-      entities: [BaseEntity, Transaction, User],
-      logging: ['query'],
-      logger: 'advanced-console',
-      autoLoadEntities: true,
-      // Set to false for production
-      synchronize: true,
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      load: [AuthConfig],
+      isGlobal: true,
     }),
     TransactionsModule,
     UsersModule,
     AuthModule,
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        ...TypeOrmConfig(configService),
+      }),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
 })
+
 export class AppModule {}
