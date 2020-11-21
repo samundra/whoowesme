@@ -16,7 +16,7 @@ import { GetUser } from '../auth/get-user.decorator'
 
 import { User } from '../users/entity/user.entity'
 import { CreateTransactionDto } from './dto/create-transaction.dto'
-import { Transaction } from './transaction.entity'
+import { Transaction } from './entity/transaction.entity'
 import { TransactionsService } from './transactions.service'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
 import { UpdateTransactionDto } from './dto/update-transaction.dto'

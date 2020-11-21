@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 
 import { User } from '../users/entity/user.entity'
 import { CreateTransactionDto } from './dto/create-transaction.dto'
-import { Transaction } from './transaction.entity'
+import { Transaction } from './entity/transaction.entity'
 import { Repository } from 'typeorm'
 import { UpdateTransactionDto } from './dto/update-transaction.dto'
 import { PaginationQueryDto } from '../common/pagination-query.dto'

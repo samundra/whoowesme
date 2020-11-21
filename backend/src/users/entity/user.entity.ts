@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
-import { Transaction } from '../../transactions/transaction.entity'
+import { Transaction } from '../../transactions/entity/transaction.entity'
 import { JoinTable } from 'typeorm'
 
 @Entity({ name: 'users' })
