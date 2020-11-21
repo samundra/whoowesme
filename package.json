@@ -1,0 +1,22 @@
+{
+  "name": "whoowesme",
+  "version": "0.2.1",
+  "description": "Sharing is caring",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:frontend": "npm --prefix frontend run build",
+    "build:backend": "npm --prefix backend run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samundra/whoowesme.git"
+  },
+  "keywords": ["money"],
+  "author": "Samundra Shrestha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samundra/whoowesme/issues"
+  },
+  "homepage": "https://whooweme.netlify.com/"
+}
