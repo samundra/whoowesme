@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common'
-import { ConfigService } from "@nestjs/config";
+import { ConfigService } from '@nestjs/config'
 
 @Controller()
 export class AppController {
@@ -7,14 +7,14 @@ export class AppController {
    * Api Version
    * @private
    */
-  private readonly appVersion;
+  private readonly appVersion
 
   /**
    * Constructor
    * @param configService
    */
   constructor(configService: ConfigService) {
-    this.appVersion = configService.get<string>('APP_VERSION', '1.0.0');
+    this.appVersion = configService.get<string>('APP_VERSION', '1.0.0')
   }
 
   @Get('/')

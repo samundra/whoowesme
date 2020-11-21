@@ -23,7 +23,7 @@ async function bootstrap() {
   }
 
   const port = parseInt(process.env.PORT, 10) || 5000
-  await app.listen(port);
+  await app.listen(port)
 }
 
-bootstrap();
+bootstrap()

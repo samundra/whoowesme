@@ -1,6 +1,6 @@
 interface JwtStrategyConfig {
-  jwtSecrets: string;
-  jwtTokenExpires: string;
+  jwtSecrets: string
+  jwtTokenExpires: string
 }
 
 export default (): JwtStrategyConfig => ({
