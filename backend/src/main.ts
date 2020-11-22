@@ -1,9 +1,13 @@
 import { NestFactory } from '@nestjs/core'
 import { ValidationPipe } from '@nestjs/common'
 import { AppModule } from './app.module'
+import { NestExpressApplication } from '@nestjs/platform-express/interfaces/nest-express-application.interface'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {})
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {})
+  // see https://expressjs.com/en/guide/behind-proxies.html
+  app.set('trust proxy', 1);
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -15,15 +19,12 @@ async function bootstrap() {
     }),
   )
 
-  if (process.env.NODE_ENV === 'development') {
-    app.enableCors()
-  } else {
-    const allowedOriginForCors = process.env.SERVER_ORIGIN || 'http://api.whoowesme.local'
-    app.enableCors({ origin: allowedOriginForCors })
-  }
+  app.enableCors({
+    origin: [process.env.FRONTEND_ORIGIN],
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  })
 
-  const port = parseInt(process.env.PORT, 10) || 5000
-  await app.listen(port)
+  await app.listen(process.env.APP_PORT)
 }
 
 bootstrap()
