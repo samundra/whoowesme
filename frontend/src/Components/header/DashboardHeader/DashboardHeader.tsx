@@ -1,6 +1,6 @@
 import React from 'react'
-import { BellOutlined, DownOutlined, RightOutlined, UserOutlined } from '@ant-design/icons'
-import { Layout, Input, Divider, Badge, Avatar, Dropdown } from 'antd'
+import { BellOutlined, DownOutlined, UserOutlined } from '@ant-design/icons'
+import { Layout, Divider, Badge, Avatar, Dropdown } from 'antd'
 import styled from 'styled-components'
 import { ProfileMenu } from 'Components/menu/ProfileMenu'
 import HamburgerMenu from 'Components/menu/HamburgerMenu/HamburgerMenu'
@@ -8,7 +8,6 @@ import { useHistory } from 'react-router-dom'
 import AddNewItem from 'Components/button/AddNewItem'
 
 const { Header } = Layout
-const { Search } = Input
 
 type Props = {}
 const DashboardHeader: React.FunctionComponent<Props> = () => {
@@ -18,12 +17,6 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
     <StyledHeader>
       <HamburgerMenu />
       <AddNewItem onClick={(): void => history.push('/add-new-item')} />
-      <Search
-        style={{ width: 200, marginLeft: '10px' }}
-        placeholder="Search"
-        onSearch={(value): void => console.log(value)}
-        prefix={<RightOutlined />}
-      />
       <StyledUserActions>
         <StyledSettingsMenu>
           <Badge count={10} dot={true}>
