@@ -159,15 +159,13 @@ const StyledTag = styled(Tag)`
 `
 
 const AddTagButton = styled(Button)`
-  userselect: none;
+  user-select: none;
   cursor: pointer;
   width: 100%;
-  minwidth: 120px;
+  min-width: 120px;
   height: 48px;
-  lineheight: 48px;
-  textalign: center;
+  line-height: 48px;
+  text-align: center;
 `
 
-const AddFriendForm = AddNewCategoryForm
-
-export default AddFriendForm
+export default AddNewCategoryForm
