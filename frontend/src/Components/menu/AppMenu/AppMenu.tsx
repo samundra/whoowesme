@@ -39,11 +39,11 @@ const AppMenu: React.FunctionComponent<Props> = () => {
   const [currentMenuKey, setCurrentMenuKey] = useState(locationState.menuKey)
   const [parentMenuKey, setParentMenuKey] = useState(locationState.parentMenuKey)
 
-  const navigatePage = (menuKey: string[], parentMenuKey: string[], link: string): void => {
+  const navigatePage = (menuKey: string[], menuParentMenuKey: string[], link: string): void => {
     setCurrentMenuKey(menuKey)
     setParentMenuKey(parentMenuKey)
 
-    history.push(link, { menuKey, parentMenuKey })
+    history.push(link, { menuKey, menuParentMenuKey })
   }
 
   return (
