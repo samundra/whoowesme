@@ -5,7 +5,7 @@ import { EditOutlined, LoadingOutlined } from '@ant-design/icons'
 import { Breadcrumb, Modal, Table, Tag, Button } from 'antd'
 import { Link } from 'react-router-dom'
 import { RouteComponentProps } from 'react-router'
-import { PageContent, Content } from 'Components/common'
+import { PageContent, AppContent } from 'Components/common'
 import { RootState } from 'Store'
 import { addTransaction } from 'Store/transaction/action'
 import transactionService from 'Services/transaction'
@@ -113,7 +113,7 @@ const TransactionList: React.FunctionComponent<Props> = props => {
 
   return (
     <DashboardPageLayout>
-      <Content>
+      <AppContent>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>
             <Link to="/dashboard">Dashboard</Link>
@@ -128,7 +128,7 @@ const TransactionList: React.FunctionComponent<Props> = props => {
           )}
           {!loading && <Table dataSource={dataSource} columns={columns} />}
         </PageContent>
-      </Content>
+      </AppContent>
     </DashboardPageLayout>
   )
 }

@@ -4,7 +4,7 @@ import { Breadcrumb } from 'antd'
 import { Link } from 'react-router-dom'
 import TransactionForm from 'Components/form/TransactionForm'
 import { RouteComponentProps, useParams } from 'react-router'
-import { PageContent, Content } from 'Components/common'
+import { PageContent, AppContent } from 'Components/common'
 
 type Props = RouteComponentProps
 
@@ -19,7 +19,7 @@ const TransactionEdit: React.FunctionComponent<Props> = () => {
   }, [params])
   return (
     <DashboardPageLayout>
-      <Content>
+      <AppContent>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>
             <Link to="/dashboard">Dashboard</Link>
@@ -37,7 +37,7 @@ const TransactionEdit: React.FunctionComponent<Props> = () => {
             }}
           />
         </PageContent>
-      </Content>
+      </AppContent>
     </DashboardPageLayout>
   )
 }

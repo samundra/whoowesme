@@ -3,14 +3,14 @@ import DashboardPageLayout from 'Layout/DashboardPageLayout'
 import { Breadcrumb } from 'antd'
 import { Link } from 'react-router-dom'
 import { AddNewEntryForm } from 'Components/form'
-import { PageContent, Content } from 'Components/common'
+import { PageContent, AppContent } from 'Components/common'
 
 type Props = {}
 
 const AddNewItem: React.FunctionComponent<Props> = () => {
   return (
     <DashboardPageLayout>
-      <Content>
+      <AppContent>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>
             <Link to="/dashboard">Dashboard</Link>
@@ -20,7 +20,7 @@ const AddNewItem: React.FunctionComponent<Props> = () => {
         <PageContent title="Add New Item">
           <AddNewEntryForm />
         </PageContent>
-      </Content>
+      </AppContent>
     </DashboardPageLayout>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import DashboardPageLayout from 'Layout/DashboardPageLayout'
 import { Breadcrumb } from 'antd'
-import { Content } from 'Components/common'
+import { AppContent } from 'Components/common'
 import { Card, Col, Row, Avatar } from 'antd'
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons'
 const { Meta } = Card
@@ -11,7 +11,7 @@ type Props = {}
 const Dashboard: React.FunctionComponent<Props> = () => {
   return (
     <DashboardPageLayout>
-      <Content>
+      <AppContent>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
         </Breadcrumb>
@@ -56,7 +56,7 @@ const Dashboard: React.FunctionComponent<Props> = () => {
             </Col>
           </Row>
         </div>
-      </Content>
+      </AppContent>
     </DashboardPageLayout>
   )
 }
