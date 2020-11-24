@@ -30,3 +30,6 @@ storybook-static
 
 # package-lock.json
 token.json
+
+.env
+
