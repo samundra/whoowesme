@@ -1,39 +1,22 @@
-## Introduction
+<h1 align="center">Whoowesme</h1>
 
-```
+<div>
+    <p align="center">:construction: This project is still a work in progress :construction:</p><br/>
 
-   █████   ███   █████ █████                     ███████
-  ░░███   ░███  ░░███ ░░███                    ███░░░░░███
-   ░███   ░███   ░███  ░███████    ██████     ███     ░░███ █████ ███ █████  ██████   █████
-   ░███   ░███   ░███  ░███░░███  ███░░███   ░███      ░███░░███ ░███░░███  ███░░███ ███░░
-   ░░███  █████  ███   ░███ ░███ ░███ ░███   ░███      ░███ ░███ ░███ ░███ ░███████ ░░█████
-    ░░░█████░█████░    ░███ ░███ ░███ ░███   ░░███     ███  ░░███████████  ░███░░░   ░░░░███
-      ░░███ ░░███      ████ █████░░██████     ░░░███████░    ░░████░████   ░░██████  ██████
-       ░░░   ░░░      ░░░░ ░░░░░  ░░░░░░        ░░░░░░░       ░░░░ ░░░░     ░░░░░░  ░░░░░░
-
-
-                               ██████   ██████
-                              ░░██████ ██████
-                               ░███░█████░███   ██████
-                               ░███░░███ ░███  ███░░███
-                               ░███ ░░░  ░███ ░███████
-                               ░███      ░███ ░███░░░
-                               █████     █████░░██████
-                              ░░░░░     ░░░░░  ░░░░░░
-
-
-```
-
+</div>
+<div>
 _Note:_ This project is for educational purpose only. Please do not use it for production.
 
 Suppose, I gave you 100 THB, since I am generous I forget to ask. This
 app will force me to ask for that borrowed money to my friend.
 
 Planned features are:
+
 - Keep track of borrowed money
 - Show total money borrowed
 - Show borrowed to whom
 - When was it borrowed
+</div>
 
 ### Docker Setup for Development
 
@@ -109,14 +92,16 @@ c0518e3769bf        whoowesme_who-api        "npm run start:dev"      17 minutes
 - Storybook for component development
 
 #### Backend: NestJS
+
 - Check code inside `backend` folder
 - NestJS API
 
 #### Database
+
 [todo]
 
-
 #### Test
+
 [todo]
 
 #### License
@@ -124,4 +109,3 @@ c0518e3769bf        whoowesme_who-api        "npm run start:dev"      17 minutes
 MIT
 
 [Traefik](https://doc.traefik.io)
-
