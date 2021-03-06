@@ -1,8 +1,6 @@
 <h1 align="center">Whoowesme</h1>
-
 <div>
     <p align="center">:construction: This project is still a work in progress :construction:</p><br/>
-
 </div>
 <div>
 _Note:_ This project is for educational purpose only. Please do not use it for production.
@@ -18,7 +16,9 @@ Planned features are:
 - When was it borrowed
 </div>
 
-### Docker Setup for Development
+How to get the project up and running for local development
+
+<details><summary>Docker Setup for Development</summary>
 
 **Domains:**
 
@@ -31,7 +31,7 @@ After that, run below docker commands from project root directory
 
 Create external network that will be used for networking.
 
-```
+```bash
 # Create external network
 $ docker network create web
 
@@ -44,7 +44,7 @@ $ docker-compose up -d
 
 For frontend, wait for this output:
 
-```
+```bash
 whoowesme-frontend |
 whoowesme-frontend | You can now view whooweme in the browser.
 whoowesme-frontend |
@@ -58,7 +58,7 @@ whoowesme-frontend |
 
 For API, wait for this output:
 
-```
+```bash
 whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [NestFactory] Starting Nest application...
 whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [InstanceLoader] AppModule dependencies initialized +70ms
 whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [RoutesResolver] AppController {}: +23ms
@@ -73,7 +73,7 @@ whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [NestApplication]
 
 Check again to make sure that all containers are running fine without errors:
 
-```
+```bash
 $ docker ps
 
 CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS              PORTS                                        NAMES
@@ -82,30 +82,17 @@ c0518e3769bf        whoowesme_who-api        "npm run start:dev"      17 minutes
 38787f196b73        whoowesme_who-frontend   "npm run start"          17 minutes ago      Up 17 minutes       0.0.0.0:32789->8000/tcp                      whoowesme-frontend
 ```
 
-[Traefik] dashboard is available at : `http://localhost:8080/dashboard/#/`
+[Traefik](https://doc.traefik.io) dashboard is available at : `http://localhost:8080/dashboard/#/`
 
-#### Frontend: ReactJS
+</details>
 
-- Check code inside `frontend` folder
-- ReactJS
-- Antd for components
-- Storybook for component development
 
-#### Backend: NestJS
+<details><summary>Documentations </summary>
 
-- Check code inside `backend` folder
-- NestJS API
-
-#### Database
-
-[todo]
-
-#### Test
-
-[todo]
+- <a href="frontend/README.md">Frontend docs</a>
+- <a href="backend/README.md">Backend docs</a>
+</details>
 
 #### License
 
 MIT
-
-[Traefik](https://doc.traefik.io)

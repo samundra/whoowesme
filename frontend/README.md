@@ -1,3 +1,9 @@
+<h1 align="center">Whoowesme - Frontend</h1>
+<div>
+    <p align="center">:construction: This project is still a work in progress :construction:</p><br/>
+</div>
+<div>
+
 **Disclaimer:** This project is not ready yet. Some of the parts may be broken.
 I will keep on adding new features when I have time.
 
