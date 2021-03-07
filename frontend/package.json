@@ -13,6 +13,7 @@
     "antd": "4.13.1",
     "babel-plugin-import": "1.13.0",
     "customize-cra": "^1.0.0",
+    "eslint_d": "^10.0.4",
     "googleapis": "^47.0.0",
     "i18n-js": "^3.8.0",
     "prettier": "^1.19.1",
