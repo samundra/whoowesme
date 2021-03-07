@@ -11,6 +11,10 @@ components/*/*.js
 components/*/*.jsx
 components/*/*.ts
 components/*/*.tsx
+node_modules/*
+.vscode
+.storybook
+build/
 .gitignore
 .npmignore
 .prettierignore
@@ -19,3 +23,4 @@ components/*/*.tsx
 .eslintignore
 **/*.yml
 components/style/color/*.less
+.env*
