@@ -1,8 +1,8 @@
 ---
 inject: true
 to: src/App.tsx
-before: "} from 'Pages'"
+before: "{ Provider }"
 skip_if: <%= h.changeCase.pascalCase(name) %>
 eof_last: false
 ---
-  <%= h.changeCase.pascalCase(name) -%>,
+import  <%= h.changeCase.pascalCase(name) -%> from 'Pages/<%= h.changeCase.pascalCase(name) -%>'
