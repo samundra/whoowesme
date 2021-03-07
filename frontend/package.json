@@ -16,7 +16,7 @@
     "googleapis": "^47.0.0",
     "i18n-js": "^3.8.0",
     "prettier": "^1.19.1",
-    "react": "16.13.0",
+    "react": "^17.0.1",
     "react-app-rewired": "^2.1.6",
     "react-dom": "16.13.0",
     "react-hot-loader": "4.12.19",
