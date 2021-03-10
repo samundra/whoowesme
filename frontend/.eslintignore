@@ -12,4 +12,5 @@ lib/**/*
 node_modules
 _site
 dist
+build
 **/*.d.ts
