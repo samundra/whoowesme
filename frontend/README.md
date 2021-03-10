@@ -43,7 +43,7 @@ Install hygen `npm install -g hygen` Install eslint_d `npm install -d eslint_d`
 
 ```bash
 $ hygen comp new --name {NewComponentName}
-$ hygen page new --name {NewPageName} --routePath "/user/1"
+$ hygen page new --name {NewPageName} --routePath "/user/add"
 
 ## Example
 # hygen page new ManageOrder --routePath "user/manage-order"

@@ -50,7 +50,7 @@ const AddNewCategoryForm: React.FunctionComponent<Props> = () => {
 
   const onFinish = (values: Store) => {
     console.log({ values })
-    const { tag_label: label, tag_value: value } = values
+    const { taglabel: label, tagvalue: value } = values
 
     if (label !== '' && value !== '') {
       const hasExistingTag = tags.find(t => t.value === value)
@@ -83,8 +83,8 @@ const AddNewCategoryForm: React.FunctionComponent<Props> = () => {
             name="add-category-form"
             onFinish={onFinish}
             initialValues={{
-              tag_label: currentTag.label,
-              tag_value: currentTag.value,
+              taglabel: currentTag.label,
+              tagvalue: currentTag.value,
             }}
           >
             {inputFieldState === 'hide_input' && (
@@ -97,7 +97,7 @@ const AddNewCategoryForm: React.FunctionComponent<Props> = () => {
                 <Col span={10}>
                   <Form.Item
                     label=""
-                    name="tag_label"
+                    name="taglabel"
                     rules={[{ required: true, message: 'Please enter category label' }]}
                   >
                     <Input placeholder="Enter Category Label" />
@@ -108,7 +108,7 @@ const AddNewCategoryForm: React.FunctionComponent<Props> = () => {
                     <Col span={22}>
                       <Form.Item
                         label=""
-                        name="tag_value"
+                        name="tagvalue"
                         rules={[{ required: true, message: 'Please enter category value' }]}
                       >
                         <Input placeholder="Enter Category Value" />
