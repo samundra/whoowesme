@@ -2,6 +2,7 @@
   "name": "whooweme-ui",
   "license": "MIT",
   "version": "0.5.0",
+  "main": "index.js",
   "private": true,
   "dependencies": {
     "@ant-design/compatible": "^1.0.8",
@@ -28,7 +29,6 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
-    "eslint_d": "^10.0.4",
     "@babel/core": "7.8.3",
     "@storybook/addon-actions": "5.3.14",
     "@storybook/addon-docs": "5.3.14",
@@ -43,11 +43,11 @@
     "@types/styled-components": "5.0.1",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
-    "babel-loader": "8.0.6",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
+    "eslint_d": "^10.0.4",
     "husky": "4.2.3",
     "less": "^3.12.2",
     "less-loader": "^7.0.2",
