@@ -5,6 +5,7 @@ import { Spin, Input, Form, Button, message } from 'antd'
 import { FormItemProps } from 'antd/lib/form'
 import { Store } from 'rc-field-form/lib/interface'
 import { useHistory } from 'react-router-dom'
+import AuthService from '../../../Services/auth-service'
 
 type Props = {}
 
@@ -16,10 +17,11 @@ const Login: React.FunctionComponent<Props> = () => {
   const [usernameValidateStatus, setUsernameValidateStatus] = useState<FormItemProps['validateStatus']>('')
   const [passwordValidateStatus, setPasswordValidateStatus] = useState<FormItemProps['validateStatus']>('')
 
-  const onUsernameChange = (value: string): void => {
-    const feedback = value === 'demo' ? 'success' : 'error'
-    setUsernameValidateStatus(feedback)
-  }
+  // const onEmailChange = (value: string): void => {
+  //   // const feedback = value === 'demo' ? 'success' : 'error'
+  //   // setUsernameValidateStatus(feedback)
+  //   console.log({ value })
+  // }
 
   const onPasswordChange = (value: string): void => {
     const feedback = value === 'demo' ? 'success' : 'error'
@@ -29,12 +31,19 @@ const Login: React.FunctionComponent<Props> = () => {
   const onFinish = (values: Store): void => {
     console.log({ values })
     setLoading(true)
-    const { username, password } = values
+    const { email, password } = values
 
     // TODO: Login with username, password
     // attempt login with credentials
-    console.log({ username, password })
-    if (username === 'demo' && password === 'demo') {
+    console.log({ email, password })
+    AuthService()
+      .attemptLogin(email, password)
+      .then(data => {
+        console.log({ data, logged: true })
+      })
+      .catch(error => console.error(error))
+
+    if (email === 'demo' && password === 'demo') {
       message.success('Logged in successfully.', 0.5)
       // Redirect to login after success:
       history.push('/dashboard')
@@ -49,15 +58,15 @@ const Login: React.FunctionComponent<Props> = () => {
         <img src="/img/logo.png" alt="Who owes me" />
       </Form.Item>
       <Form.Item
-        name="username"
+        name="email"
         hasFeedback
         validateStatus={usernameValidateStatus}
-        rules={[{ required: true, message: 'Please enter username' }]}
+        rules={[{ required: true, message: 'Please enter email' }]}
       >
         <Input
           prefix={<UserOutlined />}
-          placeholder="Username"
-          onChange={(e): void => onUsernameChange(e.currentTarget.value)}
+          placeholder="Enter email"
+          // onChange={(e): void => onEmailChange(e.currentTarget.value)}
         />
       </Form.Item>
       <Form.Item
