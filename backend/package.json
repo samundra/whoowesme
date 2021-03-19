@@ -1,9 +1,10 @@
 {
-  "name": "backend",
+  "name": "who-api",
   "version": "0.4.0",
   "description": "API for whoowesme",
   "author": "Samundra Shrestha",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
