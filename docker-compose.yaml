@@ -30,8 +30,8 @@ services:
       - "./frontend:/app"
       - "./frontend/node_modules:/app/node_modules"
     environment:
-      - "REACT_APP_API_BASEURI=http://api.whoowesme.local"
-      - "REACT_APP_ENV=development"
+      - "API_BASEURI=http://api.whoowesme.local"
+      - "APP_PORT=8000"
     ports:
       - "8000"
     labels:

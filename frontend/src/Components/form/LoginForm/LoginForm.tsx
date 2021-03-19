@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { LoadingOutlined, LockOutlined, UserOutlined } from '@ant-design/icons'
 import '@ant-design/compatible/assets/index.css'
-import { Spin, Input, Form, Button, message } from 'antd'
-import { FormItemProps } from 'antd/lib/form'
+import { Spin, Input, Form, Button, message, FormItemProps } from 'antd'
 import { Store } from 'rc-field-form/lib/interface'
 import { useHistory } from 'react-router-dom'
+import AuthService from '../../../Services/auth-service'
 
 type Props = {}
 
@@ -12,14 +12,8 @@ const SpinnerIcon = <LoadingOutlined style={{ fontSize: '24px', color: '#ffffff'
 
 const Login: React.FunctionComponent<Props> = () => {
   const [loading, setLoading] = useState(false)
-  const history = useHistory()
-  const [usernameValidateStatus, setUsernameValidateStatus] = useState<FormItemProps['validateStatus']>('')
   const [passwordValidateStatus, setPasswordValidateStatus] = useState<FormItemProps['validateStatus']>('')
-
-  const onUsernameChange = (value: string): void => {
-    const feedback = value === 'demo' ? 'success' : 'error'
-    setUsernameValidateStatus(feedback)
-  }
+  const history = useHistory()
 
   const onPasswordChange = (value: string): void => {
     const feedback = value === 'demo' ? 'success' : 'error'
@@ -29,12 +23,19 @@ const Login: React.FunctionComponent<Props> = () => {
   const onFinish = (values: Store): void => {
     console.log({ values })
     setLoading(true)
-    const { username, password } = values
+    const { email, password } = values
 
     // TODO: Login with username, password
     // attempt login with credentials
-    console.log({ username, password })
-    if (username === 'demo' && password === 'demo') {
+    console.log({ email, password })
+    AuthService()
+      .attemptLogin(email, password)
+      .then(data => {
+        console.log({ data, logged: true })
+      })
+      .catch(error => console.error(error))
+
+    if (email === 'demo' && password === 'demo') {
       message.success('Logged in successfully.', 0.5)
       // Redirect to login after success:
       history.push('/dashboard')
@@ -48,23 +49,14 @@ const Login: React.FunctionComponent<Props> = () => {
       <Form.Item style={{ textAlign: 'center' }}>
         <img src="/img/logo.png" alt="Who owes me" />
       </Form.Item>
-      <Form.Item
-        name="username"
-        hasFeedback
-        validateStatus={usernameValidateStatus}
-        rules={[{ required: true, message: 'Please enter username' }]}
-      >
-        <Input
-          prefix={<UserOutlined />}
-          placeholder="Username"
-          onChange={(e): void => onUsernameChange(e.currentTarget.value)}
-        />
+      <Form.Item name="email" hasFeedback rules={[{ required: true, message: 'Please enter email' }]}>
+        <Input prefix={<UserOutlined />} placeholder="Enter email" />
       </Form.Item>
       <Form.Item
         hasFeedback
         name="password"
-        validateStatus={passwordValidateStatus}
         rules={[{ required: true, message: 'Please enter password' }]}
+        validateStatus={passwordValidateStatus}
       >
         <Input
           prefix={<LockOutlined />}
