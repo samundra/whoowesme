@@ -22,18 +22,18 @@ project will be home for those money.
 
 ### How to setup this project in local machine?
 
-```txt
-- git clone https://github.com/samundra/whoowesme
-- cd whoowesme
-- yarn install
-- yarn run start
+Open `/etc/hosts` and then add `127.0.0.1 whoowesme.local` then follow instruction below
+
+```bash
+$ npm install
+$ npm run start
 ```
 
-Then browse to `http:/localhost:3000`
+Then browse to `http://whoowesme.local`
 
-### Storybooks
+### Storybook for isolated component development
 
-Run storybook with `yarn run storybook` and then follow on-screen guide to open storybook page
+Run storybook with `npm run storybook` and then follow on-screen guide to open storybook page
 
 ### Hygen Code Generator
 
@@ -55,9 +55,3 @@ Making changes to Generators If you make changes to generators and have to commi
 ```bash
 $ git commit -m 'commit message' --no-verify
 ```
-
-### TODO
-
-#### Backend (API)
-
-#### Frontend (UI)
