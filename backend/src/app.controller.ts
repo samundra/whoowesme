@@ -27,6 +27,8 @@ export class AppController {
 
   @Get('health')
   async healthCheck() {
-    return 'OK'
+    return {
+      status: 'OK',
+    }
   }
 }

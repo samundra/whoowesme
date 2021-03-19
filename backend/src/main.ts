@@ -6,7 +6,7 @@ import { NestExpressApplication } from '@nestjs/platform-express/interfaces/nest
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {})
   // see https://expressjs.com/en/guide/behind-proxies.html
-  app.set('trust proxy', 1);
+  app.set('trust proxy', 1)
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -24,7 +24,8 @@ async function bootstrap() {
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   })
 
-  await app.listen(process.env.APP_PORT)
+  const port = +process.env.APP_PORT || 5000
+  await app.listen(port)
 }
 
 bootstrap()
