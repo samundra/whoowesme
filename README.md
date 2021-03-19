@@ -20,10 +20,12 @@ How to get the project up and running for local development
 
 <details><summary>Docker Setup for Development</summary>
 
-**Domains:**
+**Local Development Domains:**
 
-- Frontend: http://whoowesme.local
-- API: http://api.whoowesme.local
+| Title    | URL                        |
+| -------- | -------------------------- |
+| Frontend | http://whoowesme.local     |
+| API      | http://api.whoowesme.local |
 
 Open `/etc/hosts` and enter `127.0.0.1 whoowesme.local api.whoowesme.local`
 
@@ -36,56 +38,62 @@ Create external network that will be used for networking.
 $ docker network create web
 
 # Create external volume
-$ docker volume create who-data
+$ docker volume create whodata
 
 # Run docker containers
 $ docker-compose up -d
 ```
 
-For frontend, wait for this output:
+Wait for containers to get up and running.
+
+Check again to make sure that all containers are running fine without errors
 
 ```bash
-whoowesme-frontend |
-whoowesme-frontend | You can now view whooweme in the browser.
-whoowesme-frontend |
-whoowesme-frontend |   Local:            http://localhost:8000
-whoowesme-frontend |   On Your Network:  http://172.18.0.3:8000
-whoowesme-frontend |
-whoowesme-frontend | Note that the development build is not optimized.
-whoowesme-frontend | To create a production build, use npm run build.
-whoowesme-frontend |
+$ docker ps --format="{{ .ID }}, {{ .Status}} - {{ .Names }}"
+
+## Output
+95e54e9831aa, Up 25 minutes - whoapi
+7962b6101979, Up 39 minutes - whofrontend
+4586684c2c27, Up 39 minutes - whodb
+3b9119ae6b48, Up 39 minutes - whotraefik
 ```
 
-For API, wait for this output:
+If you see output similar to above then it means container are running fine. Visit backend and frontend url to make sure that they are accessible.
+you can check `docker logs whoapi` and `docker logs whofrontend` to make container logs in case you have some error.
+
+For UI, `docker logs whofrontend` should show output similar to what is shown below
 
 ```bash
-whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [NestFactory] Starting Nest application...
-whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [InstanceLoader] AppModule dependencies initialized +70ms
-whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [RoutesResolver] AppController {}: +23ms
-whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [RouterExplorer] Mapped {, GET} route +14ms
-whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [RoutesResolver] CatsController {/cats}: +4ms
-whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [RouterExplorer] Mapped {/cats, GET} route +3ms
-whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [RouterExplorer] Mapped {/cats, POST} route +18ms
-whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [RouterExplorer] Mapped {/cats/docs, GET} route +26ms
-whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [RouterExplorer] Mapped {/cats/:id, GET} route +11ms
-whoowesme-api         | [Nest] 27   - 10/07/2020, 5:36:54 PM   [NestApplication] Nest application successfully started +30ms
+You can now view who-ui in the browser.
+
+  Local:            http://localhost:8000
+  On Your Network:  http://172.18.0.4:8000
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
 ```
 
-Check again to make sure that all containers are running fine without errors:
+For API, `docker logs whoapi` wait for output similar as shown below
 
 ```bash
-$ docker ps
-
-CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS              PORTS                                        NAMES
-3c0bbb41dfcd        traefik:1.5.2-alpine     "/entrypoint.sh --we…"   17 minutes ago      Up 17 minutes       0.0.0.0:80->80/tcp, 0.0.0.0:8080->8080/tcp   whoowesme-web-traefik
-c0518e3769bf        whoowesme_who-api        "npm run start:dev"      17 minutes ago      Up 17 minutes       0.0.0.0:32788->5000/tcp                      whoowesme-api
-38787f196b73        whoowesme_who-frontend   "npm run start"          17 minutes ago      Up 17 minutes       0.0.0.0:32789->8000/tcp                      whoowesme-frontend
+[Nest] 27   - 03/19/2021, 8:42:06 PM   [InstanceLoader] TypeOrmCoreModule dependencies initialized +240ms
+[Nest] 27   - 03/19/2021, 8:42:06 PM   [InstanceLoader] TypeOrmModule dependencies initialized +2ms
+...
+...
+[Nest] 27   - 03/19/2021, 8:42:06 PM   [RouterExplorer] Mapped {/transactions/:id, DELETE} route +5ms
+[Nest] 27   - 03/19/2021, 8:42:06 PM   [RouterExplorer] Mapped {/transactions/:id, PATCH} route +2ms
+[Nest] 27   - 03/19/2021, 8:42:06 PM   [RoutesResolver] AuthController {/auth}: +1ms
+[Nest] 27   - 03/19/2021, 8:42:06 PM   [RouterExplorer] Mapped {/auth/login, POST} route +2ms
+[Nest] 27   - 03/19/2021, 8:42:06 PM   [RoutesResolver] UsersController {/users}: +1ms
+[Nest] 27   - 03/19/2021, 8:42:06 PM   [RouterExplorer] Mapped {/users, GET} route +1ms
+[Nest] 27   - 03/19/2021, 8:42:06 PM   [RouterExplorer] Mapped {/users/me, GET} route +1ms
+[Nest] 27   - 03/19/2021, 8:42:06 PM   [RouterExplorer] Mapped {/users/register, POST} route +2ms
+[Nest] 27   - 03/19/2021, 8:42:06 PM   [NestApplication] Nest application successfully started +16ms
 ```
 
 [Traefik](https://doc.traefik.io) dashboard is available at : `http://localhost:8080/dashboard/#/`
 
 </details>
-
 
 <details><summary>Documentations </summary>
 
