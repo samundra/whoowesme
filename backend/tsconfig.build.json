@@ -1,5 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "target": "esnext",
+  "target": "ESNext",
+  "sourceMap": false,
   "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
 }
