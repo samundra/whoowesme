@@ -21,11 +21,11 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
-  who-frontend:
+  whofrontend:
     build:
       context: "."
       dockerfile: "./.docker/frontend/Dockerfile"
-    container_name: "who-frontend"
+    container_name: "whofrontend"
     volumes:
       - "./frontend:/app"
       - "./frontend/node_modules:/app/node_modules"
@@ -43,8 +43,8 @@ services:
     command: "npm run start"
     tty: "true"
 
-  who-api:
-    container_name: "who-api"
+  whoapi:
+    container_name: "whoapi"
     build:
       context: "."
       dockerfile: "./.docker/backend/Dockerfile"
@@ -67,9 +67,9 @@ services:
     command: "npm run start:dev"
     tty: true
 
-  who-db:
+  whodb:
     image: "postgres:12.3"
-    container_name: "who-db"
+    container_name: "whodb"
     ports:
       - "5432:5432"
     environment:
@@ -80,9 +80,9 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
     volumes:
-      - "who-data:/var/lib/postgres/data"
+      - "whodata:/var/lib/postgres/data"
 
 volumes:
-  who-data:
+  whodata:
     external: true
 
