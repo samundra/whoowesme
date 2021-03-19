@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { LoadingOutlined, LockOutlined, UserOutlined } from '@ant-design/icons'
 import '@ant-design/compatible/assets/index.css'
-import { Spin, Input, Form, Button, message } from 'antd'
-import { FormItemProps } from 'antd/lib/form'
+import { Spin, Input, Form, Button, message, FormItemProps } from 'antd'
 import { Store } from 'rc-field-form/lib/interface'
 import { useHistory } from 'react-router-dom'
 import AuthService from '../../../Services/auth-service'
@@ -13,15 +12,8 @@ const SpinnerIcon = <LoadingOutlined style={{ fontSize: '24px', color: '#ffffff'
 
 const Login: React.FunctionComponent<Props> = () => {
   const [loading, setLoading] = useState(false)
-  const history = useHistory()
-  const [usernameValidateStatus, setUsernameValidateStatus] = useState<FormItemProps['validateStatus']>('')
   const [passwordValidateStatus, setPasswordValidateStatus] = useState<FormItemProps['validateStatus']>('')
-
-  // const onEmailChange = (value: string): void => {
-  //   // const feedback = value === 'demo' ? 'success' : 'error'
-  //   // setUsernameValidateStatus(feedback)
-  //   console.log({ value })
-  // }
+  const history = useHistory()
 
   const onPasswordChange = (value: string): void => {
     const feedback = value === 'demo' ? 'success' : 'error'
@@ -57,23 +49,14 @@ const Login: React.FunctionComponent<Props> = () => {
       <Form.Item style={{ textAlign: 'center' }}>
         <img src="/img/logo.png" alt="Who owes me" />
       </Form.Item>
-      <Form.Item
-        name="email"
-        hasFeedback
-        validateStatus={usernameValidateStatus}
-        rules={[{ required: true, message: 'Please enter email' }]}
-      >
-        <Input
-          prefix={<UserOutlined />}
-          placeholder="Enter email"
-          // onChange={(e): void => onEmailChange(e.currentTarget.value)}
-        />
+      <Form.Item name="email" hasFeedback rules={[{ required: true, message: 'Please enter email' }]}>
+        <Input prefix={<UserOutlined />} placeholder="Enter email" />
       </Form.Item>
       <Form.Item
         hasFeedback
         name="password"
-        validateStatus={passwordValidateStatus}
         rules={[{ required: true, message: 'Please enter password' }]}
+        validateStatus={passwordValidateStatus}
       >
         <Input
           prefix={<LockOutlined />}
