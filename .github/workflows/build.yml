@@ -1,0 +1,82 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  deploy-commit-draft:
+    name: Deploy Draft to Netlify
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref != 'refs/heads/master'
+    env:
+      REACT_APP_API_BASEURL: "http://api.whoowesme.local"
+      working-directory: ./frontend
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+
+      - name: Frontend directory
+        run: ls -al
+        working-directory: ${{env.working-directory}}
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ${{env.working-directory}}
+
+      - name: Run Lint && Build
+        run: |
+          npm run lint
+          npm run build
+        working-directory: ${{env.working-directory}}
+
+      - name: Netlify Deploy Action
+        uses: South-Paw/action-netlify-deploy@v1.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+          build-dir: ${{env.working-directory}}/build
+          draft: true
+          comment-on-commit: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SIDE_ID }}
+
+
+  publish-ui:
+    name: Deploy develop to Netlify
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+    env:
+      REACT_APP_API_BASEURL: "http://api.whoowesme.local"
+      working-directory: ./frontend
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+
+      - name: Frontend directory
+        run: ls -al
+        working-directory: ${{env.working-directory}}
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ${{env.working-directory}}
+
+      - name: Run Lint && Build
+        run: |
+          npm run lint
+          npm run build
+        working-directory: ${{env.working-directory}}
+
+      - name: Netlify Deploy Action
+        uses: South-Paw/action-netlify-deploy@v1.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+          build-dir: ${{env.working-directory}}/build
+          comment-on-commit: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SIDE_ID }}
