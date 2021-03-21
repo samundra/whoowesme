@@ -51,7 +51,7 @@ function overrideExtra(config, env) {
     }
 
     config.module.rules.push({
-      test: /\.(stories|story)\.[tj]sx?$/,
+      test: /\.(stories)\.tsx?$/,
       loaders: [
         {
           loader: require.resolve('@storybook/source-loader'),
