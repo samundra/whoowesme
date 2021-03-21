@@ -3,8 +3,8 @@ import { Row, Col } from 'antd'
 import styled from 'styled-components'
 
 type Props = {
-  label?: string
-  child?: React.ReactNode
+  label: string
+  child: React.ReactNode
 }
 
 const InputBox: React.FunctionComponent<Props> = ({ label, child }) => {
