@@ -14,10 +14,12 @@ export default (configService: ConfigService): TypeOrmModuleOptions => ({
   poolErrorHandler: error => {
     console.log('Connection Pool error in database')
     console.error(error)
+    // Stop as we are unable to connect to database
+    process.exit(2)
   },
   entities: [User, Transaction],
   logging: ['query'],
   logger: 'advanced-console',
   // Set it to false on production
-  synchronize: configService.get<boolean>('DATABASE_SYNCHRONIZE', true),
+  synchronize: configService.get<boolean>('DB_SYNCHRONIZE', Boolean(process.env.DB_SYNCHRONIZE)),
 })
