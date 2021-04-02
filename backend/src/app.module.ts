@@ -13,9 +13,10 @@ import { ConfigService } from '@nestjs/config'
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      envFilePath: ['.env.development.local', '.env.development'],
       load: [AuthConfig],
       isGlobal: true,
+      ignoreEnvFile: false, // explicitly load env from .env file
     }),
     TransactionsModule,
     UsersModule,

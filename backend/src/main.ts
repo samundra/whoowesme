@@ -1,7 +1,8 @@
 import { NestFactory } from '@nestjs/core'
 import { ValidationPipe } from '@nestjs/common'
-import { AppModule } from './app.module'
+import { SwaggerModule, DocumentBuilder, SwaggerCustomOptions } from '@nestjs/swagger'
 import { NestExpressApplication } from '@nestjs/platform-express/interfaces/nest-express-application.interface'
+import { AppModule } from './app.module'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {})
@@ -23,6 +24,21 @@ async function bootstrap() {
     origin: [process.env.FRONTEND_ORIGIN],
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   })
+
+  const config = new DocumentBuilder()
+    .setVersion('1.0')
+    .addTag('transactions')
+    .build()
+
+  const customOptions: SwaggerCustomOptions = {
+    swaggerOptions: {
+      persistAuthorization: true,
+    },
+    customSiteTitle: 'API Specs',
+  }
+
+  const document = SwaggerModule.createDocument(app, config)
+  SwaggerModule.setup('api', app, document, customOptions)
 
   const port = +process.env.APP_PORT || 5000
   await app.listen(port)
