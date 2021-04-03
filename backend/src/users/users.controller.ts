@@ -5,7 +5,9 @@ import { CreateUserDto } from './dto/create-user.dto'
 import { Response } from 'express'
 import { User } from './entity/user.entity'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
+import { ApiTags, ApiResponse, ApiUnauthorizedResponse, ApiExtension, ApiHeader } from '@nestjs/swagger'
 
+@ApiTags('users')
 @Controller('users')
 @UseGuards(RolesGuard)
 export class UsersController {
@@ -16,6 +18,12 @@ export class UsersController {
     return await this.userService.findAll()
   }
 
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'Authorization token',
+  })
+  @ApiResponse({ status: 200, description: 'Return currently active user profile' })
+  @ApiUnauthorizedResponse()
   @UseGuards(JwtAuthGuard)
   @Get('me')
   async getProfile(@Request() req) {

@@ -8,6 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {})
   // see https://expressjs.com/en/guide/behind-proxies.html
   app.set('trust proxy', 1)
+  app.setGlobalPrefix('v1')
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -26,8 +27,11 @@ async function bootstrap() {
   })
 
   const config = new DocumentBuilder()
-    .setVersion('1.0')
-    .addTag('transactions')
+    .setTitle('Whoowesme API')
+    .setDescription('All API')
+    .addServer('http://api.whoowesme.local/v1/', 'version 1')
+    .addBearerAuth()
+    .setVersion('1.0.0')
     .build()
 
   const customOptions: SwaggerCustomOptions = {
