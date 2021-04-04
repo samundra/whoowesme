@@ -29,7 +29,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Whoowesme API')
     .setDescription('All API')
-    .addServer('http://api.whoowesme.local/v1/', 'version 1')
+    .addServer('https://api.whoowesme.local/v1/', 'v1')
     .addBearerAuth()
     .setVersion('1.0.0')
     .build()
