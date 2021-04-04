@@ -5,7 +5,7 @@ import { CreateUserDto } from './dto/create-user.dto'
 import { Response } from 'express'
 import { User } from './entity/user.entity'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
-import { ApiTags, ApiResponse, ApiUnauthorizedResponse, ApiExtension, ApiHeader } from '@nestjs/swagger'
+import { ApiTags, ApiResponse, ApiUnauthorizedResponse, ApiHeader } from '@nestjs/swagger'
 
 @ApiTags('users')
 @Controller('users')
