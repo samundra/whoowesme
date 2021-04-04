@@ -21,7 +21,10 @@ import { TransactionsService } from './transactions.service'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
 import { UpdateTransactionDto } from './dto/update-transaction.dto'
 import { PaginationQueryDto } from '../common/pagination-query.dto'
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger'
 
+@ApiBearerAuth()
+@ApiTags('transactions')
 @Controller('transactions')
 @UseGuards(JwtAuthGuard)
 export class TransactionsController {

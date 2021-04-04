@@ -1,5 +1,6 @@
 import { Controller, Get } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
+import { ApiResponse } from '@nestjs/swagger'
 
 @Controller()
 export class AppController {
@@ -18,6 +19,21 @@ export class AppController {
   }
 
   @Get('/')
+  @ApiResponse({
+    status: 200,
+    description: 'Get Home successfully',
+    schema: {
+      type: 'object',
+      example: {
+        status: 'OK',
+        version: '1.0.0',
+      },
+      properties: {
+        status: { type: 'string' },
+        version: { type: 'string' },
+      },
+    },
+  })
   async home() {
     return {
       status: 'OK',
@@ -25,7 +41,22 @@ export class AppController {
     }
   }
 
-  @Get('health')
+  @Get('/health')
+  @ApiResponse({
+    status: 200,
+    description: 'Healthcheck endpoint',
+    schema: {
+      type: 'object',
+      example: {
+        status: 'OK',
+      },
+      properties: {
+        status: {
+          type: 'object',
+        },
+      },
+    },
+  })
   async healthCheck() {
     return {
       status: 'OK',
