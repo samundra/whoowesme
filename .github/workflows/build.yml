@@ -1,10 +1,19 @@
 name: CI-frontend
 
 on:
-  pull_request:
   push:
     paths:
-    - './frontend/**'
+    - 'frontend/**'
+    - '!frontend/_templates/**'
+    - '!frontend/.docker/**'
+    - '!frontend/.storybook/**'
+    - '!frontend/.vscode/**'
+    paths-ignore:
+    - 'backend/**'
+  pull_request:
+    branches:
+      - master
+      - develop
 
 jobs:
   deploy-commit-draft:
