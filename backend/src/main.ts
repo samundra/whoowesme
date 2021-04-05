@@ -3,13 +3,15 @@ import { ValidationPipe } from '@nestjs/common'
 import { SwaggerModule, DocumentBuilder, SwaggerCustomOptions } from '@nestjs/swagger'
 import { NestExpressApplication } from '@nestjs/platform-express/interfaces/nest-express-application.interface'
 import { AppModule } from './app.module'
+import { ApiLogger } from './logger/logger.service'
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    logger: console,
-  })
+  const app = await NestFactory.create<NestExpressApplication>(AppModule)
+  app.useLogger(new ApiLogger())
+
   // see https://expressjs.com/en/guide/behind-proxies.html
   app.set('trust proxy', 1)
+
   app.setGlobalPrefix('v1')
 
   app.useGlobalPipes(
