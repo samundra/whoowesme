@@ -8,8 +8,6 @@ on:
     - '!frontend/.docker/**'
     - '!frontend/.storybook/**'
     - '!frontend/.vscode/**'
-    paths-ignore:
-    - 'backend/**'
   pull_request:
     branches:
       - master
