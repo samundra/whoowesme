@@ -1,4 +1,16 @@
-import { Body, Controller, Get, HttpStatus, Post, Res, SetMetadata, Request, UseGuards } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Post,
+  Res,
+  SetMetadata,
+  Request,
+  UseGuards,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common'
 import { UsersService } from './users.service'
 import { RolesGuard } from '../roles.guard'
 import { CreateUserDto } from './dto/create-user.dto'
@@ -32,7 +44,45 @@ export class UsersController {
 
   @Post('/register')
   @SetMetadata('roles', ['guest'])
+  @UsePipes(ValidationPipe)
+  @ApiResponse({
+    status: 500,
+    description: 'Internal server error',
+    schema: {
+      type: 'object',
+      example: {
+        statusCode: '500',
+        message: 'Internal server error',
+      },
+      properties: {
+        statusCode: { type: 'string', default: 500 },
+        message: { type: 'string', default: 'Internal server error' },
+      },
+    },
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request',
+    schema: {
+      type: 'object',
+      example: {
+        statusCode: '400',
+        message: ['property firstName should not exist', 'property lastName should not exist'],
+        error: 'Bad Request',
+      },
+      properties: {
+        statusCode: { type: 'string', default: '400' },
+        message: {
+          type: 'array',
+          title: 'array of error messages',
+          items: { type: 'string' },
+        },
+        error: { type: 'string', default: 'Bad Request' },
+      },
+    },
+  })
   async register(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
+    // TODO: Add logger here
     await this.userService.create(createUserDto)
 
     res.status(HttpStatus.CREATED).json({
