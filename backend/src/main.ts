@@ -5,7 +5,9 @@ import { NestExpressApplication } from '@nestjs/platform-express/interfaces/nest
 import { AppModule } from './app.module'
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {})
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    logger: console,
+  })
   // see https://expressjs.com/en/guide/behind-proxies.html
   app.set('trust proxy', 1)
   app.setGlobalPrefix('v1')
@@ -43,6 +45,10 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('api', app, document, customOptions)
+
+  // Starts listening for shutdown hooks
+  // Enable with caution: https://docs.nestjs.com/fundamentals/lifecycle-events#application-shutdown
+  // app.enableShutdownHooks()
 
   const port = +process.env.APP_PORT || 5000
   await app.listen(port)

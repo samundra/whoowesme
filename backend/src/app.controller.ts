@@ -21,7 +21,7 @@ export class AppController {
   @Get('/')
   @ApiResponse({
     status: 200,
-    description: 'Get Home successfully',
+    description: 'Root endpoint',
     schema: {
       type: 'object',
       example: {
@@ -29,8 +29,8 @@ export class AppController {
         version: '1.0.0',
       },
       properties: {
-        status: { type: 'string' },
-        version: { type: 'string' },
+        status: { type: 'string', default: 'OK' },
+        version: { type: 'string', default: '1.0.0' },
       },
     },
   })
@@ -51,9 +51,7 @@ export class AppController {
         status: 'OK',
       },
       properties: {
-        status: {
-          type: 'object',
-        },
+        status: { type: 'string', default: 'OK' },
       },
     },
   })
