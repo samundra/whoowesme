@@ -9,6 +9,7 @@ import { ConfigModule } from '@nestjs/config'
 import TypeOrmConfig from './config/typeorm.config'
 import AuthConfig from './config/auth.config'
 import { ConfigService } from '@nestjs/config'
+import { LoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ConfigService } from '@nestjs/config'
         ...TypeOrmConfig(configService),
       }),
     }),
+    LoggerModule,
   ],
   controllers: [AppController],
   providers: [AppService],
