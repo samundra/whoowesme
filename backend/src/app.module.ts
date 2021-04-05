@@ -6,15 +6,15 @@ import { TransactionsModule } from './transactions/transactions.module'
 import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
 import { ConfigModule } from '@nestjs/config'
-import TypeOrmConfig from './config/typeorm.config'
 import AuthConfig from './config/auth.config'
 import { ConfigService } from '@nestjs/config'
-import { LoggerModule } from './logger/logger.module';
+import { LoggerModule } from './logger/logger.module'
+import TypeOrmConfig from './config/typeorm.config'
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env.development.local', '.env.development'],
+      envFilePath: ['.env'],
       load: [AuthConfig],
       isGlobal: true,
       ignoreEnvFile: false, // explicitly load env from .env file
