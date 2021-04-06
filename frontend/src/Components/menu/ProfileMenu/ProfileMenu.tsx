@@ -1,13 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
-import {
-  MessageOutlined,
-  PoweroffOutlined,
-  UserOutlined,
-  LockOutlined,
-  LogoutOutlined,
-} from '@ant-design/icons'
+import { PoweroffOutlined, UserOutlined, LockOutlined, LogoutOutlined } from '@ant-design/icons'
 import { Menu, Modal } from 'antd'
 import { translate } from 'i18n'
 import TKeys from 'i18n/translationKey'
@@ -66,10 +60,6 @@ const StyledLogoutButton = styled(StyledMenuLabel)`
 `
 
 type Props = {}
-
-const onMenuItemClick = (key: string): void => {
-  console.log({ key })
-}
 
 const onLogout = (history: H.History): void => {
   const logoutModal = Modal.confirm({

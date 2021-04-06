@@ -4,6 +4,7 @@ import { Row, Col, Input, Button, Form, Alert } from 'antd'
 import { Store } from 'rc-field-form/lib/interface'
 import { AlertProps } from 'antd/lib/alert'
 import userApiService from '../../../Services/user-service'
+import { RuleObject } from 'antd/lib/form'
 
 type Props = {}
 
@@ -124,8 +125,8 @@ const ChangePasswordForm: React.FunctionComponent<Props> = () => {
                 required: true,
                 message: 'Please confirm new password.',
               },
-              ({ getFieldValue }): any => ({
-                validator(_: any, value: string): Promise<any> {
+              ({ getFieldValue }): RuleObject => ({
+                validator(_: RuleObject, value: string): Promise<void> {
                   if (!value || getFieldValue('newPassword') === value) {
                     return Promise.resolve()
                   }
