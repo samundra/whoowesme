@@ -4,6 +4,7 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import SendInvitation from 'Pages/SendInvitation'
 import TransactionList from 'Pages/TransactionList'
 import AddFriend from 'Pages/AddFriend'
+import ChangePassword from 'Pages/ChangePassword'
 import { Provider } from 'react-redux'
 import store from './Store'
 import { PageNotFound, TransactionEdit, ComingSoon, Settings, AddCategory, Profile, Login } from 'Pages'
@@ -44,6 +45,7 @@ const App: React.FunctionComponent<Props> = () => {
             <Route path="/transaction/:id/edit" component={TransactionEdit} />
             <Route path="/settings" component={Settings} />
             <Route path="/add-category" component={AddCategory} />
+            <Route path="/change-password" component={ChangePassword} />
             <Route path="/profile" component={Profile} />
             <Route path="/summary">
               <ComingSoon title="Summary" />

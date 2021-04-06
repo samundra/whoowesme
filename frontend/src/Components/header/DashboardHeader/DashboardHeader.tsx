@@ -24,7 +24,7 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
           </Badge>
         </StyledSettingsMenu>
         <Divider type="vertical" />
-        <Dropdown overlay={<ProfileMenu />} trigger={['click', 'hover']}>
+        <Dropdown overlay={<ProfileMenu />} trigger={['click']}>
           <StyledProfileMenu>
             <Avatar shape="circle" icon={<UserOutlined />} style={{ marginRight: 5 }} />
             {'   '}

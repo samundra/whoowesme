@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
-import { MessageOutlined, PoweroffOutlined, UserOutlined } from '@ant-design/icons'
-import { Icon as LegacyIcon } from '@ant-design/compatible'
+import { PoweroffOutlined, UserOutlined, LockOutlined, LogoutOutlined } from '@ant-design/icons'
 import { Menu, Modal } from 'antd'
 import { translate } from 'i18n'
 import TKeys from 'i18n/translationKey'
@@ -62,19 +61,18 @@ const StyledLogoutButton = styled(StyledMenuLabel)`
 
 type Props = {}
 
-const onMenuItemClick = (key: string): void => {
-  console.log({ key })
-}
-
 const onLogout = (history: H.History): void => {
   const logoutModal = Modal.confirm({
     title: 'Logout',
     content: 'You are about to logout from system.',
-    icon: <LegacyIcon type={'exit'} />,
+    icon: <LogoutOutlined />,
     onCancel: (): void => {
       /** No need to define body */
     },
     onOk: async () => {
+      localStorage.removeItem('access_token')
+      localStorage.removeItem('menu.is_collapsed')
+
       logoutModal.update({
         okButtonProps: { disabled: true },
         cancelButtonProps: { disabled: true },
@@ -107,10 +105,16 @@ const ProfileMenu = (): JSX.Element => {
           </StyledMenuLabel>
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item key="menu.profile.message" onClick={(): void => onMenuItemClick('menu.profile.message')}>
+        <Menu.Item
+          key="menu.profile.changePassword"
+          onClick={(): void => {
+            // onMenuItemClick('menu.profile.changePassword')
+            history.push('/change-password')
+          }}
+        >
           <StyledMenuLabel>
-            <MessageOutlined />
-            <MenuLabelItem>{translate(TKeys.ProfileMenu.message)} </MenuLabelItem>
+            <LockOutlined />
+            <MenuLabelItem>{'Change Password'} </MenuLabelItem>
           </StyledMenuLabel>
         </Menu.Item>
         <Menu.Item key="menu.profile.logout" onClick={(): void => onLogout(history)} style={logoutMenuStyle}>

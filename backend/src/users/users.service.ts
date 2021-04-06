@@ -5,6 +5,9 @@ import { Repository } from 'typeorm'
 import { CreateUserDto } from './dto/create-user.dto'
 import { ApiLogger } from '../logger/logger.service'
 import { UpdateUserDto } from './dto/update-user.dto'
+import { compare, hash } from 'src/common/password-hash'
+import { ChangePasswordDto } from './dto/change-password.dto'
+import { PasswordMismatchException } from 'src/exceptions/PasswordMismatchException'
 @Injectable()
 export class UsersService {
   constructor(
@@ -37,9 +40,13 @@ export class UsersService {
 
   async update(uuid: string, updateUserDto: UpdateUserDto): Promise<User> {
     const user = await this.usersRepository.findOne({ uuid: uuid })
-
     if (!user) {
       throw new NotFoundException(`User #${uuid} not found`)
+    }
+
+    // If we have password request then update the password
+    if (updateUserDto.password && updateUserDto.password.trim().length > 0) {
+      updateUserDto.password = await hash(updateUserDto.password.trim())
     }
 
     const record = await this.usersRepository.preload({
@@ -48,5 +55,28 @@ export class UsersService {
     })
 
     return this.usersRepository.save(record)
+  }
+
+  async changePassword(uuid: string, changePasswordDto: ChangePasswordDto): Promise<User> {
+    const user = await this.usersRepository.findOne({ uuid: uuid })
+    if (!user) {
+      throw new NotFoundException(`User #${uuid} not found`)
+    }
+
+    // Check old password
+    const passwordMatch = await compare(changePasswordDto.oldPassword, user.password)
+    if (false === passwordMatch) {
+      throw new PasswordMismatchException()
+    }
+
+    // If we have password request then update the password
+    if (changePasswordDto.newPassword && changePasswordDto.newPassword.trim().length > 0) {
+      const record = await this.usersRepository.preload({
+        id: user.id,
+        password: await hash(changePasswordDto.newPassword),
+      })
+
+      return this.usersRepository.save(record)
+    }
   }
 }

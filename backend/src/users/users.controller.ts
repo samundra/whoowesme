@@ -11,9 +11,8 @@ import {
   UsePipes,
   ValidationPipe,
   Logger,
-  Param,
-  ParseUUIDPipe,
   Patch,
+  Req,
 } from '@nestjs/common'
 import { UsersService } from './users.service'
 import { RolesGuard } from '../roles.guard'
@@ -22,6 +21,9 @@ import { Response } from 'express'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
 import { ApiTags, ApiResponse, ApiHeader, ApiBearerAuth } from '@nestjs/swagger'
 import { UpdateUserDto } from './dto/update-user.dto'
+import { hash } from 'src/common/password-hash'
+import { ChangePasswordDto } from './dto/change-password.dto'
+import responseError from 'src/common/responseError'
 
 @ApiTags('users')
 @Controller('users')
@@ -100,10 +102,7 @@ export class UsersController {
   }
 
   @Get('me')
-  @ApiHeader({
-    name: 'Authorization',
-    description: 'Authorization token',
-  })
+  @ApiHeader({ name: 'Authorization', description: 'Authorization token' })
   @ApiBearerAuth()
   @ApiResponse({
     status: 200,
@@ -236,7 +235,10 @@ export class UsersController {
   async register(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
     this.logger.log('User register')
     try {
-      const registeredUser = await this.userService.create(createUserDto)
+      const registeredUser = await this.userService.create({
+        ...createUserDto,
+        password: await hash(createUserDto.password),
+      })
       const result = Object.assign({}, registeredUser, { password: null })
 
       delete result.password
@@ -263,7 +265,10 @@ export class UsersController {
     }
   }
 
-  @Patch('/:uuid')
+  @ApiBearerAuth()
+  @ApiHeader({ name: 'Authorization', description: 'Authorization token' })
+  @Patch('/')
+  @UseGuards(JwtAuthGuard)
   @UsePipes(ValidationPipe)
   @ApiResponse({
     status: 200,
@@ -280,18 +285,59 @@ export class UsersController {
       },
     },
   })
-  async update(
-    @Param('uuid', ParseUUIDPipe) uuid: string,
-    @Body() updateUserDto: UpdateUserDto,
-    @Res() res: Response,
-  ) {
-    this.logger.log('Update User')
-    const user = await this.userService.update(uuid, updateUserDto)
+  async update(@Body() updateUserDto: UpdateUserDto, @Req() req, @Res() res: Response) {
+    this.logger.log(`Update User: ${JSON.stringify(req.user)}`)
+    const user = await this.userService.update(req.user.uuid, updateUserDto)
+
+    // Delete record that are not needed
+    const result = Object.assign({}, { ...user })
+    delete result.password
+    delete result.id
 
     res.status(HttpStatus.OK).json({
       statusCode: 200,
       message: 'User information updated successfully.',
-      result: user,
+      result: result,
     })
+  }
+
+  @ApiBearerAuth()
+  @ApiHeader({ name: 'Authorization', description: 'Authorization token' })
+  @Post('/change-password')
+  @UseGuards(JwtAuthGuard)
+  @ApiResponse({ status: 200, description: 'Password changed successfully' })
+  @ApiResponse({
+    status: 422,
+    description: 'Unprocessable Entity',
+    schema: {
+      type: 'object',
+      example: {
+        statusCode: '422',
+        message: 'Old password do not match',
+      },
+      properties: {
+        statusCode: { type: 'string', default: 422 },
+        message: { type: 'string', default: 'Old password do not match' },
+      },
+    },
+  })
+  async changePassword(@Body() changePasswordDto: ChangePasswordDto, @Req() req, @Res() res: Response) {
+    this.logger.log(`Change password requested for user: ${req.user.uuid}`)
+
+    try {
+      const user = await this.userService.changePassword(req.user.uuid, changePasswordDto)
+      // Delete record that are not needed
+      const result = Object.assign({}, { ...user })
+      delete result.password
+      delete result.id
+
+      res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: 'User information updated successfully.',
+        result: result,
+      })
+    } catch (error) {
+      responseError(error, res)
+    }
   }
 }
