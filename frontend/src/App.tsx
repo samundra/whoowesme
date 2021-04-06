@@ -45,7 +45,7 @@ const App: React.FunctionComponent<Props> = () => {
             <Route path="/transaction/:id/edit" component={TransactionEdit} />
             <Route path="/settings" component={Settings} />
             <Route path="/add-category" component={AddCategory} />
-            <Route path="/user/change-password" component={ChangePassword} />
+            <Route path="/change-password" component={ChangePassword} />
             <Route path="/profile" component={Profile} />
             <Route path="/summary">
               <ComingSoon title="Summary" />

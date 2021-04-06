@@ -1,8 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
-import { MessageOutlined, PoweroffOutlined, UserOutlined } from '@ant-design/icons'
-import { LogoutOutlined } from '@ant-design/icons'
+import {
+  MessageOutlined,
+  PoweroffOutlined,
+  UserOutlined,
+  LockOutlined,
+  LogoutOutlined,
+} from '@ant-design/icons'
 import { Menu, Modal } from 'antd'
 import { translate } from 'i18n'
 import TKeys from 'i18n/translationKey'
@@ -110,10 +115,16 @@ const ProfileMenu = (): JSX.Element => {
           </StyledMenuLabel>
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item key="menu.profile.message" onClick={(): void => onMenuItemClick('menu.profile.message')}>
+        <Menu.Item
+          key="menu.profile.changePassword"
+          onClick={(): void => {
+            // onMenuItemClick('menu.profile.changePassword')
+            history.push('/change-password')
+          }}
+        >
           <StyledMenuLabel>
-            <MessageOutlined />
-            <MenuLabelItem>{translate(TKeys.ProfileMenu.message)} </MenuLabelItem>
+            <LockOutlined />
+            <MenuLabelItem>{'Change Password'} </MenuLabelItem>
           </StyledMenuLabel>
         </Menu.Item>
         <Menu.Item key="menu.profile.logout" onClick={(): void => onLogout(history)} style={logoutMenuStyle}>
