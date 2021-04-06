@@ -16,23 +16,7 @@ type Props = {
   loggedIn?: boolean
 }
 
-// TODO: add context to toggle sidebar
-
 const App: React.FunctionComponent<Props> = () => {
-  /** Below comment has to be uncommented when login in complete */
-  // const { loggedIn = false } = props;
-
-  // if (!loggedIn) {
-  //   return (
-  //     <Router>
-  //       <Switch>
-  //         <Route component={Login} />
-  //         {/* <Route component={PageNotFound} /> */}
-  //       </Switch>
-  //     </Router>
-  //   );
-  // }
-
   const collapsed = localStorage.getItem('menu.is_collapsed')
   const openState = collapsed === 'yes'
   const [siderState, setSiderState] = useState(openState)
