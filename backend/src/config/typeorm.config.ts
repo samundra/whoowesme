@@ -5,6 +5,7 @@ import { User } from '../users/entity/user.entity'
 
 export default (configService: ConfigService): TypeOrmModuleOptions => ({
   type: 'postgres',
+  uuidExtension: 'pgcrypto',
   host: configService.get('POSTGRES_HOST', 'localhost'),
   port: configService.get<number>('POSTGRES_PORT', 5432),
   username: configService.get('POSTGRES_USER', 'postgres'),

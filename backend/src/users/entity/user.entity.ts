@@ -13,7 +13,7 @@ export class User {
   @Column({ nullable: false })
   lastName?: string
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, unique: true })
   email: string
 
   @Column({ length: 65 })
@@ -21,6 +21,9 @@ export class User {
 
   @Column({ default: true })
   isActive?: boolean
+
+  @Column({ nullable: true })
+  uuid?: string
 
   @JoinTable()
   @OneToMany(
