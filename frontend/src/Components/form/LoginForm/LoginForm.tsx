@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { LoadingOutlined, LockOutlined, UserOutlined } from '@ant-design/icons'
-import '@ant-design/compatible/assets/index.css'
-import { Spin, Input, Form, Button, message, FormItemProps, Alert } from 'antd'
+import { Spin, Input, Form, Button, message, Alert } from 'antd'
 import { Store } from 'rc-field-form/lib/interface'
 import { useHistory } from 'react-router-dom'
 import AuthService from '../../../Services/auth-service'
@@ -19,14 +18,8 @@ type LoginState = 'INIT' | 'INPROGRESS'
 
 const Login: React.FunctionComponent<Props> = () => {
   const [loading, setLoading] = useState<LoginState>('INIT')
-  const [passwordValidateStatus, setPasswordValidateStatus] = useState<FormItemProps['validateStatus']>('')
   const [errorMessage, setErrorMessage] = useState<undefined | string>(undefined)
   const history = useHistory()
-
-  const onPasswordChange = (value: string): void => {
-    const feedback = value === 'demo' ? 'success' : 'error'
-    setPasswordValidateStatus(feedback)
-  }
 
   const onFinish = async (values: Store): Promise<void> => {
     setLoading('INPROGRESS')
@@ -70,18 +63,8 @@ const Login: React.FunctionComponent<Props> = () => {
       <Form.Item name="email" hasFeedback rules={[{ required: true, message: 'Please enter email' }]}>
         <Input prefix={<UserOutlined />} placeholder="Enter email" />
       </Form.Item>
-      <Form.Item
-        hasFeedback
-        name="password"
-        rules={[{ required: true, message: 'Please enter password' }]}
-        validateStatus={passwordValidateStatus}
-      >
-        <Input
-          prefix={<LockOutlined />}
-          type="password"
-          placeholder="Password"
-          onChange={(e): void => onPasswordChange(e.currentTarget.value)}
-        />
+      <Form.Item hasFeedback name="password" rules={[{ required: true, message: 'Please enter password' }]}>
+        <Input prefix={<LockOutlined />} type="password" placeholder="Password" />
       </Form.Item>
       <Form.Item>
         <Button
@@ -94,10 +77,7 @@ const Login: React.FunctionComponent<Props> = () => {
           Log in
         </Button>
       </Form.Item>
-      <Form.Item>
-        {errorMessage ? <Alert message={errorMessage} type="error" /> : null}
-        <p>username: demo / password: demo</p>
-      </Form.Item>
+      <Form.Item>{errorMessage ? <Alert message={errorMessage} type="error" /> : null}</Form.Item>
     </Form>
   )
 }
