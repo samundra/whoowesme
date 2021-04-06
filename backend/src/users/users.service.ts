@@ -30,9 +30,9 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const user = await this.usersRepository.create(createUserDto)
-    const record = await this.usersRepository.save(user)
 
-    return await this.usersRepository.findOne({ id: record.id })
+    const record = await this.usersRepository.save(user)
+    return this.usersRepository.findOne({ id: record.id })
   }
 
   async update(uuid: string, updateUserDto: UpdateUserDto): Promise<User> {
