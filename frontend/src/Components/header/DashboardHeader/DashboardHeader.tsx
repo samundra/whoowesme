@@ -16,7 +16,7 @@ const DashboardHeader: React.FunctionComponent<Props> = () => {
   return (
     <StyledHeader>
       <HamburgerMenu />
-      <AddNewItem onClick={(): void => history.push('/add-new-item')} />
+      <AddNewItem onClick={(): void => history.push('/transaction/add')} />
       <StyledUserActions>
         <StyledSettingsMenu>
           <Badge count={10} dot={true}>

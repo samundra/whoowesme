@@ -8,14 +8,12 @@ import ChangePassword from 'Pages/ChangePassword'
 import { Provider } from 'react-redux'
 import store from './Store'
 import { PageNotFound, TransactionEdit, ComingSoon, Settings, AddCategory, Profile, Login } from 'Pages'
-import AddNewItem from 'Pages/AddNewItem'
+import TransactionAdd from 'Pages/TransactionAdd'
 import Dashboard from 'Pages/Dashboard'
 import { hot } from 'react-hot-loader/root'
 import { SiderContext } from 'Components/context'
 
-type Props = {
-  loggedIn?: boolean
-}
+type Props = {}
 
 const App: React.FunctionComponent<Props> = () => {
   const collapsed = localStorage.getItem('menu.is_collapsed')
@@ -36,10 +34,9 @@ const App: React.FunctionComponent<Props> = () => {
           }}
         >
           <Switch>
-            <Route path="/login" component={Login} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/add-friend" component={AddFriend} />
-            <Route path="/add-new-item" component={AddNewItem} />
+            <Route path="/transaction/add" component={TransactionAdd} />
             <Route path="/send-invitation" component={SendInvitation} />
             <Route path="/transaction/list" component={TransactionList} />
             <Route path="/transaction/:id/edit" component={TransactionEdit} />
@@ -50,6 +47,9 @@ const App: React.FunctionComponent<Props> = () => {
             <Route path="/summary">
               <ComingSoon title="Summary" />
             </Route>
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/check-api" component={Login} />
+            <Route path="/login" component={Login} />
             <Route path="/" component={Dashboard} />
             <Route component={PageNotFound} />
           </Switch>

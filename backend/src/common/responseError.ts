@@ -6,12 +6,14 @@ const responseError = (error: Error, res: Response) => {
     res.status(HttpStatus.UNPROCESSABLE_ENTITY).json({
       statusCode: HttpStatus.UNPROCESSABLE_ENTITY,
       message: error,
+      error: error,
     })
   }
 
   res.status(HttpStatus.UNPROCESSABLE_ENTITY).json({
     statusCode: HttpStatus.UNPROCESSABLE_ENTITY,
     message: error.message,
+    error: error.message,
   })
 }
 

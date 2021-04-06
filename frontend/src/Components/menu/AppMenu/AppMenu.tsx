@@ -82,7 +82,7 @@ const AppMenu: React.FunctionComponent<Props> = () => {
         </Menu.Item>
         <Menu.Item
           key="add_transaction"
-          onClick={(): void => navigatePage(['add_transaction'], ['manage_transaction'], '/add-new-item')}
+          onClick={(): void => navigatePage(['add_transaction'], ['manage_transaction'], '/transaction/add')}
         >
           <span>{translate(TKeys.Menu.add_transaction)}</span>
         </Menu.Item>

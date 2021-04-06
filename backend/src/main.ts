@@ -26,14 +26,14 @@ async function bootstrap() {
   )
 
   app.enableCors({
-    origin: [process.env.FRONTEND_ORIGIN],
+    origin: [process.env.FRONTEND_ORIGIN, 'https://whooweme.netlify.app', 'http://localhost:5000'],
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   })
 
   const config = new DocumentBuilder()
     .setTitle('Whoowesme API')
     .setDescription('All API')
-    .addServer('https://api.whoowesme.local/v1/', 'v1')
+    .addServer('http://whoapi.samundra.com.np', 'v1')
     .addBearerAuth()
     .setVersion('1.0.0')
     .build()

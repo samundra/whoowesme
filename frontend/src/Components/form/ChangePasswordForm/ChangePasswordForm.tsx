@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { LockOutlined } from '@ant-design/icons'
-import { Row, Col, Input, Button, Form, Alert } from 'antd'
+import { Row, Col, Input, Button, Form, Alert, notification } from 'antd'
 import { Store } from 'rc-field-form/lib/interface'
 import { AlertProps } from 'antd/lib/alert'
 import userApiService from '../../../Services/user-service'
@@ -14,13 +14,13 @@ interface FlashMessage {
 }
 
 const ChangePasswordForm: React.FunctionComponent<Props> = () => {
-  const [msg, setMessages] = useState([])
+  const [errorMsg, setErrorMsg] = useState<string[] | undefined>(undefined)
   const [flash, setFlash] = useState<FlashMessage>({ type: undefined, msg: '' })
 
   const [form] = Form.useForm()
   const onFinish = async (values: Store): Promise<void> => {
     setFlash({ type: undefined, msg: '' })
-    setMessages([])
+    setErrorMsg(undefined)
 
     const { oldPassword, newPassword } = values
     form.setFieldsValue({
@@ -30,24 +30,30 @@ const ChangePasswordForm: React.FunctionComponent<Props> = () => {
     })
     try {
       await userApiService.changePassword(oldPassword, newPassword)
-      setFlash({
-        type: 'success',
-        msg: 'Password changed successfully.',
+      notification.success({
+        message: 'Success',
+        description: 'Password changed successfully.',
       })
     } catch (error) {
-      if (error.response) {
-        const data = error.response?.data
-        setMessages(data.message)
+      notification.error({
+        message: 'Error',
+        description: 'Password changed failed.',
+      })
+      const err = {
+        type: 'error',
+        msg: '',
+      } as FlashMessage
 
-        if (+data.statusCode >= 400 && +data.statusCode <= 500) {
-          setFlash({
-            type: 'error',
-            msg: 'Password change failed. Please fix error and retry.',
-          })
+      if (error.response && error.response.data) {
+        const resp = error.response.data
+        if (+resp.statusCode >= 400 && +resp.statusCode <= 500) {
+          err.msg = resp.message
         }
       } else {
-        setFlash({ type: 'error', msg: error.message })
+        err.msg = error.message
       }
+
+      setFlash(err)
     }
   }
 
@@ -79,10 +85,10 @@ const ChangePasswordForm: React.FunctionComponent<Props> = () => {
       <Col span={24}>
         {flash.type ? <Alert message={flash.msg} type={flash.type} /> : null}
         <br />
-        {msg.length > 0 ? (
+        {errorMsg ? (
           <>
             <ul>
-              {msg.map((m: string) => (
+              {errorMsg.map((m: string) => (
                 <li key={m}>{m}</li>
               ))}
             </ul>

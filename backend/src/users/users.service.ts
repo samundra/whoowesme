@@ -49,11 +49,6 @@ export class UsersService {
       throw new NotFoundException(`User #${id} not found`)
     }
 
-    // If we have password request then update the password
-    if (updateUserDto.password && updateUserDto.password.trim().length > 0) {
-      updateUserDto.password = await hash(updateUserDto.password.trim())
-    }
-
     const record = await this.usersRepository.preload({
       id: user.id,
       ...updateUserDto,
