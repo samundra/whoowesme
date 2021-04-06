@@ -1,35 +1,24 @@
 import axios from 'axios'
+import { AxiosResponse } from 'axios'
 import config from '../config'
 
 interface ApiAuthService {
-  attemptLogin: (email: string, password: string) => Promise<boolean>
+  attemptLogin: <T>(email: string, password: string) => Promise<AxiosResponse<T>>
 }
 
 export default (): ApiAuthService => ({
-  attemptLogin: async (email: string, password: string): Promise<boolean> => {
-    console.log({ email, password, attemptLogin: true })
-
+  attemptLogin: async <T>(email: string, password: string): Promise<AxiosResponse<T>> => {
     try {
-      const accessToken = await axios.post(
+      return axios.post(
         `${config.apiBaseUrl}auth/login`,
-        {
-          email,
-          password,
-        },
+        { email, password },
         {
           timeout: 1000,
-          headers: {
-            'Access-Control-Allow-Origin': ['*'],
-          },
+          headers: { 'Access-Control-Allow-Origin': ['*'] },
         },
       )
-      console.log({ accessToken })
-
-      return true
     } catch (error) {
-      console.error({ error })
+      throw new Error(error)
     }
-
-    return false
   },
 })
