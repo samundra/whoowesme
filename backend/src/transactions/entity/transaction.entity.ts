@@ -1,11 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne } from 'typeorm'
+import { Column, Entity, CreateDateColumn, ManyToOne } from 'typeorm'
 import { User } from '../../users/entity/user.entity'
 import { ApiProperty } from '@nestjs/swagger'
 
 @Entity({ name: 'transactions' })
 export class Transaction {
-  @PrimaryGeneratedColumn()
-  id: number
+  @Column({ nullable: false, primary: true, unique: true, generated: 'uuid' })
+  id: string
 
   @Column({ type: 'numeric', precision: 10, scale: 2 })
   @ApiProperty({ example: 1000, description: 'Amount of transaction' })
@@ -34,6 +34,6 @@ export class Transaction {
   )
   user: User
 
-  @Column({ name: 'userId' })
-  userId: number
+  @Column({ name: 'userId', type: 'uuid' })
+  userId: string
 }

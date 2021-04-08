@@ -20,12 +20,12 @@ export class TransactionsService {
     const { offset, limit } = paginationQueryDto
     return this.transactionRepository.find({
       where: { userId: user.id },
-      skip: offset,
-      take: limit,
+      skip: offset ?? 0,
+      take: limit ?? 10,
     })
   }
 
-  async getTransactionById(id: number, user: User): Promise<Transaction> {
+  async getTransactionById(id: string, user: User): Promise<Transaction> {
     const foundTransaction = await this.transactionRepository.findOne({ where: { id, userId: user.id } })
 
     if (!foundTransaction) {
@@ -41,7 +41,6 @@ export class TransactionsService {
    * @param user
    */
   async create(createTransactionDto: CreateTransactionDto, user: User): Promise<Transaction> {
-    console.log(createTransactionDto instanceof CreateTransactionDto)
     const transaction = this.transactionRepository.create(createTransactionDto)
     await this.transactionRepository.merge(transaction, { userId: user.id })
     return this.transactionRepository.save(transaction)
@@ -52,7 +51,7 @@ export class TransactionsService {
    * @param id
    * @param user
    */
-  async delete(id: number, user: User): Promise<void> {
+  async delete(id: string, user: User): Promise<void> {
     const transaction = await this.transactionRepository.delete({ id, userId: user.id })
 
     if (transaction.affected === 0) {
@@ -66,11 +65,11 @@ export class TransactionsService {
    * @param updateTransactionDto
    * @param user
    */
-  async update(id: number, updateTransactionDto: UpdateTransactionDto, user: User): Promise<Transaction> {
+  async update(id: string, updateTransactionDto: UpdateTransactionDto, user: User): Promise<Transaction> {
     // Remove userId from updateTransactionDto
     const transaction = await this.transactionRepository.preload({
-      id: +id,
-      userId: +user.id,
+      id: id,
+      userId: user.id,
       ...updateTransactionDto,
     })
 

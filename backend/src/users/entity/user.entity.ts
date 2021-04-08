@@ -1,16 +1,16 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, OneToMany } from 'typeorm'
 import { Transaction } from '../../transactions/entity/transaction.entity'
 import { JoinTable } from 'typeorm'
 
 @Entity({ name: 'users' })
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number
+  @Column({ type: 'uuid', nullable: false, primary: true, unique: true, generated: 'uuid' })
+  id: string
 
-  @Column({ nullable: false })
+  @Column({ nullable: true })
   firstName?: string
 
-  @Column({ nullable: false })
+  @Column({ nullable: true })
   lastName?: string
 
   @Column({ nullable: false, unique: true })
@@ -19,11 +19,8 @@ export class User {
   @Column({ length: 65 })
   password: string
 
-  @Column({ default: true })
+  @Column({ default: true, nullable: true })
   isActive?: boolean
-
-  @Column({ nullable: true })
-  uuid?: string
 
   @JoinTable()
   @OneToMany(

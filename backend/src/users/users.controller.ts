@@ -13,6 +13,7 @@ import {
   Logger,
   Patch,
   Req,
+  Query,
 } from '@nestjs/common'
 import { UsersService } from './users.service'
 import { RolesGuard } from '../roles.guard'
@@ -24,6 +25,9 @@ import { UpdateUserDto } from './dto/update-user.dto'
 import { hash } from 'src/common/password-hash'
 import { ChangePasswordDto } from './dto/change-password.dto'
 import responseError from 'src/common/responseError'
+import { GetUser } from 'src/auth/get-user.decorator'
+import { PaginationQueryDto } from 'src/common/pagination-query.dto'
+import { User } from './entity/user.entity'
 
 @ApiTags('users')
 @Controller('users')
@@ -33,7 +37,7 @@ export class UsersController {
 
   constructor(private userService: UsersService) {}
 
-  @Get('/')
+  @Get()
   @ApiHeader({
     name: 'Authorization',
     description: 'Authorization token',
@@ -92,12 +96,19 @@ export class UsersController {
     },
   })
   @UseGuards(JwtAuthGuard)
-  async findAll(@Res() res: Response) {
-    const users = await this.userService.findAll()
-    res.status(HttpStatus.OK).json({
+  async findAll(
+    @Res() res: Response,
+    @Query() paginationQueryDto: PaginationQueryDto,
+  ): Promise<Response<{ statusCode: number; message: string; result: Omit<User, 'password'>[] }>> {
+    const users = await this.userService.findAll(paginationQueryDto)
+
+    // Remove password from user information
+    const usersList = users.map(u => Object.assign(u, { password: undefined })) as Omit<User, 'password'>[]
+
+    return res.status(HttpStatus.OK).json({
       statusCode: 200,
       message: 'List of users',
-      result: users,
+      result: usersList,
     })
   }
 
@@ -285,9 +296,9 @@ export class UsersController {
       },
     },
   })
-  async update(@Body() updateUserDto: UpdateUserDto, @Req() req, @Res() res: Response) {
-    this.logger.log(`Update User: ${JSON.stringify(req.user)}`)
-    const user = await this.userService.update(req.user.uuid, updateUserDto)
+  async update(@Body() updateUserDto: UpdateUserDto, @GetUser() u, @Res() res: Response) {
+    this.logger.log(`Update User: ${JSON.stringify(u)}`)
+    const user = await this.userService.update(u.id, updateUserDto)
 
     // Delete record that are not needed
     const result = Object.assign({}, { ...user })
