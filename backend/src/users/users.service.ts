@@ -8,19 +8,24 @@ import { UpdateUserDto } from './dto/update-user.dto'
 import { compare, hash } from 'src/common/password-hash'
 import { ChangePasswordDto } from './dto/change-password.dto'
 import { PasswordMismatchException } from 'src/exceptions/PasswordMismatchException'
+import { PaginationQueryDto } from 'src/common/pagination-query.dto'
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User) private usersRepository: Repository<User>,
-    private appLogger: ApiLogger,
+    @InjectRepository(User) private readonly usersRepository: Repository<User>,
+    private logger: ApiLogger,
   ) {
-    this.appLogger.setContext('UsersService')
+    this.logger.setContext('UsersService')
   }
 
-  findAll(): Promise<User[]> {
-    this.appLogger.log('Find all users')
+  findAll(paginationQueryDto: PaginationQueryDto): Promise<User[]> {
+    const { offset, limit } = paginationQueryDto
+    this.logger.log(`Find all users, offset: ${offset}, limit: ${limit}`)
 
-    return this.usersRepository.find()
+    return this.usersRepository.find({
+      skip: offset ?? 0,
+      take: limit ?? 10,
+    })
   }
 
   async findOne(email: string): Promise<User | undefined> {
@@ -38,10 +43,10 @@ export class UsersService {
     return this.usersRepository.findOne({ id: record.id })
   }
 
-  async update(uuid: string, updateUserDto: UpdateUserDto): Promise<User> {
-    const user = await this.usersRepository.findOne({ uuid: uuid })
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+    const user = await this.usersRepository.findOne({ id: id })
     if (!user) {
-      throw new NotFoundException(`User #${uuid} not found`)
+      throw new NotFoundException(`User #${id} not found`)
     }
 
     // If we have password request then update the password
@@ -57,10 +62,10 @@ export class UsersService {
     return this.usersRepository.save(record)
   }
 
-  async changePassword(uuid: string, changePasswordDto: ChangePasswordDto): Promise<User> {
-    const user = await this.usersRepository.findOne({ uuid: uuid })
+  async changePassword(id: string, changePasswordDto: ChangePasswordDto): Promise<User> {
+    const user = await this.usersRepository.findOne({ id: id })
     if (!user) {
-      throw new NotFoundException(`User #${uuid} not found`)
+      throw new NotFoundException(`User #${id} not found`)
     }
 
     // Check old password

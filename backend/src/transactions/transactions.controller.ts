@@ -39,7 +39,7 @@ export class TransactionsController {
   }
 
   @Get('/:id')
-  getTransactionById(@Param('id') id: number, @GetUser() user: User): Promise<Transaction> {
+  getTransactionById(@Param('id') id: string, @GetUser() user: User): Promise<Transaction> {
     return this.transactionsService.getTransactionById(id, user)
   }
 
@@ -52,14 +52,14 @@ export class TransactionsController {
 
   @Delete('/:id')
   @HttpCode(204)
-  deleteTransaction(@Param('id') id: number, @GetUser() user: User): Promise<void> {
+  deleteTransaction(@Param('id') id: string, @GetUser() user: User): Promise<void> {
     return this.transactionsService.delete(id, user)
   }
 
   @Patch('/:id')
   @UsePipes(ValidationPipe)
   updateTransaction(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() updateTransactionDto: UpdateTransactionDto,
     @GetUser() user: User,
   ): Promise<Transaction> {
