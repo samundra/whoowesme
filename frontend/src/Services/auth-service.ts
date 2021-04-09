@@ -1,5 +1,4 @@
-import axios from 'axios'
-import { AxiosResponse } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import config from '../config'
 
 interface ApiAuthService {

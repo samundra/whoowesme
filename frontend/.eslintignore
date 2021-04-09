@@ -14,3 +14,5 @@ _site
 dist
 build
 **/*.d.ts
+.docker
+scripts/

@@ -1,9 +1,9 @@
 import React from 'react'
 import DashboardPageLayout from 'Layout/DashboardPageLayout'
-import { Breadcrumb } from 'antd'
 import { Content } from 'Components/common'
-import { Card, Col, Row, Avatar } from 'antd'
+import { Breadcrumb, Card, Col, Row, Avatar } from 'antd'
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons'
+
 const { Meta } = Card
 
 type Props = {}
