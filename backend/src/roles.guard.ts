@@ -5,8 +5,6 @@ import { Observable } from 'rxjs'
 export class RolesGuard implements CanActivate {
   /** @ts-ignore: param context kept to match with signure of canActivate **/
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
-    // const request = context.switchToHttp().getRequest();
-    // return validateRequest(request);
     return true
   }
 }

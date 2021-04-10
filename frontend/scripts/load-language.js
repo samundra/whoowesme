@@ -90,9 +90,6 @@ function readSheets(auth) {
       if (err) return console.log('The API returned an error: ' + err)
       console.log('Finished fetching spreadsheet')
       const worksheets = res.data.sheets.map(item => item.properties.title)
-      //   worksheets.forEach(item => {
-      //     readWorksheet(sheets, item);
-      //   });
       const readedWorksheet = worksheets.map(item => {
         return readWorksheet(sheets, item)
       })
@@ -169,9 +166,9 @@ function readWorksheet(sheets, worksheetName) {
   })
 }
 
-function writeLanguageFile(str, path) {
-  fs.writeFile(path, str, err => {
+function writeLanguageFile(str, filePath) {
+  fs.writeFile(filePath, str, err => {
     if (err) console.error(err)
-    console.log('Finished writing file', path)
+    console.log('Finished writing file', filePath)
   })
 }
