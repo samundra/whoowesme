@@ -59,8 +59,6 @@ const StyledLogoutButton = styled(StyledMenuLabel)`
   }
 `
 
-type Props = {}
-
 const onLogout = (history: H.History): void => {
   const logoutModal = Modal.confirm({
     title: 'Logout',

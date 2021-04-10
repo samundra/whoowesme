@@ -5,7 +5,7 @@ import SettingsForm from 'Components/form/SettingsForm'
 import { Link } from 'react-router-dom'
 import { PageContent, Content } from 'Components/common'
 
-type Props = {}
+type Props = Record<string, unknown>
 
 const Settings: React.FunctionComponent<Props> = () => {
   return (

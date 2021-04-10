@@ -6,8 +6,8 @@ import { UsersModule } from '../users/users.module'
 import { PassportModule } from '@nestjs/passport'
 import { JwtModule } from '@nestjs/jwt'
 import { AuthController } from './auth.controller'
-import { ConfigModule } from '@nestjs/config'
-import { ConfigService } from '@nestjs/config'
+import { ConfigModule , ConfigService } from '@nestjs/config'
+
 
 @Module({
   imports: [

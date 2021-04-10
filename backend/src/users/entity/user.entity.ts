@@ -1,6 +1,5 @@
-import { Column, Entity, OneToMany } from 'typeorm'
+import { Column, Entity, OneToMany, JoinTable } from 'typeorm'
 import { Transaction } from '../../transactions/entity/transaction.entity'
-import { JoinTable } from 'typeorm'
 
 @Entity({ name: 'users' })
 export class User {

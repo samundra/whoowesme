@@ -3,11 +3,6 @@ import { AuthService } from './auth.service'
 import { LocalAuthGuard } from './local-auth.guard'
 import { ApiBody, ApiResponse } from '@nestjs/swagger'
 
-interface AuthLoginParameters {
-  username: string
-  password: string
-}
-
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
