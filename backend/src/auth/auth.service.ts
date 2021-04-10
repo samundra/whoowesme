@@ -19,7 +19,8 @@ export class AuthService {
   async validateUser(email: string, pass: string): Promise<AuthenticatedUser> {
     const user = await this.usersService.findOne(email)
     if (user && (await compare(pass, user.password))) {
-      const { password: _, ...result } = user
+      // @ts-ignore: _unusedPassword is not used
+      const { _unusedPassword, ...result } = user
 
       return result
     }

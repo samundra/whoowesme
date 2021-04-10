@@ -31,7 +31,7 @@ module.exports = {
         '@typescript-eslint/no-duplicate-imports': 'error',
         '@typescript-eslint/explicit-function-return-type': ['error'],
         // https://github.com/typescript-eslint/typescript-eslint/issues/46#issuecomment-470486034
-        '@typescript-eslint/no-unused-vars': [2, { args: 'after-used' }],
+        '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
       },
     },
   ],

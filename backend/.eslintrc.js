@@ -19,12 +19,15 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    "ban-ts-ignore": 0,
     'no-duplicate-imports': 'off',
     '@typescript-eslint/no-duplicate-imports': 'error',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unused-vars': [1, { args: 'none' }],
+    '@typescript-eslint/ban-ts-comment': 'off',
     'import/no-duplicates': 1,
   },
 }
