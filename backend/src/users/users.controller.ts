@@ -332,11 +332,15 @@ export class UsersController {
       },
     },
   })
-  async changePassword(@Body() changePasswordDto: ChangePasswordDto, @Req() req, @Res() res: Response) {
-    this.logger.log(`Change password requested for user: ${req.user.uuid}`)
+  async changePassword(
+    @Body() changePasswordDto: ChangePasswordDto,
+    @GetUser() u: User,
+    @Res() res: Response,
+  ) {
+    this.logger.log(`Change password requested for user: ${u.id}`)
 
     try {
-      const user = await this.userService.changePassword(req.user.uuid, changePasswordDto)
+      const user = await this.userService.changePassword(u.id, changePasswordDto)
       // Delete record that are not needed
       const result = Object.assign({}, { ...user })
       delete result.password
