@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { SaveOutlined } from '@ant-design/icons'
-import '@ant-design/compatible/assets/index.css'
 import { Button, Form, Select, Row, Col } from 'antd'
 
 const { Option } = Select

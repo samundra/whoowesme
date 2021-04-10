@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { useState } from 'react'
-import '@ant-design/compatible/assets/index.css'
 import { PlusOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 import { Tag, message, Button, Row, Input, Form, Col, Tooltip } from 'antd'
 import { Store } from 'rc-field-form/lib/interface'

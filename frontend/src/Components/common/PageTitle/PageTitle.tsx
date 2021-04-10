@@ -1,9 +1,8 @@
 import React from 'react'
-import { Icon as LegacyIcon } from '@ant-design/compatible'
 
 type Props = {
   title: string
-  icon?: string
+  icon?: React.ReactNode
 }
 
 const PageTitle: React.FunctionComponent<Props> = ({ title, ...props }) => {
@@ -12,7 +11,7 @@ const PageTitle: React.FunctionComponent<Props> = ({ title, ...props }) => {
   if (icon) {
     return (
       <h3 {...props}>
-        <LegacyIcon type={icon} /> {title}
+        {icon} {title}
       </h3>
     )
   }

@@ -1,5 +1,4 @@
 import React from 'react'
-import '@ant-design/compatible/assets/index.css'
 import { Input, Form, Button } from 'antd'
 import { Store } from 'rc-field-form/lib/interface'
 
