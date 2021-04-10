@@ -12,7 +12,6 @@ import {
   ValidationPipe,
   Logger,
   Patch,
-  Req,
   Query,
 } from '@nestjs/common'
 import { UsersService } from './users.service'
@@ -342,9 +341,7 @@ export class UsersController {
     try {
       const user = await this.userService.changePassword(u.id, changePasswordDto)
       // Delete record that are not needed
-      const result = Object.assign({}, { ...user })
-      delete result.password
-      delete result.id
+      const result = Object.assign({}, { ...user, password: undefined, id: undefined })
 
       res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
