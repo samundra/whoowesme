@@ -11,8 +11,6 @@ import { addTransaction } from 'Store/transaction/action'
 import transactionService from 'Services/transaction'
 import { TransactionState } from 'Store/transaction/types'
 
-// type TransactionRecord = Transaction & { key: string | number };
-
 type Props = RouteComponentProps & ReduxProps & DispatchProps
 const TransactionList: React.FunctionComponent<Props> = props => {
   const { history } = props

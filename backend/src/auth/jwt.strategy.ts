@@ -28,7 +28,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       throw new UnauthorizedException()
     }
 
-    const u = Object.assign({}, user, { password: undefined })
-    return u
+    return Object.assign({}, user, { password: undefined })
   }
 }
