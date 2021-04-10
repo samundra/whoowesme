@@ -1,6 +1,5 @@
 import React from 'react'
 import { UserOutlined } from '@ant-design/icons'
-import '@ant-design/compatible/assets/index.css'
 import { message, Input, Button, Form } from 'antd'
 import { Store } from 'rc-field-form/lib/interface'
 

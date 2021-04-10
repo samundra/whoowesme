@@ -1,6 +1,5 @@
 import React from 'react'
 import { SaveFilled } from '@ant-design/icons'
-import '@ant-design/compatible/assets/index.css'
 import { Input, Form, DatePicker, Button, Select } from 'antd'
 import { Store } from 'rc-field-form/lib/interface'
 import { useHistory } from 'react-router-dom'

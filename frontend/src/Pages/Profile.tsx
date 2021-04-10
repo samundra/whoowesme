@@ -4,6 +4,7 @@ import { Breadcrumb } from 'antd'
 import { Link } from 'react-router-dom'
 import { PageContent, Content } from 'Components/common'
 import { ProfileForm } from 'Components/form'
+import { UserOutlined } from '@ant-design/icons'
 
 type Props = {}
 
@@ -17,7 +18,7 @@ const Profile: React.FunctionComponent<Props> = () => {
           </Breadcrumb.Item>
           <Breadcrumb.Item>Profile</Breadcrumb.Item>
         </Breadcrumb>
-        <PageContent title="Profile" titleDivider>
+        <PageContent title="Profile" icon={<UserOutlined />} titleDivider>
           <ProfileForm />
         </PageContent>
       </Content>

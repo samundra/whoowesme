@@ -1,3 +1,4 @@
+import { PlusOutlined } from '@ant-design/icons'
 import React from 'react'
 import PageContent from './PageContent'
 
@@ -22,7 +23,7 @@ withTitle.story = {
 }
 
 export const withTitleAndIcon = (): JSX.Element => (
-  <PageContent title="Add new Page" icon="plus">
+  <PageContent title="Add new Page" icon={<PlusOutlined />}>
     Page title with icon and page body.
   </PageContent>
 )
@@ -34,7 +35,7 @@ withTitleAndIcon.story = {
 }
 
 export const withHorizontalDivider = (): JSX.Element => (
-  <PageContent title="Add new Page" icon="plus" titleDivider>
+  <PageContent title="Add new Page" icon={<PlusOutlined />} titleDivider>
     Horizontal bar separator between page title and page body.
   </PageContent>
 )
