@@ -1,14 +1,11 @@
-import axios from '../instance-axios'
-
-interface APIResponse {
-  statusCode: string | number
-  message: string
-}
+import axios from '../instance'
 
 function APIService(): UserService {
   return {
-    changePassword: async (oldPassword: string, newPassword: string): Promise<APIResponse> => {
-      console.log({ oldPassword, newPassword })
+    changePassword: async (
+      oldPassword: string,
+      newPassword: string,
+    ): Promise<APIResponseSuccess<any> | APIResponseError> => {
       return axios.post(`users/change-password`, {
         oldPassword,
         newPassword,
@@ -20,7 +17,10 @@ function APIService(): UserService {
 const apiService = APIService()
 
 export interface UserService {
-  changePassword: (oldPassword: string, newPassword: string) => Promise<APIResponse>
+  changePassword: (
+    oldPassword: string,
+    newPassword: string,
+  ) => Promise<APIResponseSuccess<any> | APIResponseError>
 }
 
 export default apiService

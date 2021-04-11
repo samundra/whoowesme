@@ -54,22 +54,7 @@ const PForm: React.FunctionComponent<Props> = () => {
       >
         <Input placeholder="Enter Lastname" />
       </Form.Item>
-      <Form.Item
-        label="Email"
-        name="email"
-        rules={[
-          {
-            type: 'email',
-            required: true,
-            message: 'Email is required.',
-          },
-        ]}
-      >
-        <Input placeholder="Email" />
-      </Form.Item>
-      <Form.Item label="Password" name="password" rules={[{ required: true, message: 'Enter password' }]}>
-        <Input type="password" placeholder="Enter password" />
-      </Form.Item>
+      <Form.Item label="Email">email@example.org</Form.Item>
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
           <UserOutlined /> Update profile

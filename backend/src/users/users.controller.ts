@@ -61,7 +61,7 @@ export class UsersController {
         ],
       },
       properties: {
-        statusCode: { type: 'string', default: 200 },
+        statusCode: { type: 'number', default: 200 },
         message: { type: 'string', default: 'Loggedin user Information' },
         result: {
           type: 'array',
@@ -89,7 +89,7 @@ export class UsersController {
         message: 'Unauthorized',
       },
       properties: {
-        statusCode: { type: 'string', default: 401 },
+        statusCode: { type: 'number', default: 401 },
         message: { type: 'string', default: 'Unauthorized' },
       },
     },
@@ -131,7 +131,7 @@ export class UsersController {
         },
       },
       properties: {
-        statusCode: { type: 'string', default: 200 },
+        statusCode: { type: 'number', default: 200 },
         message: { type: 'string', default: 'Loggedin user Information' },
         result: {
           type: 'object',
@@ -156,7 +156,7 @@ export class UsersController {
         message: 'Unauthorized',
       },
       properties: {
-        statusCode: { type: 'string', default: 401 },
+        statusCode: { type: 'number', default: 401 },
         message: { type: 'string', default: 'Unauthorized' },
       },
     },
@@ -180,7 +180,7 @@ export class UsersController {
     schema: {
       type: 'object',
       example: {
-        statusCode: '201',
+        statusCode: 201,
         message: 'User has been created. Please verify your email "test@gmail.com" to continue.',
         result: {
           firstName: 'newly',
@@ -191,8 +191,8 @@ export class UsersController {
         },
       },
       properties: {
-        statusCode: { type: 'string', default: 500 },
-        message: { type: 'string', default: 'Internal server error' },
+        statusCode: { type: 'number', default: 201 },
+        message: { type: 'string' },
         result: {
           type: 'object',
           properties: {
@@ -212,11 +212,11 @@ export class UsersController {
     schema: {
       type: 'object',
       example: {
-        statusCode: '500',
+        statusCode: 500,
         message: 'Internal server error',
       },
       properties: {
-        statusCode: { type: 'string', default: 500 },
+        statusCode: { type: 'number', default: 500 },
         message: { type: 'string', default: 'Internal server error' },
       },
     },
@@ -227,18 +227,18 @@ export class UsersController {
     schema: {
       type: 'object',
       example: {
-        statusCode: '400',
+        statusCode: 400,
         message: ['firstName must be a string', 'email must be an email'],
         error: 'Bad Request',
       },
       properties: {
-        statusCode: { type: 'string', default: '400' },
+        statusCode: { type: 'string', default: 400 },
         message: {
           type: 'array',
           title: 'array of error messages',
           items: { type: 'string' },
         },
-        error: { type: 'string', default: 'Bad Request' },
+        error: { type: 'number', default: 'Bad Request' },
       },
     },
   })
@@ -265,6 +265,7 @@ export class UsersController {
         res.status(HttpStatus.BAD_REQUEST).json({
           statusCode: 400,
           message: `Email ${createUserDto.email} already exists. Please use different email to regsiter.`,
+          error: `Email already exists.`,
         })
       } else {
         res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
@@ -275,23 +276,60 @@ export class UsersController {
     }
   }
 
+  @Patch('/')
   @ApiBearerAuth()
   @ApiHeader({ name: 'Authorization', description: 'Authorization token' })
-  @Patch('/')
   @UseGuards(JwtAuthGuard)
   @UsePipes(ValidationPipe)
   @ApiResponse({
     status: 200,
+    description: 'User information updated successfully.',
+    schema: {
+      type: 'object',
+      title: 'response.data',
+      example: {
+        statusCode: 200,
+        message: 'User information updated successfully.',
+        result: {
+          firstName: 'Sam',
+          lastName: 'Shr',
+          email: 'test3dd3kk33@example.com',
+          isActive: true,
+          uuid: '7eeee115-4df0-4159-9a96-b17815625a68',
+        },
+      },
+    },
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request',
+    schema: {
+      title: 'error.response.data',
+      type: 'object',
+      example: {
+        statusCode: 400,
+        message: ['property password should not exist'],
+        error: 'Bad Request',
+      },
+      properties: {
+        statusCode: { type: 'string', default: '400' },
+        message: {
+          type: 'array',
+          title: 'array',
+          items: { type: 'string' },
+        },
+        error: { type: 'string', default: 'Bad Request' },
+      },
+    },
+  })
+  @ApiResponse({
+    status: 500,
     description: 'Internal server error',
     schema: {
       type: 'object',
       example: {
         statusCode: '500',
         message: 'Internal server error',
-      },
-      properties: {
-        statusCode: { type: 'string', default: 500 },
-        message: { type: 'string', default: 'Internal server error' },
       },
     },
   })
@@ -315,19 +353,28 @@ export class UsersController {
   @ApiHeader({ name: 'Authorization', description: 'Authorization token' })
   @Post('/change-password')
   @UseGuards(JwtAuthGuard)
-  @ApiResponse({ status: 200, description: 'Password changed successfully' })
+  @ApiResponse({
+    status: 200,
+    description: 'Password changed successfully',
+    schema: {
+      type: 'object',
+      title: 'error.response.data',
+      example: {
+        statusCode: 200,
+        message: 'Password updated successfully.',
+      },
+    },
+  })
   @ApiResponse({
     status: 422,
     description: 'Unprocessable Entity',
     schema: {
       type: 'object',
+      title: 'error.response.data',
       example: {
-        statusCode: '422',
+        statusCode: 422,
         message: 'Old password do not match',
-      },
-      properties: {
-        statusCode: { type: 'string', default: 422 },
-        message: { type: 'string', default: 'Old password do not match' },
+        error: 'Old password do not match',
       },
     },
   })
@@ -345,8 +392,7 @@ export class UsersController {
 
       res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
-        message: 'User information updated successfully.',
-        result: result,
+        message: 'Password updated successfully.',
       })
     } catch (error) {
       responseError(error, res)

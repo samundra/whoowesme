@@ -31,7 +31,7 @@ const Login: React.FunctionComponent<Props> = () => {
       result = await AuthService().attemptLogin<APILoginResponse>(email, password)
       if (result && result.data) {
         const accessToken = result.data.access_token
-        localStorage.setItem('access_token', accessToken)
+        localStorage.setItem('accesstoken', accessToken)
         message.success('Logged in successfully.', 2)
         setLoading('INIT')
         history.push('/dashboard')

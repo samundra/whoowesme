@@ -2,13 +2,13 @@ import React from 'react'
 import DashboardPageLayout from 'Layout/DashboardPageLayout'
 import { Breadcrumb } from 'antd'
 import { Link } from 'react-router-dom'
-import { AddNewEntryForm } from 'Components/form'
+import { AddTransactionForm } from 'Components/form'
 import { PageContent, Content } from 'Components/common'
 import { PlusOutlined } from '@ant-design/icons'
 
 type Props = {}
 
-const AddNewItem: React.FunctionComponent<Props> = () => {
+const TransactionAdd: React.FunctionComponent<Props> = () => {
   return (
     <DashboardPageLayout>
       <Content>
@@ -16,14 +16,14 @@ const AddNewItem: React.FunctionComponent<Props> = () => {
           <Breadcrumb.Item>
             <Link to="/dashboard">Dashboard</Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item>Add New Item</Breadcrumb.Item>
+          <Breadcrumb.Item>Add Transaction</Breadcrumb.Item>
         </Breadcrumb>
-        <PageContent title="Add New Item" icon={<PlusOutlined />}>
-          <AddNewEntryForm />
+        <PageContent title="Add Transaction" icon={<PlusOutlined />}>
+          <AddTransactionForm />
         </PageContent>
       </Content>
     </DashboardPageLayout>
   )
 }
 
-export default AddNewItem
+export default TransactionAdd
