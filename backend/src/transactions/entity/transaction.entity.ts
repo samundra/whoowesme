@@ -1,6 +1,7 @@
 import { Column, Entity, CreateDateColumn, ManyToOne } from 'typeorm'
 import { User } from '../../users/entity/user.entity'
 import { ApiProperty } from '@nestjs/swagger'
+import { IsDateString } from 'class-validator'
 
 @Entity({ name: 'transactions' })
 export class Transaction {
@@ -20,6 +21,7 @@ export class Transaction {
    * @example 2021-04-03  02:00:00 UTC Timezone
    */
   @Column({ type: 'timestamp with time zone', nullable: true })
+  @IsDateString()
   date: Date
 
   @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })

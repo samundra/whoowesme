@@ -21,11 +21,11 @@ import { Response } from 'express'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
 import { ApiTags, ApiResponse, ApiHeader, ApiBearerAuth } from '@nestjs/swagger'
 import { UpdateUserDto } from './dto/update-user.dto'
-import { hash } from 'src/common/password-hash'
+import { hash } from '../common/password-hash'
 import { ChangePasswordDto } from './dto/change-password.dto'
-import responseError from 'src/common/responseError'
-import { GetUser } from 'src/auth/get-user.decorator'
-import { PaginationQueryDto } from 'src/common/pagination-query.dto'
+import responseError from '../common/responseError'
+import { GetUser } from '../auth/get-user.decorator'
+import { PaginationQueryDto } from '../common/pagination-query.dto'
 import { User } from './entity/user.entity'
 
 @ApiTags('users')
@@ -37,10 +37,6 @@ export class UsersController {
   constructor(private userService: UsersService) {}
 
   @Get()
-  @ApiHeader({
-    name: 'Authorization',
-    description: 'Authorization token',
-  })
   @ApiBearerAuth()
   @ApiResponse({
     status: 200,

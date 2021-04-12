@@ -5,28 +5,25 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { TransactionsModule } from './transactions/transactions.module'
 import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
-import { ConfigModule, ConfigService } from '@nestjs/config'
+import { ConfigModule } from '@nestjs/config'
 import AuthConfig from './config/auth.config'
 import { LoggerModule } from './logger/logger.module'
-import TypeOrmConfig from './config/typeorm.config'
+import * as ormConfig from './config/ormconfig'
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env'],
+      // Load env from .env.test for e2e test cases
+      envFilePath: process.env.NODE_ENV == 'test' ? ['.env.test'] : ['.env'],
       load: [AuthConfig],
       isGlobal: true,
       ignoreEnvFile: false, // explicitly load env from .env file
+      cache: true,
     }),
     TransactionsModule,
     UsersModule,
     AuthModule,
-    TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
-        ...TypeOrmConfig(configService),
-      }),
-    }),
+    TypeOrmModule.forRoot(ormConfig),
     LoggerModule,
   ],
   controllers: [AppController],

@@ -4,19 +4,32 @@ import { User } from '../users/entity/user.entity'
 import { config as dotEnvConfig } from 'dotenv'
 import { ConnectionOptions } from 'typeorm'
 
-dotEnvConfig({
-  path: join(__dirname, '.env'),
+// We cannot use NestJS DI to inject ConfigService for that reason we have to
+// manually load env vars
+const envFilePath =
+  process.env.NODE_ENV == 'test'
+    ? join(__dirname, '..', '..', '.env.test')
+    : join(__dirname, '..', '..', '.env')
+
+const { error } = dotEnvConfig({
+  path: envFilePath,
   encoding: 'utf-8',
+  debug: undefined, // setting it to undefined will treat it as false
 })
 
-const cliOrmConfig = {
+if (error) {
+  console.error(`Error while loading env from environment file ${envFilePath}`)
+  console.error(error)
+}
+
+const ormConfig = {
   type: 'postgres',
-  host: process.env.POSTGRES_HOST || 'localhost',
-  port: Number.parseInt(process.env.POSTGRES_PORT) || 5432,
-  username: process.env.POSTGRES_USER || 'postgres',
-  password: process.env.POSTGRES_PASSWORD || 'postgres',
-  database: process.env.POSTGRES_DATABASE || 'db_whoowesme',
-  connectTimeoutMS: 1800,
+  host: process.env.POSTGRES_HOST,
+  port: +process.env.POSTGRES_PORT || 5432,
+  username: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTGRES_DATABASE,
+  connectTimeoutMS: +process.env.POSTGRES_DB_TIMEOUT || 10 * 1000,
   poolErrorHandler: error => {
     console.log('Connection Pool error in database')
     console.error(error)
@@ -25,10 +38,10 @@ const cliOrmConfig = {
   },
   entities: [User, Transaction],
   dropSchema: false,
-  synchronize: Boolean(process.env.DB_SYNCHRONIZE) || false,
+  synchronize: !!process.env.DB_SYNCHRONIZE,
   logger: process.env.NODE_ENV === 'production' ? 'file' : 'debug',
   logging: ['warn', 'query'],
-  migrations: [join(__dirname, '../migrations/*{.ts,.js}')],
+  migrations: [join(__dirname, '../migrations/*.ts')],
   cli: {
     migrationsDir: 'src/migrations',
   },
@@ -37,4 +50,4 @@ const cliOrmConfig = {
 // We have to export = ormconfig otherwise it won't work when running with npm rum typeorm
 // for details, see https://github.com/nestjs/nest/issues/4990#issuecomment-711444802
 // This does not work --> export default ormconfig
-export = cliOrmConfig
+export = ormConfig

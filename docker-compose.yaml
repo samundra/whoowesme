@@ -82,6 +82,21 @@ services:
     volumes:
       - "whodata:/var/lib/postgres/data"
 
+  whodbtest:
+    image: "postgres:12.3"
+    container_name: "whodbtest"
+    ports:
+      - "5423:5432"
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "db_whoowesmetest"
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.docker.network=web"
+    # volumes:
+    #   - "whodata:/var/lib/postgres/data"
+
 volumes:
   whodata:
     external: true
