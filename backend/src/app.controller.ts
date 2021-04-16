@@ -1,6 +1,7 @@
 import { Controller, Get } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { ApiResponse } from '@nestjs/swagger'
+import * as Package from '../package.json'
 
 @Controller()
 export class AppController {
@@ -8,14 +9,14 @@ export class AppController {
    * Api Version
    * @private
    */
-  private readonly appVersion
+  private readonly appVersion: string
 
   /**
    * Constructor
    * @param configService
    */
   constructor(configService: ConfigService) {
-    this.appVersion = configService.get<string>('APP_VERSION', '1.0.0')
+    this.appVersion = configService.get<string>('APP_VERSION', Package.version)
   }
 
   @Get('/')
@@ -26,15 +27,15 @@ export class AppController {
       type: 'object',
       example: {
         status: 'OK',
-        version: '1.0.0',
+        version: Package.version,
       },
       properties: {
         status: { type: 'string', default: 'OK' },
-        version: { type: 'string', default: '1.0.0' },
+        version: { type: 'string', default: Package.version },
       },
     },
   })
-  async home() {
+  home() {
     return {
       status: 'OK',
       version: this.appVersion,
@@ -55,7 +56,7 @@ export class AppController {
       },
     },
   })
-  async healthCheck() {
+  healthCheck() {
     return {
       status: 'OK',
     }

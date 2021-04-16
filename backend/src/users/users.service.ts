@@ -5,10 +5,10 @@ import { Repository } from 'typeorm'
 import { CreateUserDto } from './dto/create-user.dto'
 import { ApiLogger } from '../logger/logger.service'
 import { UpdateUserDto } from './dto/update-user.dto'
-import { compare, hash } from 'src/common/password-hash'
+import { compare, hash } from '../common/password-hash'
 import { ChangePasswordDto } from './dto/change-password.dto'
-import { PasswordMismatchException } from 'src/exceptions/PasswordMismatchException'
-import { PaginationQueryDto } from 'src/common/pagination-query.dto'
+import { PasswordMismatchException } from '../exceptions/PasswordMismatchException'
+import { PaginationQueryDto } from '../common/pagination-query.dto'
 @Injectable()
 export class UsersService {
   constructor(

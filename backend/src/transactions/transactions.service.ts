@@ -29,7 +29,7 @@ export class TransactionsService {
     const foundTransaction = await this.transactionRepository.findOne({ where: { id, userId: user.id } })
 
     if (!foundTransaction) {
-      throw new NotFoundException(`Transaction with id ${id} was not found`)
+      throw new NotFoundException(`Transaction ${id} not found`)
     }
 
     return foundTransaction

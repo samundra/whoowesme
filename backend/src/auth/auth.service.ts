@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common'
 import { UsersService } from '../users/users.service'
 import { JwtService } from '@nestjs/jwt'
 import { UserLoginDto } from '../users/dto/user-login.dto'
-import { compare } from 'src/common/password-hash'
+import { compare } from '../common/password-hash'
 import { User } from '../users/entity/user.entity'
-import { Transaction } from 'src/transactions/entity/transaction.entity'
+import { Transaction } from '../transactions/entity/transaction.entity'
 
 export type AuthenticatedUser =
   | Omit<User, 'password'>
