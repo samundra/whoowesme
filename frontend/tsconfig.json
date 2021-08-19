@@ -16,7 +16,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "noUnusedLocals": false,
-    "noUnusedParameters": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,

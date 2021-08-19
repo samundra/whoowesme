@@ -53,7 +53,7 @@ const AddNewEntry: React.FunctionComponent<Props> = () => {
     AxiosError,
     CreateTransactionArgs,
     void
-  >((data: CreateTransactionArgs): any => axios.post('/transactions', data), {
+  >((data: CreateTransactionArgs) => axios.post('/transactions', data), {
     onMutate: values => {
       console.log({ values })
       // do nothing

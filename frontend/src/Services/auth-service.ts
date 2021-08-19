@@ -17,6 +17,7 @@ export default (): ApiAuthService => ({
         },
       )
     } catch (error) {
+      // @ts-ignore
       throw new Error(error)
     }
   },

@@ -239,13 +239,13 @@ export class UsersController {
     },
   })
   async register(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
-    this.logger.log('User register')
     try {
-      const registeredUser = await this.userService.create({
+      const postData = {
         ...createUserDto,
         password: await hash(createUserDto.password),
-      })
-      const result = Object.assign({}, registeredUser, { password: null })
+      }
+      const registeredUser = await this.userService.create(postData)
+      const result = Object.assign({}, registeredUser)
 
       delete result.password
       delete result.id
@@ -383,6 +383,7 @@ export class UsersController {
 
     try {
       const user = await this.userService.changePassword(u.id, changePasswordDto)
+
       // Delete record that are not needed
       const result = Object.assign({}, { ...user, password: undefined, id: undefined })
 

@@ -1,4 +1,4 @@
-import { transactionReducer } from './transaction/reducers'
+import transactionReducer from './features/transaction/transaction.reducers'
 import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
