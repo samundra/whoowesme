@@ -2,27 +2,8 @@
 <div>
     <p align="center">:construction: This project is still a work in progress :construction:</p><br/>
 </div>
-This repo is based on [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This repo is based on <a href="https://github.com/nestjs/nest">Nest</a> framework TypeScript starter repository.
 <div>
-
-## Setup
-
-### OPTIONAL - docker development setup
-
-```bash
-$ docker network create web
-$ docker volume create whodata
-```
-
-### Configuration
-
-- edit `/etc/hosts` file and then add `127.0.0.1 api.whoowesme.local`
-
-```bash
-$ cp .env.example .env
-```
-
-- Open `.env` and configure to suit your need
 
 ## Running the app
 
@@ -36,6 +17,24 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+### Configuration
+
+- edit `/etc/hosts` file and then add `127.0.0.1 api.whoowesme.local`
+
+```bash
+$ cp .env.example .env
+```
+
+- Open `.env` and configure to suit your need
+  
+    
+## Docker Setup (optional - docker development setup)
+
+```bash
+$ docker network create web
+$ docker volume create whodata
+```
+  
 ## Test
 
 Project contains end-to-end testings only so you will not find any unit test.
