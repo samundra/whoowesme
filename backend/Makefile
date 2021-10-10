@@ -1,7 +1,13 @@
+dist_dir := dist
+
 .phony: all
 
-build:
+build: copyenv
 	npm run build
-	cp .env.test ./dist/.env.test
-	cp .env ./dist/.env
+
+copyenv:
+	cp .env.test $(dist_dir)/.env.test
+	cp .env $(dist_dir)/.env
+
+dev:
 	npm run start:dev
