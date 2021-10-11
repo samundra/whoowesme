@@ -11,7 +11,7 @@ export class AuthController {
     schema: {
       type: 'object',
       properties: {
-        username: {
+        email: {
           type: 'string',
         },
         password: {
@@ -22,9 +22,9 @@ export class AuthController {
   })
   @UseGuards(LocalAuthGuard)
   @Post('/login')
-  @HttpCode(201)
+  @HttpCode(200)
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'The token has been created successfully.',
     schema: {
       type: 'object',

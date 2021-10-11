@@ -34,6 +34,7 @@ const TransactionEdit: React.FunctionComponent<Props> = () => {
               category: ['personal', 'gym'],
               amount: '223.33',
               description: 'This is full description',
+              timestamp: 1,
             }}
           />
         </PageContent>

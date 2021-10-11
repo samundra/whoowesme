@@ -87,10 +87,11 @@ if you get `service unavailable` then it means something is not configured prope
 ### Migrations
 
 ```bash
-## Up Migration
+## Up Migration, Get inside docker then run migration script
+$ docker exec -it whoapi sh
 $ npm run migration:up
 
-## Down Migration
+## Down Migration, get inside docker then run below command
 $ npm run migration:down
 ```
 

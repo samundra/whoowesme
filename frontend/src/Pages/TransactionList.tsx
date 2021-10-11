@@ -6,10 +6,9 @@ import { Breadcrumb, Button, Modal, Table, Tag } from 'antd'
 import { Link } from 'react-router-dom'
 import { RouteComponentProps } from 'react-router'
 import { PageContent, Content } from 'Components/common'
-import { RootState } from 'Store'
-import { addTransaction } from 'Store/transaction/action'
+import { RootState } from 'Stores'
+import { addTransactionAsync } from 'Stores/features/transaction/transaction.actions'
 import transactionService from 'Services/transaction'
-import { TransactionState } from 'Store/transaction/types'
 
 type Props = RouteComponentProps & ReduxProps & DispatchProps
 const TransactionList: React.FunctionComponent<Props> = props => {
@@ -131,16 +130,16 @@ const TransactionList: React.FunctionComponent<Props> = props => {
   )
 }
 
-const mapStateToProps = (state: RootState): TransactionState => {
+const mapStateToProps = (state: RootState) => {
   return {
-    transactions: state.transaction.transactions,
+    transactions: state.transaction.items,
   }
 }
 
 type ReduxProps = ReturnType<typeof mapStateToProps>
 
 const mapDispatchToProps = {
-  addTransaction,
+  addTransactionAsync,
 }
 
 type DispatchProps = typeof mapDispatchToProps
