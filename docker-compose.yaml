@@ -41,7 +41,7 @@ services:
       - "traefik.http.services.whofrontend.loadBalancer.server.port=8000"
       - "traefik.http.routers.whofrontend.entrypoints=web"
     command: "npm run start"
-    tty: "true"
+    tty: true
 
   whoapi:
     container_name: "whoapi"
