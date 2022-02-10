@@ -8,11 +8,7 @@ type Props = {}
 const HamburgerMenu: React.FunctionComponent<Props> = () => {
   return (
     <SiderContext.Consumer>
-      {({ collapsed, toggleSider }): JSX.Element => {
-        if (collapsed) {
-          console.log('test')
-        }
-
+      {({ toggleSider }): JSX.Element => {
         return <Button icon={<MenuOutlined />} type="link" onClick={toggleSider} />
       }}
     </SiderContext.Consumer>
