@@ -23,8 +23,8 @@ export class UsersService {
     this.logger.log(`Find all users, offset: ${offset}, limit: ${limit}`)
 
     return this.usersRepository.find({
-      skip: offset ?? 0,
-      take: limit ?? 10,
+      skip: offset || 0,
+      take: limit || 10,
     })
   }
 
