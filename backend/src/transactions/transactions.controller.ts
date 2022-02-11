@@ -38,7 +38,7 @@ interface GetTransactionsResponse {
 @Controller('transactions')
 @UseGuards(JwtAuthGuard)
 export class TransactionsController {
-  constructor(private transactionsService: TransactionsService) {}
+  constructor(private transactionsService: TransactionsService) { }
 
   @ApiResponse({
     status: 401,
@@ -154,8 +154,15 @@ export class TransactionsController {
   ) {
     try {
       await this.transactionsService.getTransactionById(id, user)
+      await this.transactionsService.delete(id, user)
 
-      return this.transactionsService.delete(id, user)
+      return res.status(HttpStatus.CREATED).json({
+        statusCode: 204,
+        message: 'Transaction deleted.',
+        result: {
+          id
+        },
+      })
     } catch (e) {
       if (e.status) {
         return res.status(e.response.statusCode).json({
@@ -164,9 +171,6 @@ export class TransactionsController {
           error: e.response.error,
         })
       }
-
-      // TODO: log error to log storage
-      console.error(e)
 
       return res.status(HttpStatus.UNPROCESSABLE_ENTITY).json({
         statusCode: HttpStatus.UNPROCESSABLE_ENTITY,

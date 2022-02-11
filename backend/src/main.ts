@@ -33,6 +33,7 @@ async function bootstrap() {
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   })
 
+  // API Documentation: http://api.whoowesme.local/api
   const documentConfig = new DocumentBuilder()
     .setTitle('Whoowesme API')
     .setDescription('All API')
