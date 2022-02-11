@@ -29,6 +29,7 @@ async function bootstrap() {
 
   app.enableCors({
     origin: [process.env.FRONTEND_ORIGIN, 'https://whooweme.netlify.app', 'http://localhost:8000'],
+    // origin: ['*',
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   })
 
@@ -44,7 +45,7 @@ async function bootstrap() {
     swaggerOptions: {
       persistAuthorization: true,
     },
-    customSiteTitle: 'API Specs',
+    customSiteTitle: 'API Specss',
   }
 
   const document = SwaggerModule.createDocument(app, documentConfig)
@@ -54,11 +55,11 @@ async function bootstrap() {
   // Enable with caution: https://docs.nestjs.com/fundamentals/lifecycle-events#application-shutdown
   // app.enableShutdownHooks()
 
-  const port = parseInt(process.env.BACKEND_PORT, 10) || 5000
-  const host = process.env.BACKEND_HOST || 'localhost'
+  const port = parseInt(process.env.BACKEND_PORT, 10) || 5001
+  // const host = process.env.BACKEND_HOST || 'localhost'
 
   app
-    .listen(port, host)
+    .listen(port)
     .then(async () => {
       const appUrl = await app.getUrl()
       logger.log(`Application running at ${appUrl}/v1`)

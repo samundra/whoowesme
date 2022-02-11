@@ -7,7 +7,7 @@ networks:
 
 services:
   whotraefik:
-    image: "traefik:v2.3"
+    image: "traefik:v2.6"
     container_name: "whotraefik"
     ports:
       - "80:80"
@@ -27,8 +27,8 @@ services:
       dockerfile: "./.docker/frontend/Dockerfile"
     container_name: "whofrontend"
     volumes:
-      - "./frontend:/app"
-      - "./frontend/node_modules:/app/node_modules"
+      - ./frontend:/app
+      # - ./frontend/node_modules
     environment:
       - "API_BASEURI=http://api.whoowesme.local"
       - "APP_PORT=8000"
@@ -40,7 +40,7 @@ services:
       - "traefik.http.routers.whofrontend.rule=Host(`whoowesme.local`)"
       - "traefik.http.services.whofrontend.loadBalancer.server.port=8000"
       - "traefik.http.routers.whofrontend.entrypoints=web"
-    command: "npm run start"
+    command: "npm run dev"
     tty: true
 
   whoapi:
@@ -49,21 +49,21 @@ services:
       context: "."
       dockerfile: "./.docker/backend/Dockerfile"
     volumes:
-      - "./backend:/app"
-      - "./backend/node_modules:/app/node_modules"
+      - './backend:/app'
+      # - './backend/node_modules:'
     ports:
-      - "5000"
+      - "5001"
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
       - "traefik.http.routers.whobackend.rule=Host(`api.whoowesme.local`)"
-      - "traefik.http.services.whobackend.loadBalancer.server.port=5000"
+      - "traefik.http.services.whobackend.loadBalancer.server.port=5001"
       - "traefik.http.routers.whobackend.entrypoints=web"
       # Service Loadbalancer configs
       # Healthcheck
-      - "traefik.http.services.whobackend.loadBalancer.healthcheck.path=/health"
-      - "traefik.http.services.whobackend.loadBalancer.healthcheck.interval=60s"
-      - "traefik.http.services.whobackend.loadBalancer.healthcheck.timeout=10s"
+      # - "traefik.http.services.whobackend.loadBalancer.healthcheck.path=/health"
+      # - "traefik.http.services.whobackend.loadBalancer.healthcheck.interval=60s"
+      # - "traefik.http.services.whobackend.loadBalancer.healthcheck.timeout=10s"
     command: "npm run start:dev"
     tty: true
 

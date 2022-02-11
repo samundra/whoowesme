@@ -15,9 +15,9 @@ ENV REACT_APP_ENV=${REACT_APP_ENV}
 
 Expose 8000
 
-RUN env && npm install --silent
+RUN env && npm install --silent && npm run build
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]
 
 # RUN env && npm install \
 #     && npm run build \

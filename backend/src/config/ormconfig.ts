@@ -7,7 +7,7 @@ import { ConnectionOptions } from 'typeorm'
 // We cannot use NestJS DI to inject ConfigService for that reason we have to
 // manually load env vars
 const envFilePath =
-  process.env.NODE_ENV == 'test'
+  process.env.NODE_ENV === 'test'
     ? join(__dirname, '..', '..', '.env.test')
     : join(__dirname, '..', '..', '.env')
 
