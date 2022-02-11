@@ -3,7 +3,7 @@
     <p align="center">:construction: This project is still a work in progress :construction:</p><br/>
 </div>
 <div>
-_Note:_ This project is for educational purpose only. Please do not use it for production.
+<u>Note:</u> This project is for educational purpose only. Please do not use it for production.
 
 Suppose, I gave you 100 THB, since I am generous I forget to ask. This
 app will force me to ask for that borrowed money to my friend.
@@ -14,24 +14,25 @@ Planned features are:
 - Show total money borrowed
 - Show borrowed to whom
 - When was it borrowed
+
 </div>
 
-How to get the project up and running for local development
+How to get the project up and running for local development?
 
 <details><summary>Docker Setup for Development</summary>
 
 **Local Development Domains:**
 
-| Title    | URL                        |
-| -------- | -------------------------- |
-| Frontend | http://whoowesme.local     |
-| API      | http://api.whoowesme.local |
+| Title             | URL                                |
+| ----------------- | ---------------------------------- |
+| Frontend          | http://whoowesme.local             |
+| API               | http://api.whoowesme.local         |
+| API Documentation | http://api.whoowesme.local/api/    |
+| Traefik proxy     | http://localhost:8080/dashboard/#/ |
 
 Open `/etc/hosts` and enter `127.0.0.1 whoowesme.local api.whoowesme.local`
 
-After that, run below docker commands from project root directory
-
-Create external network that will be used for networking.
+After that, run docker commands shared below sequentially from project root directory.
 
 ```bash
 # Create external network
@@ -52,22 +53,47 @@ Check again to make sure that all containers are running fine without errors
 $ docker ps --format="{{ .ID }}, {{ .Status}} - {{ .Names }}"
 
 ## Output
-95e54e9831aa, Up 25 minutes - whoapi
-7962b6101979, Up 39 minutes - whofrontend
-4586684c2c27, Up 39 minutes - whodb
-3b9119ae6b48, Up 39 minutes - whotraefik
+d3a37ed238db, Up 47 minutes - whodbtest
+c6d1c618da1c, Up 47 minutes - whoapi
+82d2392849eb, Up 47 minutes - whofrontend
+c6b1760adaca, Up 47 minutes - whodb
+33f05dc01a63, Up 47 minutes - whotraefik
 ```
 
-If you see output similar to above then it means container are running fine. Visit backend and frontend url to make sure that they are accessible.
-you can check `docker logs whoapi` and `docker logs whofrontend` to make container logs in case you have some error.
+If you see output similar to above then it means container are running fine.
+
+#### Test API Connection
+Run curl command. It should return response.
+
+```bash
+### Request
+curl --location --request GET 'http://api.whoowesme.local/v1'
+
+### Response
+{
+    "status": "OK",
+    "version": "0.5.4"
+}
+```
+
+### Test Frontend
+open `http://whoowesme.local` it should show UI.
+
+### In case of Error
+You can check docker logs by using below commands. Since errors can vary, I did not mention specific errors here. If you encounter any error please feel free to open issue in repo. While opening issue please share screenshot of the error message too along with some context on how you got it.
+
+Frontend: `docker logs whofrontend`.
+API: `docker logs whoapi`
 
 For UI, `docker logs whofrontend` should show output similar to what is shown below
 
 ```bash
+Compiled successfully!
+
 You can now view who-ui in the browser.
 
   Local:            http://localhost:8000
-  On Your Network:  http://172.18.0.4:8000
+  On Your Network:  http://172.19.0.4:8000
 
 Note that the development build is not optimized.
 To create a production build, use npm run build.
@@ -76,19 +102,34 @@ To create a production build, use npm run build.
 For API, `docker logs whoapi` wait for output similar as shown below
 
 ```bash
-[Nest] 27   - 03/19/2021, 8:42:06 PM   [InstanceLoader] TypeOrmCoreModule dependencies initialized +240ms
-[Nest] 27   - 03/19/2021, 8:42:06 PM   [InstanceLoader] TypeOrmModule dependencies initialized +2ms
-...
-...
-[Nest] 27   - 03/19/2021, 8:42:06 PM   [RouterExplorer] Mapped {/transactions/:id, DELETE} route +5ms
-[Nest] 27   - 03/19/2021, 8:42:06 PM   [RouterExplorer] Mapped {/transactions/:id, PATCH} route +2ms
-[Nest] 27   - 03/19/2021, 8:42:06 PM   [RoutesResolver] AuthController {/auth}: +1ms
-[Nest] 27   - 03/19/2021, 8:42:06 PM   [RouterExplorer] Mapped {/auth/login, POST} route +2ms
-[Nest] 27   - 03/19/2021, 8:42:06 PM   [RoutesResolver] UsersController {/users}: +1ms
-[Nest] 27   - 03/19/2021, 8:42:06 PM   [RouterExplorer] Mapped {/users, GET} route +1ms
-[Nest] 27   - 03/19/2021, 8:42:06 PM   [RouterExplorer] Mapped {/users/me, GET} route +1ms
-[Nest] 27   - 03/19/2021, 8:42:06 PM   [RouterExplorer] Mapped {/users/register, POST} route +2ms
-[Nest] 27   - 03/19/2021, 8:42:06 PM   [NestApplication] Nest application successfully started +16ms
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [NestFactory] Starting Nest application...
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [InstanceLoader] PassportModule dependencies initialized +225ms
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [InstanceLoader] LoggerModule dependencies initialized +2ms
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [InstanceLoader] ConfigHostModule dependencies initialized +0ms
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [InstanceLoader] ConfigModule dependencies initialized +2ms
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [InstanceLoader] ConfigModule dependencies initialized +0ms
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [InstanceLoader] AppModule dependencies initialized +4ms
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [InstanceLoader] JwtModule dependencies initialized +1ms
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [InstanceLoader] TypeOrmCoreModule dependencies initialized +138ms
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [InstanceLoader] TypeOrmModule dependencies initialized +1ms
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+... <Removed manually to keep it short>
+... <Removed manually to keep it short>
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [RouterExplorer] Mapped {/v1/transactions/:id, GET} route
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [RouterExplorer] Mapped {/v1/transactions, POST} route
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [RouterExplorer] Mapped {/v1/transactions/:id, DELETE} route
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [RouterExplorer] Mapped {/v1/transactions/:id, PATCH} route
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [RoutesResolver] AuthController {/v1/auth}:
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [RouterExplorer] Mapped {/v1/auth/login, POST} route
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [RoutesResolver] UsersController {/v1/users}:
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [RouterExplorer] Mapped {/v1/users, GET} route
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [RouterExplorer] Mapped {/v1/users/me, GET} route
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [RouterExplorer] Mapped {/v1/users/register, POST} route
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [RouterExplorer] Mapped {/v1/users, PATCH} route
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [RouterExplorer] Mapped {/v1/users/change-password, POST} route
+[Nest] 143   - 02/11/2022, 4:56:46 AM   [NestApplication] Nest application successfully started
+[Nest] 143   - 02/11/2022, 4:56:46 AM   Application running at http://[::1]:5001/v1
 ```
 
 [Traefik](https://doc.traefik.io) dashboard is available at : `http://localhost:8080/dashboard/#/`
