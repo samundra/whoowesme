@@ -6,6 +6,7 @@
     "sourceMap": false,
     "allowJs": true,
     "jsx": "react",
+    "useUnknownInCatchVariables": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "strict": true,
