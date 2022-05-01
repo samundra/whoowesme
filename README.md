@@ -40,6 +40,18 @@ $ docker network create web
 
 # Create external volume
 $ docker volume create whodata
+```
+
+### Install backend and frontend dependencies
+Run following commands from project root directory
+
+```bash
+$ cd backend
+$ npm install
+
+$ cd frontend
+$ npm install
+```
 
 # Run docker containers
 $ docker-compose up -d
@@ -54,9 +66,9 @@ $ docker ps --format="{{ .ID }}, {{ .Status}} - {{ .Names }}"
 
 ## Output
 d3a37ed238db, Up 47 minutes - whodbtest
+c6b1760adaca, Up 47 minutes - whodb
 c6d1c618da1c, Up 47 minutes - whoapi
 82d2392849eb, Up 47 minutes - whofrontend
-c6b1760adaca, Up 47 minutes - whodb
 33f05dc01a63, Up 47 minutes - whotraefik
 ```
 
@@ -70,19 +82,16 @@ Run curl command. It should return response.
 curl --location --request GET 'http://api.whoowesme.local/v1'
 
 ### Response
-{
-    "status": "OK",
-    "version": "0.5.4"
-}
+{"status":"OK","version":"0.5.4"}
 ```
 
 ### Test Frontend
-open `http://whoowesme.local` it should show UI.
+open `http://whoowesme.local` it should show UI. <br />
 
 ### In case of Error
 You can check docker logs by using below commands. Since errors can vary, I did not mention specific errors here. If you encounter any error please feel free to open issue in repo. While opening issue please share screenshot of the error message too along with some context on how you got it.
 
-Frontend: `docker logs whofrontend`.
+Frontend: `docker logs whofrontend` <br />
 API: `docker logs whoapi`
 
 For UI, `docker logs whofrontend` should show output similar to what is shown below
