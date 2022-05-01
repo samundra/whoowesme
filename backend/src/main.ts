@@ -57,7 +57,6 @@ async function bootstrap() {
   // app.enableShutdownHooks()
 
   const port = parseInt(process.env.BACKEND_PORT, 10) || 5001
-  // const host = process.env.BACKEND_HOST || 'localhost'
 
   app
     .listen(port)
